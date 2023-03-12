@@ -1,0 +1,123 @@
+|somador
+A[0] => full_adder:GEN_FAS:0:GEN_FIRST:FA0.A
+A[1] => full_adder:GEN_FAS:1:GEN_OTHERS:FAI.A
+A[2] => full_adder:GEN_FAS:2:GEN_OTHERS:FAI.A
+A[3] => full_adder:GEN_FAS:3:GEN_OTHERS:FAI.A
+A[4] => full_adder:GEN_FAS:4:GEN_OTHERS:FAI.A
+A[5] => full_adder:GEN_FAS:5:GEN_OTHERS:FAI.A
+A[6] => full_adder:GEN_FAS:6:GEN_OTHERS:FAI.A
+B[0] => full_adder:GEN_FAS:0:GEN_FIRST:FA0.B
+B[1] => full_adder:GEN_FAS:1:GEN_OTHERS:FAI.B
+B[2] => full_adder:GEN_FAS:2:GEN_OTHERS:FAI.B
+B[3] => full_adder:GEN_FAS:3:GEN_OTHERS:FAI.B
+B[4] => full_adder:GEN_FAS:4:GEN_OTHERS:FAI.B
+B[5] => full_adder:GEN_FAS:5:GEN_OTHERS:FAI.B
+B[6] => full_adder:GEN_FAS:6:GEN_OTHERS:FAI.B
+S[0] <= full_adder:GEN_FAS:0:GEN_FIRST:FA0.S
+S[1] <= full_adder:GEN_FAS:1:GEN_OTHERS:FAI.S
+S[2] <= full_adder:GEN_FAS:2:GEN_OTHERS:FAI.S
+S[3] <= full_adder:GEN_FAS:3:GEN_OTHERS:FAI.S
+S[4] <= full_adder:GEN_FAS:4:GEN_OTHERS:FAI.S
+S[5] <= full_adder:GEN_FAS:5:GEN_OTHERS:FAI.S
+S[6] <= full_adder:GEN_FAS:6:GEN_OTHERS:FAI.S
+Ov <= full_adder:GEN_FAS:6:GEN_OTHERS:FAI.Co
+
+
+|somador|full_adder:\GEN_FAS:6:GEN_OTHERS:FAI
+A => S.IN0
+A => Co.IN0
+A => Co.IN0
+B => S.IN1
+B => Co.IN1
+B => Co.IN0
+Ci => S.IN1
+Ci => Co.IN1
+Ci => Co.IN1
+Co <= Co.DB_MAX_OUTPUT_PORT_TYPE
+S <= S.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|somador|full_adder:\GEN_FAS:5:GEN_OTHERS:FAI
+A => S.IN0
+A => Co.IN0
+A => Co.IN0
+B => S.IN1
+B => Co.IN1
+B => Co.IN0
+Ci => S.IN1
+Ci => Co.IN1
+Ci => Co.IN1
+Co <= Co.DB_MAX_OUTPUT_PORT_TYPE
+S <= S.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|somador|full_adder:\GEN_FAS:4:GEN_OTHERS:FAI
+A => S.IN0
+A => Co.IN0
+A => Co.IN0
+B => S.IN1
+B => Co.IN1
+B => Co.IN0
+Ci => S.IN1
+Ci => Co.IN1
+Ci => Co.IN1
+Co <= Co.DB_MAX_OUTPUT_PORT_TYPE
+S <= S.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|somador|full_adder:\GEN_FAS:3:GEN_OTHERS:FAI
+A => S.IN0
+A => Co.IN0
+A => Co.IN0
+B => S.IN1
+B => Co.IN1
+B => Co.IN0
+Ci => S.IN1
+Ci => Co.IN1
+Ci => Co.IN1
+Co <= Co.DB_MAX_OUTPUT_PORT_TYPE
+S <= S.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|somador|full_adder:\GEN_FAS:2:GEN_OTHERS:FAI
+A => S.IN0
+A => Co.IN0
+A => Co.IN0
+B => S.IN1
+B => Co.IN1
+B => Co.IN0
+Ci => S.IN1
+Ci => Co.IN1
+Ci => Co.IN1
+Co <= Co.DB_MAX_OUTPUT_PORT_TYPE
+S <= S.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|somador|full_adder:\GEN_FAS:1:GEN_OTHERS:FAI
+A => S.IN0
+A => Co.IN0
+A => Co.IN0
+B => S.IN1
+B => Co.IN1
+B => Co.IN0
+Ci => S.IN1
+Ci => Co.IN1
+Ci => Co.IN1
+Co <= Co.DB_MAX_OUTPUT_PORT_TYPE
+S <= S.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|somador|full_adder:\GEN_FAS:0:GEN_FIRST:FA0
+A => S.IN0
+A => Co.IN0
+A => Co.IN0
+B => S.IN1
+B => Co.IN1
+B => Co.IN0
+Ci => S.IN1
+Ci => Co.IN1
+Ci => Co.IN1
+Co <= Co.DB_MAX_OUTPUT_PORT_TYPE
+S <= S.DB_MAX_OUTPUT_PORT_TYPE
+
+
