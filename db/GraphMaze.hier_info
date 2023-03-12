@@ -1,123 +1,85 @@
-|somador
-A[0] => full_adder:GEN_FAS:0:GEN_FIRST:FA0.A
-A[1] => full_adder:GEN_FAS:1:GEN_OTHERS:FAI.A
-A[2] => full_adder:GEN_FAS:2:GEN_OTHERS:FAI.A
-A[3] => full_adder:GEN_FAS:3:GEN_OTHERS:FAI.A
-A[4] => full_adder:GEN_FAS:4:GEN_OTHERS:FAI.A
-A[5] => full_adder:GEN_FAS:5:GEN_OTHERS:FAI.A
-A[6] => full_adder:GEN_FAS:6:GEN_OTHERS:FAI.A
-B[0] => full_adder:GEN_FAS:0:GEN_FIRST:FA0.B
-B[1] => full_adder:GEN_FAS:1:GEN_OTHERS:FAI.B
-B[2] => full_adder:GEN_FAS:2:GEN_OTHERS:FAI.B
-B[3] => full_adder:GEN_FAS:3:GEN_OTHERS:FAI.B
-B[4] => full_adder:GEN_FAS:4:GEN_OTHERS:FAI.B
-B[5] => full_adder:GEN_FAS:5:GEN_OTHERS:FAI.B
-B[6] => full_adder:GEN_FAS:6:GEN_OTHERS:FAI.B
-S[0] <= full_adder:GEN_FAS:0:GEN_FIRST:FA0.S
-S[1] <= full_adder:GEN_FAS:1:GEN_OTHERS:FAI.S
-S[2] <= full_adder:GEN_FAS:2:GEN_OTHERS:FAI.S
-S[3] <= full_adder:GEN_FAS:3:GEN_OTHERS:FAI.S
-S[4] <= full_adder:GEN_FAS:4:GEN_OTHERS:FAI.S
-S[5] <= full_adder:GEN_FAS:5:GEN_OTHERS:FAI.S
-S[6] <= full_adder:GEN_FAS:6:GEN_OTHERS:FAI.S
-Ov <= full_adder:GEN_FAS:6:GEN_OTHERS:FAI.Co
+|graphmaze
+clock => edge_detector:mov_dect.clock
+clock => map_code[0].CLK
+clock => map_code[1].CLK
+clock => room_code[0].CLK
+clock => room_code[1].CLK
+clock => room_code[2].CLK
+clock => room_code[3].CLK
+clock => room_code[4].CLK
+reset => room_code.OUTPUTSELECT
+reset => room_code.OUTPUTSELECT
+reset => room_code.OUTPUTSELECT
+reset => room_code.OUTPUTSELECT
+reset => room_code.OUTPUTSELECT
+reset => map_code.OUTPUTSELECT
+reset => map_code.OUTPUTSELECT
+dir_btns[0] => btns_or.IN1
+dir_btns[0] => mov_dir[0].IN1
+dir_btns[1] => btns_or.IN1
+dir_btns[1] => mov_dir[1].IN1
+dir_btns[2] => btns_or.IN0
+dir_btns[2] => mov_dir[2].IN1
+dir_btns[3] => btns_or.IN1
+dir_btns[3] => mov_dir[3].IN1
+next_map_btn => map_cnt.IN1
+won <= Equal4.DB_MAX_OUTPUT_PORT_TYPE
+walls[0] <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+walls[1] <= Equal1.DB_MAX_OUTPUT_PORT_TYPE
+walls[2] <= Equal2.DB_MAX_OUTPUT_PORT_TYPE
+walls[3] <= Equal3.DB_MAX_OUTPUT_PORT_TYPE
+pos_hex_0[0] <= pos_hex_0[0].DB_MAX_OUTPUT_PORT_TYPE
+pos_hex_0[1] <= pos_hex_0[1].DB_MAX_OUTPUT_PORT_TYPE
+pos_hex_0[2] <= pos_hex_0[2].DB_MAX_OUTPUT_PORT_TYPE
+pos_hex_0[3] <= pos_hex_0[3].DB_MAX_OUTPUT_PORT_TYPE
+pos_hex_0[4] <= pos_hex_0[4].DB_MAX_OUTPUT_PORT_TYPE
+pos_hex_0[5] <= pos_hex_0[5].DB_MAX_OUTPUT_PORT_TYPE
+pos_hex_0[6] <= pos_hex_0[6].DB_MAX_OUTPUT_PORT_TYPE
+pos_hex_1[0] <= comb.DB_MAX_OUTPUT_PORT_TYPE
+pos_hex_1[1] <= pos_hex_1[1].DB_MAX_OUTPUT_PORT_TYPE
+pos_hex_1[2] <= pos_hex_1[2].DB_MAX_OUTPUT_PORT_TYPE
+pos_hex_1[3] <= pos_hex_1[3].DB_MAX_OUTPUT_PORT_TYPE
+pos_hex_1[4] <= pos_hex_1[4].DB_MAX_OUTPUT_PORT_TYPE
+pos_hex_1[5] <= pos_hex_1[5].DB_MAX_OUTPUT_PORT_TYPE
+pos_hex_1[6] <= pos_hex_1[6].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|somador|full_adder:\GEN_FAS:6:GEN_OTHERS:FAI
-A => S.IN0
-A => Co.IN0
-A => Co.IN0
-B => S.IN1
-B => Co.IN1
-B => Co.IN0
-Ci => S.IN1
-Ci => Co.IN1
-Ci => Co.IN1
-Co <= Co.DB_MAX_OUTPUT_PORT_TYPE
-S <= S.DB_MAX_OUTPUT_PORT_TYPE
+|graphmaze|rom_128x20:map_mem
+endereco[0] => memoria.RADDR
+endereco[1] => memoria.RADDR1
+endereco[2] => memoria.RADDR2
+endereco[3] => memoria.RADDR3
+endereco[4] => memoria.RADDR4
+endereco[5] => memoria.RADDR5
+endereco[6] => memoria.RADDR6
+dado_saida[0] <= memoria.DATAOUT
+dado_saida[1] <= memoria.DATAOUT1
+dado_saida[2] <= memoria.DATAOUT2
+dado_saida[3] <= memoria.DATAOUT3
+dado_saida[4] <= memoria.DATAOUT4
+dado_saida[5] <= memoria.DATAOUT5
+dado_saida[6] <= memoria.DATAOUT6
+dado_saida[7] <= memoria.DATAOUT7
+dado_saida[8] <= memoria.DATAOUT8
+dado_saida[9] <= memoria.DATAOUT9
+dado_saida[10] <= memoria.DATAOUT10
+dado_saida[11] <= memoria.DATAOUT11
+dado_saida[12] <= memoria.DATAOUT12
+dado_saida[13] <= memoria.DATAOUT13
+dado_saida[14] <= memoria.DATAOUT14
+dado_saida[15] <= memoria.DATAOUT15
+dado_saida[16] <= memoria.DATAOUT16
+dado_saida[17] <= memoria.DATAOUT17
+dado_saida[18] <= memoria.DATAOUT18
+dado_saida[19] <= memoria.DATAOUT19
 
 
-|somador|full_adder:\GEN_FAS:5:GEN_OTHERS:FAI
-A => S.IN0
-A => Co.IN0
-A => Co.IN0
-B => S.IN1
-B => Co.IN1
-B => Co.IN0
-Ci => S.IN1
-Ci => Co.IN1
-Ci => Co.IN1
-Co <= Co.DB_MAX_OUTPUT_PORT_TYPE
-S <= S.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|somador|full_adder:\GEN_FAS:4:GEN_OTHERS:FAI
-A => S.IN0
-A => Co.IN0
-A => Co.IN0
-B => S.IN1
-B => Co.IN1
-B => Co.IN0
-Ci => S.IN1
-Ci => Co.IN1
-Ci => Co.IN1
-Co <= Co.DB_MAX_OUTPUT_PORT_TYPE
-S <= S.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|somador|full_adder:\GEN_FAS:3:GEN_OTHERS:FAI
-A => S.IN0
-A => Co.IN0
-A => Co.IN0
-B => S.IN1
-B => Co.IN1
-B => Co.IN0
-Ci => S.IN1
-Ci => Co.IN1
-Ci => Co.IN1
-Co <= Co.DB_MAX_OUTPUT_PORT_TYPE
-S <= S.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|somador|full_adder:\GEN_FAS:2:GEN_OTHERS:FAI
-A => S.IN0
-A => Co.IN0
-A => Co.IN0
-B => S.IN1
-B => Co.IN1
-B => Co.IN0
-Ci => S.IN1
-Ci => Co.IN1
-Ci => Co.IN1
-Co <= Co.DB_MAX_OUTPUT_PORT_TYPE
-S <= S.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|somador|full_adder:\GEN_FAS:1:GEN_OTHERS:FAI
-A => S.IN0
-A => Co.IN0
-A => Co.IN0
-B => S.IN1
-B => Co.IN1
-B => Co.IN0
-Ci => S.IN1
-Ci => Co.IN1
-Ci => Co.IN1
-Co <= Co.DB_MAX_OUTPUT_PORT_TYPE
-S <= S.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|somador|full_adder:\GEN_FAS:0:GEN_FIRST:FA0
-A => S.IN0
-A => Co.IN0
-A => Co.IN0
-B => S.IN1
-B => Co.IN1
-B => Co.IN0
-Ci => S.IN1
-Ci => Co.IN1
-Ci => Co.IN1
-Co <= Co.DB_MAX_OUTPUT_PORT_TYPE
-S <= S.DB_MAX_OUTPUT_PORT_TYPE
+|graphmaze|edge_detector:mov_dect
+clock => reg1.CLK
+clock => reg0.CLK
+reset => reg1.ACLR
+reset => reg0.ACLR
+sinal => reg0.DATAIN
+pulso <= pulso.DB_MAX_OUTPUT_PORT_TYPE
 
 

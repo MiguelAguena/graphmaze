@@ -1,6 +1,6 @@
 Analysis & Synthesis report for GraphMaze
-Sun Mar 12 00:50:59 2023
-Quartus Prime Version 22.1std.0 Build 915 10/25/2022 SC Lite Edition
+Sun Mar 12 18:05:40 2023
+Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
 ---------------------
@@ -13,18 +13,19 @@ Quartus Prime Version 22.1std.0 Build 915 10/25/2022 SC Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. General Register Statistics
-  9. Port Connectivity Checks: "full_adder:\GEN_FAS:0:GEN_FIRST:FA0"
- 10. Post-Synthesis Netlist Statistics for Top Partition
- 11. Elapsed Time Per Partition
- 12. Analysis & Synthesis Messages
+  8. Registers Removed During Synthesis
+  9. Removed Registers Triggering Further Register Optimizations
+ 10. General Register Statistics
+ 11. Post-Synthesis Netlist Statistics for Top Partition
+ 12. Elapsed Time Per Partition
+ 13. Analysis & Synthesis Messages
 
 
 
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 2022  Intel Corporation. All rights reserved.
+Copyright (C) 2020  Intel Corporation. All rights reserved.
 Your use of Intel Corporation's design tools, logic functions 
 and other software and tools, and any partner logic 
 functions, and any output files from any of the foregoing 
@@ -41,27 +42,27 @@ https://fpgasoftware.intel.com/eula.
 
 
 
-+----------------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                                     ;
-+---------------------------------+------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sun Mar 12 00:50:59 2023          ;
-; Quartus Prime Version           ; 22.1std.0 Build 915 10/25/2022 SC Lite Edition ;
-; Revision Name                   ; GraphMaze                                      ;
-; Top-level Entity Name           ; somador                                        ;
-; Family                          ; Cyclone V                                      ;
-; Logic utilization (in ALMs)     ; N/A                                            ;
-; Total registers                 ; 0                                              ;
-; Total pins                      ; 22                                             ;
-; Total virtual pins              ; 0                                              ;
-; Total block memory bits         ; 0                                              ;
-; Total DSP Blocks                ; 0                                              ;
-; Total HSSI RX PCSs              ; 0                                              ;
-; Total HSSI PMA RX Deserializers ; 0                                              ;
-; Total HSSI TX PCSs              ; 0                                              ;
-; Total HSSI PMA TX Serializers   ; 0                                              ;
-; Total PLLs                      ; 0                                              ;
-; Total DLLs                      ; 0                                              ;
-+---------------------------------+------------------------------------------------+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++---------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Sun Mar 12 18:05:40 2023       ;
+; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
+; Revision Name                   ; GraphMaze                                   ;
+; Top-level Entity Name           ; graphmaze                                   ;
+; Family                          ; Cyclone V                                   ;
+; Logic utilization (in ALMs)     ; N/A                                         ;
+; Total registers                 ; 0                                           ;
+; Total pins                      ; 26                                          ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 0                                           ;
+; Total DSP Blocks                ; 0                                           ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0                                           ;
+; Total DLLs                      ; 0                                           ;
++---------------------------------+---------------------------------------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------+
@@ -70,7 +71,7 @@ https://fpgasoftware.intel.com/eula.
 ; Option                                                                          ; Setting            ; Default Value      ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                          ; 5CEBA2F23C7        ;                    ;
-; Top-level entity name                                                           ; somador            ; GraphMaze          ;
+; Top-level entity name                                                           ; graphmaze          ; GraphMaze          ;
 ; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
 ; Use smart compilation                                                           ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
@@ -156,8 +157,8 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 4           ;
-; Maximum allowed            ; 4           ;
+; Number detected on machine ; 12          ;
+; Maximum allowed            ; 6           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
 ; Maximum used               ; 1           ;
@@ -167,57 +168,75 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                           ;
-+----------------------------------+-----------------+-----------------+-------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                    ; Library ;
-+----------------------------------+-----------------+-----------------+-------------------------------------------------+---------+
-; somador.vhd                      ; yes             ; User VHDL File  ; /home/miguel/EDA/Projects/GraphMaze/somador.vhd ;         ;
-+----------------------------------+-----------------+-----------------+-------------------------------------------------+---------+
++----------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                       ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                ; Library ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------+---------+
+; graphmaze.vhd                    ; yes             ; User VHDL File  ; D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd     ;         ;
+; rom_128x20.vhd                   ; yes             ; User VHDL File  ; D:/USP/5_periodo/Labdig/Projeto/graphmaze/rom_128x20.vhd    ;         ;
+; edge_detector.vhd                ; yes             ; User VHDL File  ; D:/USP/5_periodo/Labdig/Projeto/graphmaze/edge_detector.vhd ;         ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------+---------+
 
 
-+-----------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                                             ;
-+---------------------------------------------+-------------------------------------------+
-; Resource                                    ; Usage                                     ;
-+---------------------------------------------+-------------------------------------------+
-; Estimate of Logic utilization (ALMs needed) ; 7                                         ;
-;                                             ;                                           ;
-; Combinational ALUT usage for logic          ; 11                                        ;
-;     -- 7 input functions                    ; 0                                         ;
-;     -- 6 input functions                    ; 3                                         ;
-;     -- 5 input functions                    ; 4                                         ;
-;     -- 4 input functions                    ; 1                                         ;
-;     -- <=3 input functions                  ; 3                                         ;
-;                                             ;                                           ;
-; Dedicated logic registers                   ; 0                                         ;
-;                                             ;                                           ;
-; I/O pins                                    ; 22                                        ;
-;                                             ;                                           ;
-; Total DSP Blocks                            ; 0                                         ;
-;                                             ;                                           ;
-; Maximum fan-out node                        ; full_adder:\GEN_FAS:2:GEN_OTHERS:FAI|Co~0 ;
-; Maximum fan-out                             ; 4                                         ;
-; Total fan-out                               ; 79                                        ;
-; Average fan-out                             ; 1.44                                      ;
-+---------------------------------------------+-------------------------------------------+
++----------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary              ;
++---------------------------------------------+------------+
+; Resource                                    ; Usage      ;
++---------------------------------------------+------------+
+; Estimate of Logic utilization (ALMs needed) ; 0          ;
+;                                             ;            ;
+; Combinational ALUT usage for logic          ; 0          ;
+;     -- 7 input functions                    ; 0          ;
+;     -- 6 input functions                    ; 0          ;
+;     -- 5 input functions                    ; 0          ;
+;     -- 4 input functions                    ; 0          ;
+;     -- <=3 input functions                  ; 0          ;
+;                                             ;            ;
+; Dedicated logic registers                   ; 0          ;
+;                                             ;            ;
+; I/O pins                                    ; 26         ;
+;                                             ;            ;
+; Total DSP Blocks                            ; 0          ;
+;                                             ;            ;
+; Maximum fan-out node                        ; won~output ;
+; Maximum fan-out                             ; 1          ;
+; Total fan-out                               ; 26         ;
+; Average fan-out                             ; 0.50       ;
++---------------------------------------------+------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                             ;
-+-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------+-------------+--------------+
-; Compilation Hierarchy Node                ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                           ; Entity Name ; Library Name ;
-+-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------+-------------+--------------+
-; |somador                                  ; 11 (0)              ; 0 (0)                     ; 0                 ; 0          ; 22   ; 0            ; |somador                                      ; somador     ; work         ;
-;    |full_adder:\GEN_FAS:0:GEN_FIRST:FA0|  ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |somador|full_adder:\GEN_FAS:0:GEN_FIRST:FA0  ; full_adder  ; work         ;
-;    |full_adder:\GEN_FAS:1:GEN_OTHERS:FAI| ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |somador|full_adder:\GEN_FAS:1:GEN_OTHERS:FAI ; full_adder  ; work         ;
-;    |full_adder:\GEN_FAS:2:GEN_OTHERS:FAI| ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |somador|full_adder:\GEN_FAS:2:GEN_OTHERS:FAI ; full_adder  ; work         ;
-;    |full_adder:\GEN_FAS:3:GEN_OTHERS:FAI| ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |somador|full_adder:\GEN_FAS:3:GEN_OTHERS:FAI ; full_adder  ; work         ;
-;    |full_adder:\GEN_FAS:4:GEN_OTHERS:FAI| ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |somador|full_adder:\GEN_FAS:4:GEN_OTHERS:FAI ; full_adder  ; work         ;
-;    |full_adder:\GEN_FAS:5:GEN_OTHERS:FAI| ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |somador|full_adder:\GEN_FAS:5:GEN_OTHERS:FAI ; full_adder  ; work         ;
-;    |full_adder:\GEN_FAS:6:GEN_OTHERS:FAI| ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |somador|full_adder:\GEN_FAS:6:GEN_OTHERS:FAI ; full_adder  ; work         ;
-+-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------+-------------+--------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                    ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
+; |graphmaze                 ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 26   ; 0            ; |graphmaze          ; graphmaze   ; work         ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++--------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                             ;
++---------------------------------------+----------------------------------------+
+; Register name                         ; Reason for Removal                     ;
++---------------------------------------+----------------------------------------+
+; room_code[0..4]                       ; Stuck at GND due to stuck port data_in ;
+; edge_detector:mov_dect|reg1           ; Lost fanout                            ;
+; edge_detector:mov_dect|reg0           ; Lost fanout                            ;
+; map_code[0,1]                         ; Stuck at GND due to stuck port data_in ;
+; Total Number of Removed Registers = 9 ;                                        ;
++---------------------------------------+----------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                          ;
++---------------+---------------------------+----------------------------------------------------------+
+; Register name ; Reason for Removal        ; Registers Removed due to This Register                   ;
++---------------+---------------------------+----------------------------------------------------------+
+; room_code[1]  ; Stuck at GND              ; edge_detector:mov_dect|reg1, edge_detector:mov_dect|reg0 ;
+;               ; due to stuck port data_in ;                                                          ;
++---------------+---------------------------+----------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -235,31 +254,18 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 
 
-+-----------------------------------------------------------------+
-; Port Connectivity Checks: "full_adder:\GEN_FAS:0:GEN_FIRST:FA0" ;
-+------+-------+----------+---------------------------------------+
-; Port ; Type  ; Severity ; Details                               ;
-+------+-------+----------+---------------------------------------+
-; ci   ; Input ; Info     ; Stuck at GND                          ;
-+------+-------+----------+---------------------------------------+
-
-
 +-----------------------------------------------------+
 ; Post-Synthesis Netlist Statistics for Top Partition ;
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_lcell_comb     ; 11                          ;
-;     normal            ; 11                          ;
-;         2 data inputs ; 2                           ;
-;         3 data inputs ; 1                           ;
-;         4 data inputs ; 1                           ;
-;         5 data inputs ; 4                           ;
-;         6 data inputs ; 3                           ;
-; boundary_port         ; 22                          ;
+; arriav_lcell_comb     ; 1                           ;
+;     normal            ; 1                           ;
+;         0 data inputs ; 1                           ;
+; boundary_port         ; 26                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 3.00                        ;
-; Average LUT depth     ; 2.20                        ;
+; Max LUT depth         ; 0.00                        ;
+; Average LUT depth     ; 0.00                        ;
 +-----------------------+-----------------------------+
 
 
@@ -268,7 +274,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:00     ;
 +----------------+--------------+
 
 
@@ -277,42 +283,65 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
-    Info: Version 22.1std.0 Build 915 10/25/2022 SC Lite Edition
-    Info: Processing started: Sun Mar 12 00:50:46 2023
+    Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+    Info: Processing started: Sun Mar 12 18:05:32 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off GraphMaze -c GraphMaze
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
-Info (12021): Found 0 design units, including 0 entities, in source file graphmaze.vhd
+Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file graphmaze.vhd
+    Info (12022): Found design unit 1: graphmaze-behav File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 17
+    Info (12023): Found entity 1: graphmaze File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file rom_128x20.vhd
-    Info (12022): Found design unit 1: rom_128x20-rom_modelsim File: /home/miguel/EDA/Projects/GraphMaze/rom_128x20.vhd Line: 13
-    Info (12023): Found entity 1: rom_128x20 File: /home/miguel/EDA/Projects/GraphMaze/rom_128x20.vhd Line: 5
-Info (12021): Found 2 design units, including 1 entities, in source file contador_m.vhd
-    Info (12022): Found design unit 1: contador_m-comportamental File: /home/miguel/EDA/Projects/GraphMaze/contador_m.vhd Line: 21
-    Info (12023): Found entity 1: contador_m File: /home/miguel/EDA/Projects/GraphMaze/contador_m.vhd Line: 6
-Info (12021): Found 2 design units, including 1 entities, in source file registrador_n.vhd
-    Info (12022): Found design unit 1: registrador_n-comportamental File: /home/miguel/EDA/Projects/GraphMaze/registrador_n.vhd Line: 17
-    Info (12023): Found entity 1: registrador_n File: /home/miguel/EDA/Projects/GraphMaze/registrador_n.vhd Line: 4
-Info (12021): Found 2 design units, including 1 entities, in source file left_shifter_to_5.vhd
-    Info (12022): Found design unit 1: left_shifter_to_5-left_shifter_to_5_arch File: /home/miguel/EDA/Projects/GraphMaze/left_shifter_to_5.vhd Line: 12
-    Info (12023): Found entity 1: left_shifter_to_5 File: /home/miguel/EDA/Projects/GraphMaze/left_shifter_to_5.vhd Line: 5
-Info (12021): Found 4 design units, including 2 entities, in source file somador.vhd
-    Info (12022): Found design unit 1: full_adder-full_adder_1 File: /home/miguel/EDA/Projects/GraphMaze/somador.vhd Line: 12
-    Info (12022): Found design unit 2: somador-somador_1 File: /home/miguel/EDA/Projects/GraphMaze/somador.vhd Line: 30
-    Info (12023): Found entity 1: full_adder File: /home/miguel/EDA/Projects/GraphMaze/somador.vhd Line: 5
-    Info (12023): Found entity 2: somador File: /home/miguel/EDA/Projects/GraphMaze/somador.vhd Line: 22
-Info (12127): Elaborating entity "somador" for the top level hierarchy
-Info (12128): Elaborating entity "full_adder" for hierarchy "full_adder:\GEN_FAS:6:GEN_OTHERS:FAI" File: /home/miguel/EDA/Projects/GraphMaze/somador.vhd Line: 52
-Info (286030): Timing-Driven Synthesis is running
+    Info (12022): Found design unit 1: rom_128x20-rom_modelsim File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/rom_128x20.vhd Line: 13
+    Info (12023): Found entity 1: rom_128x20 File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/rom_128x20.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file edge_detector.vhd
+    Info (12022): Found design unit 1: edge_detector-rtl File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/edge_detector.vhd Line: 34
+    Info (12023): Found entity 1: edge_detector File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/edge_detector.vhd Line: 25
+Info (12127): Elaborating entity "graphmaze" for the top level hierarchy
+Warning (10541): VHDL Signal Declaration warning at graphmaze.vhd(12): used implicit default value for signal "pos_hex_0" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 12
+Warning (10541): VHDL Signal Declaration warning at graphmaze.vhd(13): used implicit default value for signal "pos_hex_1" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 13
+Info (12128): Elaborating entity "rom_128x20" for hierarchy "rom_128x20:map_mem" File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 62
+Info (12128): Elaborating entity "edge_detector" for hierarchy "edge_detector:mov_dect" File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 66
+Info (276014): Found 1 instances of uninferred RAM logic
+    Info (276004): RAM logic "rom_128x20:map_mem|memoria" is uninferred due to inappropriate RAM size File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/rom_128x20.vhd Line: 15
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "won" is stuck at GND File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 10
+    Warning (13410): Pin "walls[0]" is stuck at GND File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 11
+    Warning (13410): Pin "walls[1]" is stuck at GND File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 11
+    Warning (13410): Pin "walls[2]" is stuck at GND File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 11
+    Warning (13410): Pin "walls[3]" is stuck at GND File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 11
+    Warning (13410): Pin "pos_hex_0[0]" is stuck at GND File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 12
+    Warning (13410): Pin "pos_hex_0[1]" is stuck at GND File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 12
+    Warning (13410): Pin "pos_hex_0[2]" is stuck at GND File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 12
+    Warning (13410): Pin "pos_hex_0[3]" is stuck at GND File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 12
+    Warning (13410): Pin "pos_hex_0[4]" is stuck at GND File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 12
+    Warning (13410): Pin "pos_hex_0[5]" is stuck at GND File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 12
+    Warning (13410): Pin "pos_hex_0[6]" is stuck at GND File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 12
+    Warning (13410): Pin "pos_hex_1[0]" is stuck at GND File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 13
+    Warning (13410): Pin "pos_hex_1[1]" is stuck at GND File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 13
+    Warning (13410): Pin "pos_hex_1[2]" is stuck at GND File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 13
+    Warning (13410): Pin "pos_hex_1[3]" is stuck at GND File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 13
+    Warning (13410): Pin "pos_hex_1[4]" is stuck at GND File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 13
+    Warning (13410): Pin "pos_hex_1[5]" is stuck at GND File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 13
+    Warning (13410): Pin "pos_hex_1[6]" is stuck at GND File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 13
+Info (17049): 2 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 33 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 14 input pins
-    Info (21059): Implemented 8 output pins
-    Info (21061): Implemented 11 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 482 megabytes
-    Info: Processing ended: Sun Mar 12 00:50:59 2023
-    Info: Elapsed time: 00:00:13
-    Info: Total CPU time (on all processors): 00:00:24
+Warning (21074): Design contains 7 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "dir_btns[3]" File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 8
+    Warning (15610): No output dependent on input pin "dir_btns[2]" File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 8
+    Warning (15610): No output dependent on input pin "dir_btns[1]" File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 8
+    Warning (15610): No output dependent on input pin "dir_btns[0]" File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 8
+    Warning (15610): No output dependent on input pin "next_map_btn" File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 9
+    Warning (15610): No output dependent on input pin "reset" File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 7
+    Warning (15610): No output dependent on input pin "clock" File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 7
+Info (21057): Implemented 26 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 7 input pins
+    Info (21059): Implemented 19 output pins
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 31 warnings
+    Info: Peak virtual memory: 4844 megabytes
+    Info: Processing ended: Sun Mar 12 18:05:40 2023
+    Info: Elapsed time: 00:00:08
+    Info: Total CPU time (on all processors): 00:00:11
 
 
