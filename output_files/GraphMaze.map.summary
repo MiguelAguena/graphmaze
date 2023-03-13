@@ -1,11 +1,11 @@
-Analysis & Synthesis Status : Successful - Sun Mar 12 21:07:16 2023
+Analysis & Synthesis Status : Successful - Mon Mar 13 18:52:27 2023
 Quartus Prime Version : 22.1std.0 Build 915 10/25/2022 SC Lite Edition
 Revision Name : GraphMaze
 Top-level Entity Name : graphmaze
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 0
-Total pins : 33
+Total registers : 8
+Total pins : 35
 Total virtual pins : 0
 Total block memory bits : 0
 Total DSP Blocks : 0
