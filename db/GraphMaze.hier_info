@@ -52,6 +52,7 @@ reset => room_code.OUTPUTSELECT
 reset => room_code.OUTPUTSELECT
 reset => map_code.OUTPUTSELECT
 reset => map_code.OUTPUTSELECT
+reset => edge_detector:mov_dect.reset
 dir_btns[0] => btns_or.IN1
 dir_btns[0] => mov_dir[0].IN1
 dir_btns[1] => btns_or.IN1

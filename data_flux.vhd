@@ -34,7 +34,7 @@ ARCHITECTURE behav OF data_flux IS
     SIGNAL map_code : unsigned(1 DOWNTO 0) := (OTHERS => '0');
     SIGNAL rom_addr : STD_LOGIC_VECTOR(6 DOWNTO 0);
     SIGNAL rom_data : STD_LOGIC_VECTOR(19 DOWNTO 0);
-    SIGNAL room_cnt, map_cnt, btns_or, not_btns_or, move_pulse, s_won : STD_LOGIC;
+    SIGNAL room_cnt, map_cnt, btns_or, move_pulse, s_won : STD_LOGIC;
     SIGNAL has_door, mov_dir : STD_LOGIC_VECTOR(3 DOWNTO 0);
 BEGIN
 
@@ -62,8 +62,8 @@ BEGIN
     map_mem : rom_128x20 PORT MAP(rom_addr, rom_data);
 
     btns_or <= dir_btns(3) or dir_btns(2) or dir_btns(1) or dir_btns(0);
-	 not_btns_or <= not btns_or;
-    mov_dect : edge_detector PORT MAP(clock, not_btns_or, btns_or, move_pulse);
+--	 not_btns_or <= not btns_or;
+    mov_dect : edge_detector PORT MAP(clock, reset, btns_or, move_pulse);
 
     gen_has_door : FOR i IN 0 TO 3 GENERATE
         has_door(i) <= '0' WHEN rom_data(i * 5 + 4 DOWNTO i * 5) = STD_LOGIC_VECTOR(room_code) ELSE
