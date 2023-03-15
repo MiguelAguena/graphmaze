@@ -66,13 +66,13 @@ walls[0] <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
 walls[1] <= Equal1.DB_MAX_OUTPUT_PORT_TYPE
 walls[2] <= Equal2.DB_MAX_OUTPUT_PORT_TYPE
 walls[3] <= Equal3.DB_MAX_OUTPUT_PORT_TYPE
-current_pos[0] <= map_code[0].DB_MAX_OUTPUT_PORT_TYPE
-current_pos[1] <= map_code[1].DB_MAX_OUTPUT_PORT_TYPE
-current_pos[2] <= room_code[0].DB_MAX_OUTPUT_PORT_TYPE
-current_pos[3] <= room_code[1].DB_MAX_OUTPUT_PORT_TYPE
-current_pos[4] <= room_code[2].DB_MAX_OUTPUT_PORT_TYPE
-current_pos[5] <= room_code[3].DB_MAX_OUTPUT_PORT_TYPE
-current_pos[6] <= room_code[4].DB_MAX_OUTPUT_PORT_TYPE
+current_pos[0] <= room_code[0].DB_MAX_OUTPUT_PORT_TYPE
+current_pos[1] <= room_code[1].DB_MAX_OUTPUT_PORT_TYPE
+current_pos[2] <= room_code[2].DB_MAX_OUTPUT_PORT_TYPE
+current_pos[3] <= room_code[3].DB_MAX_OUTPUT_PORT_TYPE
+current_pos[4] <= room_code[4].DB_MAX_OUTPUT_PORT_TYPE
+current_pos[5] <= map_code[0].DB_MAX_OUTPUT_PORT_TYPE
+current_pos[6] <= map_code[1].DB_MAX_OUTPUT_PORT_TYPE
 
 
 |graphmaze|data_flux:DF|rom_128x20:map_mem

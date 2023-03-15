@@ -32,6 +32,22 @@
 					"strict" : false
 				},
 				{
+					"name" : "sseg_2[0]",
+					"strict" : false
+				},
+				{
+					"name" : "sseg_2[2]",
+					"strict" : false
+				},
+				{
+					"name" : "sseg_2[3]",
+					"strict" : false
+				},
+				{
+					"name" : "sseg_2[4]",
+					"strict" : false
+				},
+				{
 					"name" : "sseg_2[5]",
 					"strict" : false
 				},
@@ -92,6 +108,14 @@
 					"strict" : false
 				},
 				{
+					"name" : "reset",
+					"strict" : false
+				},
+				{
+					"name" : "next_map_btn",
+					"strict" : false
+				},
+				{
 					"name" : "dir_btns[0]",
 					"strict" : false
 				},
@@ -105,14 +129,6 @@
 				},
 				{
 					"name" : "dir_btns[2]",
-					"strict" : false
-				},
-				{
-					"name" : "reset",
-					"strict" : false
-				},
-				{
-					"name" : "next_map_btn",
 					"strict" : false
 				},
 				{

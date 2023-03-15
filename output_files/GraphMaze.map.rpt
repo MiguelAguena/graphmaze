@@ -1,6 +1,6 @@
 Analysis & Synthesis report for GraphMaze
-Mon Mar 13 18:52:27 2023
-Quartus Prime Version 22.1std.0 Build 915 10/25/2022 SC Lite Edition
+Wed Mar 15 00:05:50 2023
+Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
 ---------------------
@@ -25,7 +25,7 @@ Quartus Prime Version 22.1std.0 Build 915 10/25/2022 SC Lite Edition
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 2022  Intel Corporation. All rights reserved.
+Copyright (C) 2020  Intel Corporation. All rights reserved.
 Your use of Intel Corporation's design tools, logic functions 
 and other software and tools, and any partner logic 
 functions, and any output files from any of the foregoing 
@@ -42,27 +42,27 @@ https://fpgasoftware.intel.com/eula.
 
 
 
-+----------------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                                     ;
-+---------------------------------+------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Mon Mar 13 18:52:27 2023          ;
-; Quartus Prime Version           ; 22.1std.0 Build 915 10/25/2022 SC Lite Edition ;
-; Revision Name                   ; GraphMaze                                      ;
-; Top-level Entity Name           ; graphmaze                                      ;
-; Family                          ; Cyclone V                                      ;
-; Logic utilization (in ALMs)     ; N/A                                            ;
-; Total registers                 ; 8                                              ;
-; Total pins                      ; 35                                             ;
-; Total virtual pins              ; 0                                              ;
-; Total block memory bits         ; 0                                              ;
-; Total DSP Blocks                ; 0                                              ;
-; Total HSSI RX PCSs              ; 0                                              ;
-; Total HSSI PMA RX Deserializers ; 0                                              ;
-; Total HSSI TX PCSs              ; 0                                              ;
-; Total HSSI PMA TX Serializers   ; 0                                              ;
-; Total PLLs                      ; 0                                              ;
-; Total DLLs                      ; 0                                              ;
-+---------------------------------+------------------------------------------------+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++---------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Wed Mar 15 00:05:50 2023       ;
+; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
+; Revision Name                   ; GraphMaze                                   ;
+; Top-level Entity Name           ; graphmaze                                   ;
+; Family                          ; Cyclone V                                   ;
+; Logic utilization (in ALMs)     ; N/A                                         ;
+; Total registers                 ; 8                                           ;
+; Total pins                      ; 35                                          ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 0                                           ;
+; Total DSP Blocks                ; 0                                           ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0                                           ;
+; Total DLLs                      ; 0                                           ;
++---------------------------------+---------------------------------------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------+
@@ -157,57 +157,56 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 4           ;
-; Maximum allowed            ; 4           ;
+; Number detected on machine ; 12          ;
+; Maximum allowed            ; 6           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 4           ;
+; Maximum used               ; 6           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
-;     Processors 3-4         ;   0.0%      ;
+;     Processors 2-6         ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                 ;
-+----------------------------------+-----------------+-----------------+-------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                          ; Library ;
-+----------------------------------+-----------------+-----------------+-------------------------------------------------------+---------+
-; decoder_7seg.vhd                 ; yes             ; User VHDL File  ; /home/miguel/EDA/Projects/graphmaze/decoder_7seg.vhd  ;         ;
-; data_flux.vhd                    ; yes             ; User VHDL File  ; /home/miguel/EDA/Projects/graphmaze/data_flux.vhd     ;         ;
-; rom_128x20.vhd                   ; yes             ; User VHDL File  ; /home/miguel/EDA/Projects/graphmaze/rom_128x20.vhd    ;         ;
-; edge_detector.vhd                ; yes             ; User VHDL File  ; /home/miguel/EDA/Projects/graphmaze/edge_detector.vhd ;         ;
-; graphmaze.vhd                    ; yes             ; User VHDL File  ; /home/miguel/EDA/Projects/graphmaze/graphmaze.vhd     ;         ;
-+----------------------------------+-----------------+-----------------+-------------------------------------------------------+---------+
++----------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                       ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                ; Library ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------+---------+
+; decoder_7seg.vhd                 ; yes             ; User VHDL File  ; D:/USP/5_periodo/Labdig/Projeto/graphmaze/decoder_7seg.vhd  ;         ;
+; data_flux.vhd                    ; yes             ; User VHDL File  ; D:/USP/5_periodo/Labdig/Projeto/graphmaze/data_flux.vhd     ;         ;
+; rom_128x20.vhd                   ; yes             ; User VHDL File  ; D:/USP/5_periodo/Labdig/Projeto/graphmaze/rom_128x20.vhd    ;         ;
+; edge_detector.vhd                ; yes             ; User VHDL File  ; D:/USP/5_periodo/Labdig/Projeto/graphmaze/edge_detector.vhd ;         ;
+; graphmaze.vhd                    ; yes             ; User VHDL File  ; D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd     ;         ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------+---------+
 
 
-+------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                            ;
-+---------------------------------------------+--------------------------+
-; Resource                                    ; Usage                    ;
-+---------------------------------------------+--------------------------+
-; Estimate of Logic utilization (ALMs needed) ; 27                       ;
-;                                             ;                          ;
-; Combinational ALUT usage for logic          ; 39                       ;
-;     -- 7 input functions                    ; 1                        ;
-;     -- 6 input functions                    ; 12                       ;
-;     -- 5 input functions                    ; 15                       ;
-;     -- 4 input functions                    ; 9                        ;
-;     -- <=3 input functions                  ; 2                        ;
-;                                             ;                          ;
-; Dedicated logic registers                   ; 8                        ;
-;                                             ;                          ;
-; I/O pins                                    ; 35                       ;
-;                                             ;                          ;
-; Total DSP Blocks                            ; 0                        ;
-;                                             ;                          ;
-; Maximum fan-out node                        ; data_flux:DF|map_code[1] ;
-; Maximum fan-out                             ; 23                       ;
-; Total fan-out                               ; 274                      ;
-; Average fan-out                             ; 2.34                     ;
-+---------------------------------------------+--------------------------+
++-------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                             ;
++---------------------------------------------+---------------------------+
+; Resource                                    ; Usage                     ;
++---------------------------------------------+---------------------------+
+; Estimate of Logic utilization (ALMs needed) ; 36                        ;
+;                                             ;                           ;
+; Combinational ALUT usage for logic          ; 54                        ;
+;     -- 7 input functions                    ; 0                         ;
+;     -- 6 input functions                    ; 17                        ;
+;     -- 5 input functions                    ; 7                         ;
+;     -- 4 input functions                    ; 19                        ;
+;     -- <=3 input functions                  ; 11                        ;
+;                                             ;                           ;
+; Dedicated logic registers                   ; 8                         ;
+;                                             ;                           ;
+; I/O pins                                    ; 35                        ;
+;                                             ;                           ;
+; Total DSP Blocks                            ; 0                         ;
+;                                             ;                           ;
+; Maximum fan-out node                        ; data_flux:DF|room_code[3] ;
+; Maximum fan-out                             ; 32                        ;
+; Total fan-out                               ; 319                       ;
+; Average fan-out                             ; 2.42                      ;
++---------------------------------------------+---------------------------+
 
 
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -215,11 +214,11 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------+---------------+--------------+
 ; Compilation Hierarchy Node     ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                            ; Entity Name   ; Library Name ;
 +--------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------+---------------+--------------+
-; |graphmaze                     ; 39 (0)              ; 8 (0)                     ; 0                 ; 0          ; 35   ; 0            ; |graphmaze                                     ; graphmaze     ; work         ;
-;    |data_flux:DF|              ; 28 (23)             ; 8 (6)                     ; 0                 ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF                        ; data_flux     ; work         ;
+; |graphmaze                     ; 54 (0)              ; 8 (0)                     ; 0                 ; 0          ; 35   ; 0            ; |graphmaze                                     ; graphmaze     ; work         ;
+;    |data_flux:DF|              ; 41 (31)             ; 8 (6)                     ; 0                 ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF                        ; data_flux     ; work         ;
 ;       |edge_detector:mov_dect| ; 0 (0)               ; 2 (2)                     ; 0                 ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF|edge_detector:mov_dect ; edge_detector ; work         ;
-;       |rom_128x20:map_mem|     ; 5 (5)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF|rom_128x20:map_mem     ; rom_128x20    ; work         ;
-;    |decoder_7seg:DEC|          ; 11 (11)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |graphmaze|decoder_7seg:DEC                    ; decoder_7seg  ; work         ;
+;       |rom_128x20:map_mem|     ; 10 (10)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF|rom_128x20:map_mem     ; rom_128x20    ; work         ;
+;    |decoder_7seg:DEC|          ; 13 (13)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |graphmaze|decoder_7seg:DEC                    ; decoder_7seg  ; work         ;
 +--------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------+---------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -244,7 +243,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 2     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 5     ;
+; Number of registers using Clock Enable       ; 2     ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -255,11 +254,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output            ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------+
 ; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |graphmaze|data_flux:DF|map_code[0]   ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |graphmaze|data_flux:DF|room_code[4]  ;
+; 19:1               ; 3 bits    ; 36 LEs        ; 12 LEs               ; 24 LEs                 ; Yes        ; |graphmaze|data_flux:DF|room_code[1]  ;
+; 11:1               ; 2 bits    ; 14 LEs        ; 4 LEs                ; 10 LEs                 ; Yes        ; |graphmaze|data_flux:DF|room_code[4]  ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |graphmaze|decoder_7seg:DEC|sseg_2[0] ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |graphmaze|decoder_7seg:DEC|sseg_0[6] ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |graphmaze|decoder_7seg:DEC|sseg_0[0] ;
-; 11:1               ; 2 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |graphmaze|decoder_7seg:DEC|sseg_1[0] ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |graphmaze|decoder_7seg:DEC|sseg_0[5] ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |graphmaze|decoder_7seg:DEC|sseg_0[3] ;
+; 11:1               ; 2 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |graphmaze|decoder_7seg:DEC|sseg_1[1] ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------+
 
 
@@ -270,23 +270,21 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+-----------------------------+
 ; arriav_ff             ; 8                           ;
 ;     CLR               ; 2                           ;
-;     ENA               ; 5                           ;
-;     plain             ; 1                           ;
-; arriav_lcell_comb     ; 45                          ;
-;     extend            ; 1                           ;
-;         7 data inputs ; 1                           ;
-;     normal            ; 44                          ;
+;     ENA               ; 2                           ;
+;     plain             ; 4                           ;
+; arriav_lcell_comb     ; 63                          ;
+;     normal            ; 63                          ;
 ;         0 data inputs ; 2                           ;
-;         1 data inputs ; 4                           ;
-;         2 data inputs ; 1                           ;
-;         3 data inputs ; 1                           ;
-;         4 data inputs ; 9                           ;
-;         5 data inputs ; 15                          ;
-;         6 data inputs ; 12                          ;
+;         1 data inputs ; 7                           ;
+;         2 data inputs ; 7                           ;
+;         3 data inputs ; 4                           ;
+;         4 data inputs ; 19                          ;
+;         5 data inputs ; 7                           ;
+;         6 data inputs ; 17                          ;
 ; boundary_port         ; 35                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 3.00                        ;
-; Average LUT depth     ; 2.13                        ;
+; Max LUT depth         ; 4.00                        ;
+; Average LUT depth     ; 2.76                        ;
 +-----------------------+-----------------------------+
 
 
@@ -304,51 +302,47 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
-    Info: Version 22.1std.0 Build 915 10/25/2022 SC Lite Edition
-    Info: Processing started: Mon Mar 13 18:52:15 2023
+    Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+    Info: Processing started: Wed Mar 15 00:05:42 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off GraphMaze -c GraphMaze
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file decoder_7seg.vhd
-    Info (12022): Found design unit 1: decoder_7seg-comportamental File: /home/miguel/EDA/Projects/graphmaze/decoder_7seg.vhd Line: 15
-    Info (12023): Found entity 1: decoder_7seg File: /home/miguel/EDA/Projects/graphmaze/decoder_7seg.vhd Line: 6
+    Info (12022): Found design unit 1: decoder_7seg-comportamental File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/decoder_7seg.vhd Line: 15
+    Info (12023): Found entity 1: decoder_7seg File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/decoder_7seg.vhd Line: 6
 Info (12021): Found 2 design units, including 1 entities, in source file data_flux.vhd
-    Info (12022): Found design unit 1: data_flux-behav File: /home/miguel/EDA/Projects/graphmaze/data_flux.vhd Line: 16
-    Info (12023): Found entity 1: data_flux File: /home/miguel/EDA/Projects/graphmaze/data_flux.vhd Line: 5
+    Info (12022): Found design unit 1: data_flux-behav File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/data_flux.vhd Line: 16
+    Info (12023): Found entity 1: data_flux File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/data_flux.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file rom_128x20.vhd
-    Info (12022): Found design unit 1: rom_128x20-rom_modelsim File: /home/miguel/EDA/Projects/graphmaze/rom_128x20.vhd Line: 13
-    Info (12023): Found entity 1: rom_128x20 File: /home/miguel/EDA/Projects/graphmaze/rom_128x20.vhd Line: 5
+    Info (12022): Found design unit 1: rom_128x20-rom_modelsim File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/rom_128x20.vhd Line: 13
+    Info (12023): Found entity 1: rom_128x20 File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/rom_128x20.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file edge_detector.vhd
-    Info (12022): Found design unit 1: edge_detector-rtl File: /home/miguel/EDA/Projects/graphmaze/edge_detector.vhd Line: 34
-    Info (12023): Found entity 1: edge_detector File: /home/miguel/EDA/Projects/graphmaze/edge_detector.vhd Line: 25
+    Info (12022): Found design unit 1: edge_detector-rtl File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/edge_detector.vhd Line: 34
+    Info (12023): Found entity 1: edge_detector File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/edge_detector.vhd Line: 25
 Info (12021): Found 2 design units, including 1 entities, in source file graphmaze.vhd
-    Info (12022): Found design unit 1: graphmaze-behav File: /home/miguel/EDA/Projects/graphmaze/graphmaze.vhd Line: 18
-    Info (12023): Found entity 1: graphmaze File: /home/miguel/EDA/Projects/graphmaze/graphmaze.vhd Line: 5
+    Info (12022): Found design unit 1: graphmaze-behav File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 18
+    Info (12023): Found entity 1: graphmaze File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 5
 Info (12127): Elaborating entity "graphmaze" for the top level hierarchy
-Info (12128): Elaborating entity "data_flux" for hierarchy "data_flux:DF" File: /home/miguel/EDA/Projects/graphmaze/graphmaze.vhd Line: 55
-Info (12128): Elaborating entity "rom_128x20" for hierarchy "data_flux:DF|rom_128x20:map_mem" File: /home/miguel/EDA/Projects/graphmaze/data_flux.vhd Line: 62
-Info (12128): Elaborating entity "edge_detector" for hierarchy "data_flux:DF|edge_detector:mov_dect" File: /home/miguel/EDA/Projects/graphmaze/data_flux.vhd Line: 66
-Info (12128): Elaborating entity "decoder_7seg" for hierarchy "decoder_7seg:DEC" File: /home/miguel/EDA/Projects/graphmaze/graphmaze.vhd Line: 65
+Info (12128): Elaborating entity "data_flux" for hierarchy "data_flux:DF" File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 55
+Info (12128): Elaborating entity "rom_128x20" for hierarchy "data_flux:DF|rom_128x20:map_mem" File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/data_flux.vhd Line: 62
+Info (12128): Elaborating entity "edge_detector" for hierarchy "data_flux:DF|edge_detector:mov_dect" File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/data_flux.vhd Line: 66
+Info (12128): Elaborating entity "decoder_7seg" for hierarchy "decoder_7seg:DEC" File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 65
 Info (276014): Found 1 instances of uninferred RAM logic
-    Info (276004): RAM logic "data_flux:DF|rom_128x20:map_mem|memoria" is uninferred due to inappropriate RAM size File: /home/miguel/EDA/Projects/graphmaze/rom_128x20.vhd Line: 15
+    Info (276004): RAM logic "data_flux:DF|rom_128x20:map_mem|memoria" is uninferred due to inappropriate RAM size File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/rom_128x20.vhd Line: 18
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "sseg_2[0]" is stuck at VCC File: /home/miguel/EDA/Projects/graphmaze/graphmaze.vhd Line: 12
-    Warning (13410): Pin "sseg_2[1]" is stuck at GND File: /home/miguel/EDA/Projects/graphmaze/graphmaze.vhd Line: 12
-    Warning (13410): Pin "sseg_2[2]" is stuck at GND File: /home/miguel/EDA/Projects/graphmaze/graphmaze.vhd Line: 12
-    Warning (13410): Pin "sseg_2[3]" is stuck at VCC File: /home/miguel/EDA/Projects/graphmaze/graphmaze.vhd Line: 12
-    Warning (13410): Pin "sseg_2[4]" is stuck at VCC File: /home/miguel/EDA/Projects/graphmaze/graphmaze.vhd Line: 12
-    Warning (13410): Pin "sseg_1[5]" is stuck at VCC File: /home/miguel/EDA/Projects/graphmaze/graphmaze.vhd Line: 13
+    Warning (13410): Pin "sseg_2[1]" is stuck at GND File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 12
+    Warning (13410): Pin "sseg_1[5]" is stuck at VCC File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 13
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 76 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 91 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 7 input pins
     Info (21059): Implemented 28 output pins
-    Info (21061): Implemented 41 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 8 warnings
-    Info: Peak virtual memory: 498 megabytes
-    Info: Processing ended: Mon Mar 13 18:52:27 2023
-    Info: Elapsed time: 00:00:12
-    Info: Total CPU time (on all processors): 00:00:25
+    Info (21061): Implemented 56 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 4 warnings
+    Info: Peak virtual memory: 4870 megabytes
+    Info: Processing ended: Wed Mar 15 00:05:50 2023
+    Info: Elapsed time: 00:00:08
+    Info: Total CPU time (on all processors): 00:00:10
 
 

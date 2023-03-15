@@ -57,7 +57,7 @@ BEGIN
 
     room_cnt <= move_pulse;
 
-    rom_addr <= STD_LOGIC_VECTOR(room_code & map_code);
+    rom_addr <= STD_LOGIC_VECTOR(map_code & room_code);
 	 current_pos <= rom_addr;
     map_mem : rom_128x20 PORT MAP(rom_addr, rom_data);
 
@@ -72,10 +72,11 @@ BEGIN
     END GENERATE; -- gen_has_door
 	 walls <= has_door;
     WITH mov_dir SELECT next_room <=
+        unsigned(rom_data(4 DOWNTO 0)) WHEN "0001",
         unsigned(rom_data(9 DOWNTO 5)) WHEN "0010",
         unsigned(rom_data(14 DOWNTO 10)) WHEN "0100",
         unsigned(rom_data(19 DOWNTO 15)) WHEN "1000",
-        unsigned(rom_data(4 DOWNTO 0)) WHEN OTHERS;
+		  room_code when OTHERS;
 
     s_won <= '1' WHEN STD_LOGIC_VECTOR(room_code) = "11111" ELSE
         '0';
