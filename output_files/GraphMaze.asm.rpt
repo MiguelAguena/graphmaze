@@ -1,6 +1,6 @@
 Assembler report for GraphMaze
-Wed Mar 15 10:43:23 2023
-Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+Sun Mar 19 21:06:32 2023
+Quartus Prime Version 22.1std.0 Build 915 10/25/2022 SC Lite Edition
 
 
 ---------------------
@@ -10,7 +10,7 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
   2. Assembler Summary
   3. Assembler Settings
   4. Assembler Generated Files
-  5. Assembler Device Options: C:/Projetos/T4BB6/GraphMaze - Semana 1/graphmaze/output_files/GraphMaze.sof
+  5. Assembler Device Options: GraphMaze.sof
   6. Assembler Messages
 
 
@@ -18,7 +18,7 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 2020  Intel Corporation. All rights reserved.
+Copyright (C) 2022  Intel Corporation. All rights reserved.
 Your use of Intel Corporation's design tools, logic functions 
 and other software and tools, and any partner logic 
 functions, and any output files from any of the foregoing 
@@ -38,7 +38,7 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Wed Mar 15 10:43:23 2023 ;
+; Assembler Status      ; Successful - Sun Mar 19 21:06:32 2023 ;
 ; Revision Name         ; GraphMaze                             ;
 ; Top-level Entity Name ; graphmaze                             ;
 ; Family                ; Cyclone V                             ;
@@ -53,23 +53,23 @@ https://fpgasoftware.intel.com/eula.
 +--------+---------+---------------+
 
 
-+-----------------------------------------------------------------------------+
-; Assembler Generated Files                                                   ;
-+-----------------------------------------------------------------------------+
-; File Name                                                                   ;
-+-----------------------------------------------------------------------------+
-; C:/Projetos/T4BB6/GraphMaze - Semana 1/graphmaze/output_files/GraphMaze.sof ;
-+-----------------------------------------------------------------------------+
++----------------------------------------------------------------+
+; Assembler Generated Files                                      ;
++----------------------------------------------------------------+
+; File Name                                                      ;
++----------------------------------------------------------------+
+; /home/miguel/EDA/Projects/graphmaze/output_files/GraphMaze.sof ;
++----------------------------------------------------------------+
 
 
-+-------------------------------------------------------------------------------------------------------+
-; Assembler Device Options: C:/Projetos/T4BB6/GraphMaze - Semana 1/graphmaze/output_files/GraphMaze.sof ;
-+----------------+--------------------------------------------------------------------------------------+
-; Option         ; Setting                                                                              ;
-+----------------+--------------------------------------------------------------------------------------+
-; JTAG usercode  ; 0x004FCB90                                                                           ;
-; Checksum       ; 0x004FCB90                                                                           ;
-+----------------+--------------------------------------------------------------------------------------+
++-----------------------------------------+
+; Assembler Device Options: GraphMaze.sof ;
++----------------+------------------------+
+; Option         ; Setting                ;
++----------------+------------------------+
+; JTAG usercode  ; 0x00532392             ;
+; Checksum       ; 0x00532392             ;
++----------------+------------------------+
 
 
 +--------------------+
@@ -77,15 +77,15 @@ https://fpgasoftware.intel.com/eula.
 +--------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
-    Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Wed Mar 15 10:43:18 2023
+    Info: Version 22.1std.0 Build 915 10/25/2022 SC Lite Edition
+    Info: Processing started: Sun Mar 19 21:06:26 2023
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off GraphMaze -c GraphMaze
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 4819 megabytes
-    Info: Processing ended: Wed Mar 15 10:43:23 2023
-    Info: Elapsed time: 00:00:05
-    Info: Total CPU time (on all processors): 00:00:04
+    Info: Peak virtual memory: 507 megabytes
+    Info: Processing ended: Sun Mar 19 21:06:32 2023
+    Info: Elapsed time: 00:00:06
+    Info: Total CPU time (on all processors): 00:00:05
 
 

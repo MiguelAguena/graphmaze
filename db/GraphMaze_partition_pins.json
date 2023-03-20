@@ -8,6 +8,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "lost",
+					"strict" : false
+				},
+				{
 					"name" : "walls[0]",
 					"strict" : false
 				},
@@ -29,6 +33,58 @@
 				},
 				{
 					"name" : "walls[5]",
+					"strict" : false
+				},
+				{
+					"name" : "sseg_4[0]",
+					"strict" : false
+				},
+				{
+					"name" : "sseg_4[1]",
+					"strict" : false
+				},
+				{
+					"name" : "sseg_4[2]",
+					"strict" : false
+				},
+				{
+					"name" : "sseg_4[3]",
+					"strict" : false
+				},
+				{
+					"name" : "sseg_4[4]",
+					"strict" : false
+				},
+				{
+					"name" : "sseg_4[5]",
+					"strict" : false
+				},
+				{
+					"name" : "sseg_4[6]",
+					"strict" : false
+				},
+				{
+					"name" : "sseg_3[0]",
+					"strict" : false
+				},
+				{
+					"name" : "sseg_3[1]",
+					"strict" : false
+				},
+				{
+					"name" : "sseg_3[2]",
+					"strict" : false
+				},
+				{
+					"name" : "sseg_3[3]",
+					"strict" : false
+				},
+				{
+					"name" : "sseg_3[4]",
+					"strict" : false
+				},
+				{
+					"name" : "sseg_3[6]",
 					"strict" : false
 				},
 				{
@@ -108,6 +164,14 @@
 					"strict" : false
 				},
 				{
+					"name" : "mode",
+					"strict" : false
+				},
+				{
+					"name" : "clock",
+					"strict" : false
+				},
+				{
 					"name" : "reset",
 					"strict" : false
 				},
@@ -129,10 +193,6 @@
 				},
 				{
 					"name" : "dir_btns[2]",
-					"strict" : false
-				},
-				{
-					"name" : "clock",
 					"strict" : false
 				}
 			]

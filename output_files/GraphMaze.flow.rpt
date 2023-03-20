@@ -1,6 +1,6 @@
 Flow report for GraphMaze
-Wed Mar 15 10:43:30 2023
-Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+Sun Mar 19 21:06:42 2023
+Quartus Prime Version 22.1std.0 Build 915 10/25/2022 SC Lite Edition
 
 
 ---------------------
@@ -21,7 +21,7 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 2020  Intel Corporation. All rights reserved.
+Copyright (C) 2022  Intel Corporation. All rights reserved.
 Your use of Intel Corporation's design tools, logic functions 
 and other software and tools, and any partner logic 
 functions, and any output files from any of the foregoing 
@@ -38,29 +38,29 @@ https://fpgasoftware.intel.com/eula.
 
 
 
-+-------------------------------------------------------------------------------+
-; Flow Summary                                                                  ;
-+---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Wed Mar 15 10:43:23 2023       ;
-; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
-; Revision Name                   ; GraphMaze                                   ;
-; Top-level Entity Name           ; graphmaze                                   ;
-; Family                          ; Cyclone V                                   ;
-; Device                          ; 5CEBA4F23C7                                 ;
-; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 48 / 18,480 ( < 1 % )                       ;
-; Total registers                 ; 9                                           ;
-; Total pins                      ; 35 / 224 ( 16 % )                           ;
-; Total virtual pins              ; 0                                           ;
-; Total block memory bits         ; 0 / 3,153,920 ( 0 % )                       ;
-; Total DSP Blocks                ; 0 / 66 ( 0 % )                              ;
-; Total HSSI RX PCSs              ; 0                                           ;
-; Total HSSI PMA RX Deserializers ; 0                                           ;
-; Total HSSI TX PCSs              ; 0                                           ;
-; Total HSSI PMA TX Serializers   ; 0                                           ;
-; Total PLLs                      ; 0 / 4 ( 0 % )                               ;
-; Total DLLs                      ; 0 / 4 ( 0 % )                               ;
-+---------------------------------+---------------------------------------------+
++----------------------------------------------------------------------------------+
+; Flow Summary                                                                     ;
++---------------------------------+------------------------------------------------+
+; Flow Status                     ; Successful - Sun Mar 19 21:06:32 2023          ;
+; Quartus Prime Version           ; 22.1std.0 Build 915 10/25/2022 SC Lite Edition ;
+; Revision Name                   ; GraphMaze                                      ;
+; Top-level Entity Name           ; graphmaze                                      ;
+; Family                          ; Cyclone V                                      ;
+; Device                          ; 5CEBA4F23C7                                    ;
+; Timing Models                   ; Final                                          ;
+; Logic utilization (in ALMs)     ; 141 / 18,480 ( < 1 % )                         ;
+; Total registers                 ; 41                                             ;
+; Total pins                      ; 51 / 224 ( 23 % )                              ;
+; Total virtual pins              ; 0                                              ;
+; Total block memory bits         ; 0 / 3,153,920 ( 0 % )                          ;
+; Total DSP Blocks                ; 0 / 66 ( 0 % )                                 ;
+; Total HSSI RX PCSs              ; 0                                              ;
+; Total HSSI PMA RX Deserializers ; 0                                              ;
+; Total HSSI TX PCSs              ; 0                                              ;
+; Total HSSI PMA TX Serializers   ; 0                                              ;
+; Total PLLs                      ; 0 / 4 ( 0 % )                                  ;
+; Total DLLs                      ; 0 / 4 ( 0 % )                                  ;
++---------------------------------+------------------------------------------------+
 
 
 +-----------------------------------------+
@@ -68,7 +68,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 03/15/2023 10:42:43 ;
+; Start date & time ; 03/19/2023 21:05:19 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; GraphMaze           ;
 +-------------------+---------------------+
@@ -79,7 +79,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 233360577868058.167888776306948        ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 30902514316543.167927071923994         ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
 ; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; graphmaze   ; Top        ;
@@ -96,24 +96,24 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:12     ; 1.0                     ; 4848 MB             ; 00:00:25                           ;
-; Fitter               ; 00:00:22     ; 1.0                     ; 6262 MB             ; 00:00:38                           ;
-; Assembler            ; 00:00:05     ; 1.0                     ; 4818 MB             ; 00:00:04                           ;
-; Timing Analyzer      ; 00:00:06     ; 1.1                     ; 5067 MB             ; 00:00:06                           ;
-; Total                ; 00:00:45     ; --                      ; --                  ; 00:01:13                           ;
+; Analysis & Synthesis ; 00:00:13     ; 1.0                     ; 475 MB              ; 00:00:25                           ;
+; Fitter               ; 00:00:49     ; 1.0                     ; 1539 MB             ; 00:01:05                           ;
+; Assembler            ; 00:00:06     ; 1.0                     ; 507 MB              ; 00:00:05                           ;
+; Timing Analyzer      ; 00:00:09     ; 1.2                     ; 790 MB              ; 00:00:08                           ;
+; Total                ; 00:01:17     ; --                      ; --                  ; 00:01:43                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
-+------------------------------------------------------------------------------------+
-; Flow OS Summary                                                                    ;
-+----------------------+------------------+------------+------------+----------------+
-; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
-+----------------------+------------------+------------+------------+----------------+
-; Analysis & Synthesis ; DESKTOP-C6LH04G  ; Windows 10 ; 10.0       ; x86_64         ;
-; Fitter               ; DESKTOP-C6LH04G  ; Windows 10 ; 10.0       ; x86_64         ;
-; Assembler            ; DESKTOP-C6LH04G  ; Windows 10 ; 10.0       ; x86_64         ;
-; Timing Analyzer      ; DESKTOP-C6LH04G  ; Windows 10 ; 10.0       ; x86_64         ;
-+----------------------+------------------+------------+------------+----------------+
++----------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                        ;
++----------------------+------------------+----------------+------------+----------------+
+; Module Name          ; Machine Hostname ; OS Name        ; OS Version ; Processor type ;
++----------------------+------------------+----------------+------------+----------------+
+; Analysis & Synthesis ; myComputer       ; Ubuntu 20.04.5 ; 20         ; x86_64         ;
+; Fitter               ; myComputer       ; Ubuntu 20.04.5 ; 20         ; x86_64         ;
+; Assembler            ; myComputer       ; Ubuntu 20.04.5 ; 20         ; x86_64         ;
+; Timing Analyzer      ; myComputer       ; Ubuntu 20.04.5 ; 20         ; x86_64         ;
++----------------------+------------------+----------------+------------+----------------+
 
 
 ------------
