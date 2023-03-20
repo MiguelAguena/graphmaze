@@ -35,7 +35,9 @@ ARCHITECTURE tb OF graphmaze_tb_mode_1 IS
 	SIGNAL sseg_0, sseg_1, sseg_2, sseg_3, sseg_4 : STD_LOGIC_VECTOR(6 DOWNTO 0) := (OTHERS => '0');
 
 	TYPE t_jogadas IS ARRAY(NATURAL RANGE <>) OF NATURAL;
-	CONSTANT jogadas : t_jogadas(0 to 3) := (3, 1, 0, 3);
+	CONSTANT jogadas_0 : t_jogadas(0 to 2) := (3, 1, 0);
+	CONSTANT jogadas_1 : NATURAL := 3;
+	CONSTANT jogadas_2 : NATURAL := 0;
 
 BEGIN
 	clock <= (NOT clock) AND keep_simulating AFTER clockPeriod/2;
@@ -62,34 +64,49 @@ BEGIN
 		keep_simulating <= '1';
 
 		WAIT FOR clockPeriod;
+
+		FOR i IN 0 to 2 LOOP
+			dir_btns(jogadas_0(i)) <= '1';
+			WAIT FOR 5 * clockPeriod;
+			dir_btns(jogadas_0(i)) <= '0';
+			WAIT FOR 5 * clockPeriod;
+		END LOOP;
 		
-		mode <= '0';
-
-		FOR i IN 0 to 3 LOOP
-			dir_btns(jogadas(i)) <= '1';
-			WAIT FOR 5 * clockPeriod;
-			dir_btns(jogadas(i)) <= '0';
-			WAIT FOR 5 * clockPeriod;
-		END LOOP;
-
-		next_map_btn <= '1';
+		reset <= '1';
+		WAIT FOR clockPeriod;
+		reset <= '0';
+		WAIT FOR 4 * clockPeriod;
+		
+		dir_btns(jogadas_1) <= '1';
 		WAIT FOR 5 * clockPeriod;
-		next_map_btn <= '0';
-
-		WAIT FOR 10 * clockPeriod;
-
-		for i in 0 to 30 loop
-			dir_btns(3) <= '1';
-			WAIT FOR 5 * clockPeriod;
-			dir_btns(3) <= '0';
-			WAIT FOR 5 * clockPeriod;
-		END LOOP;
-
-		next_map_btn <= '1';
+		dir_btns(jogadas_1) <= '0';
+		WAIT FOR 5 * clockPeriod;		
+		
+		reset <= '1';
+		WAIT FOR clockPeriod;
+		reset <= '0';
+		WAIT FOR 2 * clockPeriod;
+		
+		dir_btns(jogadas_2) <= '1';
 		WAIT FOR 5 * clockPeriod;
-		next_map_btn <= '0';
-
-		WAIT FOR 10 * clockPeriod;
+		dir_btns(jogadas_2) <= '0';
+		WAIT FOR 5 * clockPeriod;		
+--		next_map_btn <= '1';
+--		WAIT FOR 5 * clockPeriod;
+--		next_map_btn <= '0';
+--
+--		WAIT FOR 10 * clockPeriod;
+--
+--		for i in 0 to 30 loop
+--			dir_btns(3) <= '1';
+--			WAIT FOR 5 * clockPeriod;
+--			dir_btns(3) <= '0';
+--			WAIT FOR 5 * clockPeriod;
+--		END LOOP;
+--
+--		next_map_btn <= '1';
+--		WAIT FOR 5 * clockPeriod;
+--		next_map_btn <= '0';
 
 		keep_simulating <= '0';
 

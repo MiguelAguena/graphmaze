@@ -1,0 +1,384 @@
+m255
+K4
+z2
+Z0 !s99 nomlopt
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+!s11e vcom 2021.2 2021.04, Apr 14 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+d/home/miguel/EDA/Projects/exp6_P1_CORRIGIDA_testes
+T_opt
+!s110 1679340072
+VC?I0;aeX>YB=NQDUL3hf22
+04 19 2 work graphmaze_tb_mode_1 tb 1
+=14-000ae431a4f1-6418b228-6f379-3f09
+!s124 OEM10U10 
+o-quiet -auto_acc_if_foreign -work work
+tCvgOpt 0
+n@_opt
+OL;O;2021.2;73
+Edata_flux
+Z1 w1679255266
+Z2 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 25
+Z5 d/home/miguel/EDA/Projects/graphmaze/modelsim_mode_1
+Z6 8/home/miguel/EDA/Projects/graphmaze/data_flux.vhd
+Z7 F/home/miguel/EDA/Projects/graphmaze/data_flux.vhd
+l0
+L5 1
+V^YH4@`VLjJeF99?1A4POg0
+!s100 81]VbKWS51nK:4XIA?FDi3
+Z8 OL;C;2021.2;73
+32
+Z9 !s110 1679335528
+!i10b 1
+Z10 !s108 1679335528.000000
+Z11 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/miguel/EDA/Projects/graphmaze/data_flux.vhd|
+Z12 !s107 /home/miguel/EDA/Projects/graphmaze/data_flux.vhd|
+!i113 0
+Z13 o-work work -2002 -explicit
+Z14 tExplicit 1 CvgOpt 0
+Abehav
+R2
+R3
+R4
+DEx4 work 9 data_flux 0 22 ^YH4@`VLjJeF99?1A4POg0
+!i122 25
+l39
+L16 70
+V9j3kkfBHJKFC`;Y1hTIO80
+!s100 GTOTSY6UlRM4oY9k7c9hK1
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 0
+R13
+R14
+Edata_flux_mode_1
+Z15 w1679338958
+R2
+R3
+R4
+!i122 38
+R5
+Z16 8/home/miguel/EDA/Projects/graphmaze/data_flux_mode_1.vhd
+Z17 F/home/miguel/EDA/Projects/graphmaze/data_flux_mode_1.vhd
+l0
+L5 1
+VCNMFKTmz0;S?>@gD;lmZX0
+!s100 ;lWz49:f_>BDOKMmL<ll11
+R8
+32
+Z18 !s110 1679338983
+!i10b 1
+Z19 !s108 1679338983.000000
+Z20 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/miguel/EDA/Projects/graphmaze/data_flux_mode_1.vhd|
+Z21 !s107 /home/miguel/EDA/Projects/graphmaze/data_flux_mode_1.vhd|
+!i113 0
+R13
+R14
+Abehav
+R2
+R3
+R4
+DEx4 work 16 data_flux_mode_1 0 22 CNMFKTmz0;S?>@gD;lmZX0
+!i122 38
+l51
+L18 141
+V_ZoTEa@A?6kCZQRiQ=M?i1
+!s100 Jg[1SZ5Xk^NZJP>CB?;fX0
+R8
+32
+R18
+!i10b 1
+R19
+R20
+R21
+!i113 0
+R13
+R14
+Edecoder_7seg
+Z22 w1678665384
+R2
+R3
+R4
+!i122 27
+R5
+Z23 8/home/miguel/EDA/Projects/graphmaze/decoder_7seg.vhd
+Z24 F/home/miguel/EDA/Projects/graphmaze/decoder_7seg.vhd
+l0
+L6 1
+VGLaX1TBQ<X94ThTCSZ3N73
+!s100 :NXaMz=o9EeiOGQ8OWlG80
+R8
+32
+R9
+!i10b 1
+R10
+Z25 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/miguel/EDA/Projects/graphmaze/decoder_7seg.vhd|
+Z26 !s107 /home/miguel/EDA/Projects/graphmaze/decoder_7seg.vhd|
+!i113 0
+R13
+R14
+Acomportamental
+R2
+R3
+R4
+DEx4 work 12 decoder_7seg 0 22 GLaX1TBQ<X94ThTCSZ3N73
+!i122 27
+l16
+L15 50
+VJ7aBJNS^_XPc8E0;V7Q4G3
+!s100 >a^j:EfgZ<=SGlP[KBN222
+R8
+32
+R9
+!i10b 1
+R10
+R25
+R26
+!i113 0
+R13
+R14
+Eedge_detector
+Z27 w1678660968
+R3
+R4
+!i122 28
+R5
+Z28 8/home/miguel/EDA/Projects/graphmaze/edge_detector.vhd
+Z29 F/home/miguel/EDA/Projects/graphmaze/edge_detector.vhd
+l0
+L25 1
+V5C=KRLAGRaYL1?AQ;E;9j1
+!s100 8YZ2^jBlaX4?0]W6fg5fQ2
+R8
+32
+R9
+!i10b 1
+R10
+Z30 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/miguel/EDA/Projects/graphmaze/edge_detector.vhd|
+Z31 !s107 /home/miguel/EDA/Projects/graphmaze/edge_detector.vhd|
+!i113 0
+R13
+R14
+Artl
+R3
+R4
+DEx4 work 13 edge_detector 0 22 5C=KRLAGRaYL1?AQ;E;9j1
+!i122 28
+l39
+L34 21
+V[;JQ17iE0iTkHY<AjIT;13
+!s100 XhDFK>6^Pg;Cf>3KW;kN03
+R8
+32
+R9
+!i10b 1
+R10
+R30
+R31
+!i113 0
+R13
+R14
+Egraphmaze
+Z32 w1679264829
+R2
+R3
+R4
+!i122 29
+R5
+Z33 8/home/miguel/EDA/Projects/graphmaze/graphmaze.vhd
+Z34 F/home/miguel/EDA/Projects/graphmaze/graphmaze.vhd
+l0
+L11 1
+V:BD[inlJnh7L6k1zLFa163
+!s100 3I9gb_Bg2=8UcM6D?NDF;1
+R8
+32
+R9
+!i10b 1
+R10
+Z35 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/miguel/EDA/Projects/graphmaze/graphmaze.vhd|
+Z36 !s107 /home/miguel/EDA/Projects/graphmaze/graphmaze.vhd|
+!i113 0
+R13
+R14
+Abehav
+R2
+R3
+R4
+DEx4 work 9 graphmaze 0 22 :BD[inlJnh7L6k1zLFa163
+!i122 29
+l82
+L28 131
+V223E:czO3k^?9NLjS[8e62
+!s100 a?dK9Bl7M[P>8N>F_^lDH3
+R8
+32
+R9
+!i10b 1
+R10
+R35
+R36
+!i113 0
+R13
+R14
+Egraphmaze_tb_mode_0
+Z37 w1679330277
+R3
+R4
+!i122 30
+R5
+Z38 8/home/miguel/EDA/Projects/graphmaze/graphmaze_tb_mode_0.vhd
+Z39 F/home/miguel/EDA/Projects/graphmaze/graphmaze_tb_mode_0.vhd
+l0
+L6 1
+V^@]4RnLFj37^JgbE[8>HR0
+!s100 4XSkdNWMY75o<G3Kfca2Z2
+R8
+32
+R9
+!i10b 1
+R10
+Z40 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/miguel/EDA/Projects/graphmaze/graphmaze_tb_mode_0.vhd|
+Z41 !s107 /home/miguel/EDA/Projects/graphmaze/graphmaze_tb_mode_0.vhd|
+!i113 0
+R13
+R14
+Atb
+R3
+R4
+DEx4 work 19 graphmaze_tb_mode_0 0 22 ^@]4RnLFj37^JgbE[8>HR0
+!i122 30
+l40
+L9 85
+V4QUD=ijDjIHeNLnZ;cPZ=3
+!s100 0fCCT5=0]chzb[aknJicG3
+R8
+32
+R9
+!i10b 1
+R10
+R40
+R41
+!i113 0
+R13
+R14
+Egraphmaze_tb_mode_1
+Z42 w1679340062
+R3
+R4
+!i122 50
+R5
+Z43 8/home/miguel/EDA/Projects/graphmaze/graphmaze_tb_mode_1.vhd
+Z44 F/home/miguel/EDA/Projects/graphmaze/graphmaze_tb_mode_1.vhd
+l0
+L6 1
+V1fk4_=HX4FelRT6P84?mZ2
+!s100 fJ=FE4o7fn^ILc@IzLJQk1
+R8
+32
+Z45 !s110 1679340068
+!i10b 1
+Z46 !s108 1679340068.000000
+Z47 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/miguel/EDA/Projects/graphmaze/graphmaze_tb_mode_1.vhd|
+Z48 !s107 /home/miguel/EDA/Projects/graphmaze/graphmaze_tb_mode_1.vhd|
+!i113 0
+R13
+R14
+Atb
+R3
+R4
+DEx4 work 19 graphmaze_tb_mode_1 0 22 1fk4_=HX4FelRT6P84?mZ2
+!i122 50
+l42
+L9 107
+V;d13RABKIo9bzPElZed@80
+!s100 H3bjDf:B:[fAC=?OoOKk00
+R8
+32
+R45
+!i10b 1
+R46
+R47
+R48
+!i113 0
+R13
+R14
+Erom_128x20
+Z49 w1679265487
+R2
+R3
+R4
+!i122 32
+R5
+Z50 8/home/miguel/EDA/Projects/graphmaze/rom_128x20.vhd
+Z51 F/home/miguel/EDA/Projects/graphmaze/rom_128x20.vhd
+l0
+L5 1
+VDjUlYnQnCY9Ng1Ql6<nGC3
+!s100 VP]knETzEB45U><:hSc2^3
+R8
+32
+Z52 !s110 1679335529
+!i10b 1
+Z53 !s108 1679335529.000000
+Z54 !s90 -reportprogress|300|-work|work|-2002|-explicit|-vopt|-stats=none|/home/miguel/EDA/Projects/graphmaze/rom_128x20.vhd|
+Z55 !s107 /home/miguel/EDA/Projects/graphmaze/rom_128x20.vhd|
+!i113 0
+R13
+R14
+Arom_modelsim
+R2
+R3
+R4
+DEx4 work 10 rom_128x20 0 22 DjUlYnQnCY9Ng1Ql6<nGC3
+!i122 32
+l149
+L13 141
+VgH2W2Y`V8j=aoGnEheTjo1
+!s100 iL?lc9DXCLK_cY=P3ZPW;2
+R8
+32
+R52
+!i10b 1
+R53
+R54
+R55
+!i113 0
+R13
+R14

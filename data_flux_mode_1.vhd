@@ -33,9 +33,11 @@ ARCHITECTURE behav OF data_flux_mode_1 IS
         );
     END COMPONENT;
 
-	 SIGNAL aux_current_pos, aux_monster_current_pos : STD_LOGIC_VECTOR(6 DOWNTO 0);
+	 SIGNAL aux_current_pos : STD_LOGIC_VECTOR(6 DOWNTO 0) := "0000000";
+	 SIGNAL aux_monster_current_pos : STD_LOGIC_VECTOR(6 DOWNTO 0) := "0011110";
     SIGNAL room_code, next_room : unsigned(4 DOWNTO 0) := (OTHERS => '0');
-	 SIGNAL monster_room_code, monster_next_room : unsigned(4 DOWNTO 0) := (OTHERS => '0');
+	 SIGNAL monster_room_code : unsigned(4 DOWNTO 0) := "11110";
+	 SIGNAL monster_next_room : unsigned(4 DOWNTO 0) := (OTHERS => '0');
 	 SIGNAL monster_rom_data : STD_LOGIC_VECTOR(19 DOWNTO 0) := (OTHERS => '0');
 	 SIGNAL monster_rom_transitions : transitions := ((OTHERS => '0'), (OTHERS => '0'), (OTHERS => '0'), (OTHERS => '0'));
 	 SIGNAL monster_count : integer range 0 to 3 := 0;
@@ -45,8 +47,10 @@ ARCHITECTURE behav OF data_flux_mode_1 IS
     SIGNAL rom_data : STD_LOGIC_VECTOR(19 DOWNTO 0);
     SIGNAL room_cnt, map_cnt, btns_or, move_pulse, s_won, s_lost : STD_LOGIC;
     SIGNAL has_door, mov_dir : STD_LOGIC_VECTOR(3 DOWNTO 0);
+	 SIGNAL continue : STD_LOGIC := '0';
 BEGIN
-
+	 continue <= (NOT(s_won) AND NOT(s_lost) AND NOT(rom_select));
+	 
     main_pro : PROCESS (clock)
     BEGIN
         IF rising_edge(clock) THEN
@@ -56,12 +60,12 @@ BEGIN
 					monster_room_code <= "11110";
 					rom_select <= '1';
 				ELSE
-					IF map_cnt = '1' THEN
+					IF (map_cnt = '1') THEN
 						 map_code <= map_code + 1;
 						 room_code <= (others => '0');
 						 monster_room_code <= "11110";
 						 rom_select <= '1';
-					ELSIF room_cnt = '1' THEN
+					ELSIF (room_cnt = '1' AND continue = '1') THEN
 						 room_code <= next_room;
 						 monster_room_code <= monster_next_room;
 						 rom_select <= '1';
@@ -100,17 +104,23 @@ BEGIN
 	 choose_monster_next_room : process(clock)
 	 begin
 		if rising_edge(clock) then
-			if(rom_select = '0') then monster_count <= monster_count + 1;
-			else monster_count <= monster_count;
-			end if;
-			if(monster_count > 3) then monster_count <= 0;
-			end if;
-			if(monster_rom_transitions(monster_count) = STD_LOGIC_VECTOR(monster_room_code)) then monster_count <= monster_count + 1;
-			end if;
-			if(monster_count > 3) then monster_count <= 0;
+			if (continue = '1' AND reset = '0' AND map_cnt = '0') then
+				if (monster_count = 3) then monster_count <= 0;
+				else
+					monster_count <= monster_count + 1;
+					if(monster_rom_transitions(monster_count) = STD_LOGIC_VECTOR(monster_room_code)) then
+						if (monster_count = 3) then monster_count <= 0;
+						else monster_count <= monster_count + 1;
+						end if;
+					end if;
+				end if;
+			elsif(reset = '1' OR map_cnt = '1') then
+				monster_count <= 0;
+			else
+				monster_count <= monster_count;
 			end if;
 		end if;
-    end process;
+	 end process;
 	
 	 monster_next_room <= unsigned(monster_rom_transitions(monster_count));
 	
@@ -130,10 +140,10 @@ BEGIN
     END GENERATE; -- gen_has_door
 	 walls <= has_door;
 
-    next_room <= unsigned(rom_data(4 DOWNTO 0)) WHEN (mov_dir = "0001" AND s_won = '0' AND s_lost = '0' AND rom_select = '0') ELSE
-					  unsigned(rom_data(9 DOWNTO 5)) WHEN (mov_dir = "0010" AND s_won = '0' AND s_lost = '0' AND rom_select = '0') ELSE
-					  unsigned(rom_data(14 DOWNTO 10)) WHEN (mov_dir = "0100" AND s_won = '0' AND s_lost = '0' AND rom_select = '0') ELSE
-                 unsigned(rom_data(19 DOWNTO 15)) WHEN (mov_dir = "1000" AND s_won = '0' AND s_lost = '0' AND rom_select = '0') ELSE
+    next_room <= unsigned(rom_data(4 DOWNTO 0)) WHEN (mov_dir = "0001" AND continue = '1') ELSE
+					  unsigned(rom_data(9 DOWNTO 5)) WHEN (mov_dir = "0010" AND continue = '1') ELSE
+					  unsigned(rom_data(14 DOWNTO 10)) WHEN (mov_dir = "0100" AND continue = '1') ELSE
+                 unsigned(rom_data(19 DOWNTO 15)) WHEN (mov_dir = "1000" AND continue = '1') ELSE
 					  room_code;
 
     s_won <= '1' WHEN STD_LOGIC_VECTOR(room_code) = "11111" ELSE

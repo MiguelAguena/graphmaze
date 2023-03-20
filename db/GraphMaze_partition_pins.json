@@ -172,11 +172,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "reset",
-					"strict" : false
-				},
-				{
-					"name" : "next_map_btn",
+					"name" : "dir_btns[2]",
 					"strict" : false
 				},
 				{
@@ -192,7 +188,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "dir_btns[2]",
+					"name" : "reset",
+					"strict" : false
+				},
+				{
+					"name" : "next_map_btn",
 					"strict" : false
 				}
 			]
