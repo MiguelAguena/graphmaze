@@ -103,7 +103,11 @@ BEGIN
 			if(rom_select = '0') then monster_count <= monster_count + 1;
 			else monster_count <= monster_count;
 			end if;
+			if(monster_count > 3) then monster_count <= 0;
+			end if;
 			if(monster_rom_transitions(monster_count) = STD_LOGIC_VECTOR(monster_room_code)) then monster_count <= monster_count + 1;
+			end if;
+			if(monster_count > 3) then monster_count <= 0;
 			end if;
 		end if;
     end process;
