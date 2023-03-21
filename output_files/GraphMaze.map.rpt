@@ -1,5 +1,5 @@
 Analysis & Synthesis report for GraphMaze
-Mon Mar 20 16:13:49 2023
+Mon Mar 20 20:58:06 2023
 Quartus Prime Version 22.1std.0 Build 915 10/25/2022 SC Lite Edition
 
 
@@ -47,7 +47,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +---------------------------------+------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Mon Mar 20 16:13:49 2023          ;
+; Analysis & Synthesis Status     ; Successful - Mon Mar 20 20:58:06 2023          ;
 ; Quartus Prime Version           ; 22.1std.0 Build 915 10/25/2022 SC Lite Edition ;
 ; Revision Name                   ; GraphMaze                                      ;
 ; Top-level Entity Name           ; graphmaze                                      ;
@@ -191,14 +191,14 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-------------+
 ; Resource                                    ; Usage       ;
 +---------------------------------------------+-------------+
-; Estimate of Logic utilization (ALMs needed) ; 137         ;
+; Estimate of Logic utilization (ALMs needed) ; 147         ;
 ;                                             ;             ;
-; Combinational ALUT usage for logic          ; 202         ;
+; Combinational ALUT usage for logic          ; 215         ;
 ;     -- 7 input functions                    ; 4           ;
-;     -- 6 input functions                    ; 66          ;
-;     -- 5 input functions                    ; 50          ;
-;     -- 4 input functions                    ; 38          ;
-;     -- <=3 input functions                  ; 44          ;
+;     -- 6 input functions                    ; 73          ;
+;     -- 5 input functions                    ; 52          ;
+;     -- 4 input functions                    ; 45          ;
+;     -- <=3 input functions                  ; 41          ;
 ;                                             ;             ;
 ; Dedicated logic registers                   ; 41          ;
 ;                                             ;             ;
@@ -208,8 +208,8 @@ https://fpgasoftware.intel.com/eula.
 ;                                             ;             ;
 ; Maximum fan-out node                        ; clock~input ;
 ; Maximum fan-out                             ; 41          ;
-; Total fan-out                               ; 1157        ;
-; Average fan-out                             ; 3.35        ;
+; Total fan-out                               ; 1229        ;
+; Average fan-out                             ; 3.43        ;
 +---------------------------------------------+-------------+
 
 
@@ -218,12 +218,13 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+------------------+--------------+
 ; Compilation Hierarchy Node      ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                      ; Entity Name      ; Library Name ;
 +---------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+------------------+--------------+
-; |graphmaze                      ; 202 (38)            ; 41 (1)                    ; 0                 ; 0          ; 51   ; 0            ; |graphmaze                                               ; graphmaze        ; work         ;
+; |graphmaze                      ; 215 (44)            ; 41 (1)                    ; 0                 ; 0          ; 51   ; 0            ; |graphmaze                                               ; graphmaze        ; work         ;
 ;    |data_flux:DF_MODE_0|        ; 60 (35)             ; 9 (7)                     ; 0                 ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF_MODE_0                           ; data_flux        ; work         ;
 ;       |edge_detector:mov_dect|  ; 0 (0)               ; 2 (2)                     ; 0                 ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF_MODE_0|edge_detector:mov_dect    ; edge_detector    ; work         ;
 ;       |rom_128x20:map_mem|      ; 25 (25)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF_MODE_0|rom_128x20:map_mem        ; rom_128x20       ; work         ;
-;    |data_flux_mode_1:DF_MODE_1| ; 90 (56)             ; 31 (31)                   ; 0                 ; 0          ; 0    ; 0            ; |graphmaze|data_flux_mode_1:DF_MODE_1                    ; data_flux_mode_1 ; work         ;
+;    |data_flux_mode_1:DF_MODE_1| ; 91 (57)             ; 31 (31)                   ; 0                 ; 0          ; 0    ; 0            ; |graphmaze|data_flux_mode_1:DF_MODE_1                    ; data_flux_mode_1 ; work         ;
 ;       |rom_128x20:map_mem|      ; 34 (34)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |graphmaze|data_flux_mode_1:DF_MODE_1|rom_128x20:map_mem ; rom_128x20       ; work         ;
+;    |decoder_7seg:DEC_MONSTER|   ; 6 (6)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |graphmaze|decoder_7seg:DEC_MONSTER                      ; decoder_7seg     ; work         ;
 ;    |decoder_7seg:DEC_PLAYER|    ; 14 (14)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |graphmaze|decoder_7seg:DEC_PLAYER                       ; decoder_7seg     ; work         ;
 +---------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
@@ -248,7 +249,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
 ; Total registers                              ; 41    ;
-; Number of registers using Synchronous Clear  ; 9     ;
+; Number of registers using Synchronous Clear  ; 10    ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 2     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
@@ -262,10 +263,10 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-------------------------------------------------+---------+
 ; Inverted Register                               ; Fan out ;
 +-------------------------------------------------+---------+
-; data_flux_mode_1:DF_MODE_1|monster_room_code[1] ; 7       ;
-; data_flux_mode_1:DF_MODE_1|monster_room_code[2] ; 7       ;
-; data_flux_mode_1:DF_MODE_1|monster_room_code[3] ; 6       ;
-; data_flux_mode_1:DF_MODE_1|monster_room_code[4] ; 8       ;
+; data_flux_mode_1:DF_MODE_1|monster_room_code[1] ; 16      ;
+; data_flux_mode_1:DF_MODE_1|monster_room_code[2] ; 16      ;
+; data_flux_mode_1:DF_MODE_1|monster_room_code[3] ; 15      ;
+; data_flux_mode_1:DF_MODE_1|monster_room_code[4] ; 17      ;
 ; data_flux_mode_1:DF_MODE_1|rom_select           ; 27      ;
 ; Total number of inverted registers = 5          ;         ;
 +-------------------------------------------------+---------+
@@ -278,21 +279,20 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------+
 ; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |graphmaze|data_flux:DF_MODE_0|map_code[0]                 ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |graphmaze|data_flux_mode_1:DF_MODE_1|map_code[1]          ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |graphmaze|data_flux_mode_1:DF_MODE_1|monster_count[1]     ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |graphmaze|data_flux_mode_1:DF_MODE_1|monster_count[1]     ;
 ; 19:1               ; 3 bits    ; 36 LEs        ; 12 LEs               ; 24 LEs                 ; Yes        ; |graphmaze|data_flux:DF_MODE_0|room_code[1]                ;
 ; 8:1                ; 2 bits    ; 10 LEs        ; 6 LEs                ; 4 LEs                  ; Yes        ; |graphmaze|data_flux_mode_1:DF_MODE_1|room_code[4]         ;
 ; 8:1                ; 3 bits    ; 15 LEs        ; 12 LEs               ; 3 LEs                  ; Yes        ; |graphmaze|data_flux_mode_1:DF_MODE_1|room_code[2]         ;
 ; 13:1               ; 2 bits    ; 16 LEs        ; 6 LEs                ; 10 LEs                 ; Yes        ; |graphmaze|data_flux:DF_MODE_0|room_code[4]                ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |graphmaze|data_flux_mode_1:DF_MODE_1|monster_room_code[2] ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; Yes        ; |graphmaze|data_flux_mode_1:DF_MODE_1|monster_room_code[3] ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |graphmaze|data_flux_mode_1:DF_MODE_1|monster_room_code[2] ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |graphmaze|decoder_7seg:DEC_PLAYER|sseg_2[0]               ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |graphmaze|data_flux_mode_1:DF_MODE_1|Mux1                 ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |graphmaze|data_flux_mode_1:DF_MODE_1|Mux4                 ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |graphmaze|sseg_4                                          ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |graphmaze|sseg_4                                          ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |graphmaze|decoder_7seg:DEC_PLAYER|sseg_0[5]               ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |graphmaze|decoder_7seg:DEC_PLAYER|sseg_0[6]               ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |graphmaze|sseg_3                                          ;
 ; 6:1                ; 3 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |graphmaze|decoder_7seg:DEC_PLAYER|sseg_0[0]               ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |graphmaze|sseg_3                                          ;
 ; 11:1               ; 2 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |graphmaze|decoder_7seg:DEC_PLAYER|sseg_1[0]               ;
-; 12:1               ; 2 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |graphmaze|sseg_3                                          ;
+; 12:1               ; 2 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |graphmaze|sseg_4                                          ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------+
 
 
@@ -301,7 +301,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port   ; Type   ; Severity ; Details                                                                             ;
 +--------+--------+----------+-------------------------------------------------------------------------------------+
-; sseg_0 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; sseg_2 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
 +--------+--------+----------+-------------------------------------------------------------------------------------+
 
 
@@ -314,23 +314,23 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;     CLR               ; 2                           ;
 ;     ENA               ; 22                          ;
 ;     ENA SCLR          ; 8                           ;
-;     SCLR              ; 1                           ;
-;     plain             ; 8                           ;
-; arriav_lcell_comb     ; 213                         ;
+;     SCLR              ; 2                           ;
+;     plain             ; 7                           ;
+; arriav_lcell_comb     ; 225                         ;
 ;     extend            ; 4                           ;
 ;         7 data inputs ; 4                           ;
-;     normal            ; 209                         ;
+;     normal            ; 221                         ;
 ;         0 data inputs ; 2                           ;
-;         1 data inputs ; 10                          ;
+;         1 data inputs ; 9                           ;
 ;         2 data inputs ; 13                          ;
-;         3 data inputs ; 30                          ;
-;         4 data inputs ; 38                          ;
-;         5 data inputs ; 50                          ;
-;         6 data inputs ; 66                          ;
+;         3 data inputs ; 27                          ;
+;         4 data inputs ; 45                          ;
+;         5 data inputs ; 52                          ;
+;         6 data inputs ; 73                          ;
 ; boundary_port         ; 51                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 7.00                        ;
-; Average LUT depth     ; 4.43                        ;
+; Average LUT depth     ; 4.39                        ;
 +-----------------------+-----------------------------+
 
 
@@ -349,7 +349,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 22.1std.0 Build 915 10/25/2022 SC Lite Edition
-    Info: Processing started: Mon Mar 20 16:13:35 2023
+    Info: Processing started: Mon Mar 20 20:57:51 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off GraphMaze -c GraphMaze
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -378,29 +378,29 @@ Info (12021): Found 2 design units, including 1 entities, in source file graphma
     Info (12022): Found design unit 1: graphmaze_tb_mode_1-tb File: /home/miguel/EDA/Projects/graphmaze/graphmaze_tb_mode_1.vhd Line: 9
     Info (12023): Found entity 1: graphmaze_tb_mode_1 File: /home/miguel/EDA/Projects/graphmaze/graphmaze_tb_mode_1.vhd Line: 6
 Info (12127): Elaborating entity "graphmaze" for the top level hierarchy
-Info (12128): Elaborating entity "data_flux" for hierarchy "data_flux:DF_MODE_0" File: /home/miguel/EDA/Projects/graphmaze/graphmaze.vhd Line: 123
+Info (12128): Elaborating entity "data_flux" for hierarchy "data_flux:DF_MODE_0" File: /home/miguel/EDA/Projects/graphmaze/graphmaze.vhd Line: 125
 Info (12128): Elaborating entity "rom_128x20" for hierarchy "data_flux:DF_MODE_0|rom_128x20:map_mem" File: /home/miguel/EDA/Projects/graphmaze/data_flux.vhd Line: 62
 Info (12128): Elaborating entity "edge_detector" for hierarchy "data_flux:DF_MODE_0|edge_detector:mov_dect" File: /home/miguel/EDA/Projects/graphmaze/data_flux.vhd Line: 66
-Info (12128): Elaborating entity "data_flux_mode_1" for hierarchy "data_flux_mode_1:DF_MODE_1" File: /home/miguel/EDA/Projects/graphmaze/graphmaze.vhd Line: 133
-Info (12128): Elaborating entity "decoder_7seg" for hierarchy "decoder_7seg:DEC_PLAYER" File: /home/miguel/EDA/Projects/graphmaze/graphmaze.vhd Line: 145
+Info (12128): Elaborating entity "data_flux_mode_1" for hierarchy "data_flux_mode_1:DF_MODE_1" File: /home/miguel/EDA/Projects/graphmaze/graphmaze.vhd Line: 135
+Info (12128): Elaborating entity "decoder_7seg" for hierarchy "decoder_7seg:DEC_PLAYER" File: /home/miguel/EDA/Projects/graphmaze/graphmaze.vhd Line: 147
 Info (276014): Found 2 instances of uninferred RAM logic
     Info (276004): RAM logic "data_flux_mode_1:DF_MODE_1|rom_128x20:map_mem|memoria" is uninferred due to inappropriate RAM size File: /home/miguel/EDA/Projects/graphmaze/rom_128x20.vhd Line: 18
     Info (276004): RAM logic "data_flux:DF_MODE_0|rom_128x20:map_mem|memoria" is uninferred due to inappropriate RAM size File: /home/miguel/EDA/Projects/graphmaze/rom_128x20.vhd Line: 18
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "sseg_3[5]" is stuck at VCC File: /home/miguel/EDA/Projects/graphmaze/graphmaze.vhd Line: 21
+    Warning (13410): Pin "sseg_4[5]" is stuck at VCC File: /home/miguel/EDA/Projects/graphmaze/graphmaze.vhd Line: 20
     Warning (13410): Pin "sseg_2[1]" is stuck at GND File: /home/miguel/EDA/Projects/graphmaze/graphmaze.vhd Line: 22
     Warning (13410): Pin "sseg_1[5]" is stuck at VCC File: /home/miguel/EDA/Projects/graphmaze/graphmaze.vhd Line: 23
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 269 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 281 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 8 input pins
     Info (21059): Implemented 43 output pins
-    Info (21061): Implemented 218 logic cells
+    Info (21061): Implemented 230 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 5 warnings
-    Info: Peak virtual memory: 485 megabytes
-    Info: Processing ended: Mon Mar 20 16:13:49 2023
-    Info: Elapsed time: 00:00:14
-    Info: Total CPU time (on all processors): 00:00:26
+    Info: Peak virtual memory: 494 megabytes
+    Info: Processing ended: Mon Mar 20 20:58:06 2023
+    Info: Elapsed time: 00:00:15
+    Info: Total CPU time (on all processors): 00:00:28
 
 

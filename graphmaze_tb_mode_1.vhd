@@ -91,23 +91,6 @@ BEGIN
 		WAIT FOR 5 * clockPeriod;
 		dir_btns(jogadas_2) <= '0';
 		WAIT FOR 5 * clockPeriod;		
---		next_map_btn <= '1';
---		WAIT FOR 5 * clockPeriod;
---		next_map_btn <= '0';
---
---		WAIT FOR 10 * clockPeriod;
---
---		for i in 0 to 30 loop
---			dir_btns(3) <= '1';
---			WAIT FOR 5 * clockPeriod;
---			dir_btns(3) <= '0';
---			WAIT FOR 5 * clockPeriod;
---		END LOOP;
---
---		next_map_btn <= '1';
---		WAIT FOR 5 * clockPeriod;
---		next_map_btn <= '0';
-
 		keep_simulating <= '0';
 
 		WAIT; -- fim da simulação: processo aguarda indefinidamente

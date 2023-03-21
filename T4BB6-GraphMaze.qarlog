@@ -1,0 +1,22 @@
+Quartus Prime Archive log --	/home/miguel/EDA/Projects/graphmaze/T4BB6-GraphMaze.qarlog
+
+Archive:	/home/miguel/EDA/Projects/graphmaze/T4BB6-GraphMaze.qar
+Date:		Mon Mar 20 22:23:35 2023
+Quartus Prime		22.1std.0 Build 915 10/25/2022 SC Lite Edition
+
+	=========== Files Selected: ===========
+/home/miguel/EDA/Projects/graphmaze/GraphMaze.qpf
+/home/miguel/EDA/Projects/graphmaze/GraphMaze.qsf
+/home/miguel/EDA/Projects/graphmaze/GraphMaze_assignment_defaults.qdf
+/home/miguel/EDA/Projects/graphmaze/data_flux.vhd
+/home/miguel/EDA/Projects/graphmaze/data_flux_mode_1.vhd
+/home/miguel/EDA/Projects/graphmaze/decoder_7seg.vhd
+/home/miguel/EDA/Projects/graphmaze/edge_detector.vhd
+/home/miguel/EDA/Projects/graphmaze/graphmaze.vhd
+/home/miguel/EDA/Projects/graphmaze/graphmaze_tb_mode_0.vhd
+/home/miguel/EDA/Projects/graphmaze/graphmaze_tb_mode_1.vhd
+/home/miguel/EDA/Projects/graphmaze/rom_128x20.vhd
+	======= Total: 11 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.

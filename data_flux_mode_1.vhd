@@ -108,11 +108,11 @@ BEGIN
 				if (monster_count = 3) then monster_count <= 0;
 				else
 					monster_count <= monster_count + 1;
-					if(monster_rom_transitions(monster_count) = STD_LOGIC_VECTOR(monster_room_code)) then
-						if (monster_count = 3) then monster_count <= 0;
-						else monster_count <= monster_count + 1;
-						end if;
-					end if;
+--					if(monster_rom_transitions(monster_count) = STD_LOGIC_VECTOR(monster_room_code)) then
+--						if (monster_count = 3) then monster_count <= 0;
+--						else monster_count <= monster_count + 1;
+--						end if;
+--					end if;
 				end if;
 			elsif(reset = '1' OR map_cnt = '1') then
 				monster_count <= 0;

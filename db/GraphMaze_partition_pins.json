@@ -56,10 +56,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "sseg_4[5]",
-					"strict" : false
-				},
-				{
 					"name" : "sseg_4[6]",
 					"strict" : false
 				},
@@ -81,6 +77,10 @@
 				},
 				{
 					"name" : "sseg_3[4]",
+					"strict" : false
+				},
+				{
+					"name" : "sseg_3[5]",
 					"strict" : false
 				},
 				{
@@ -164,11 +164,15 @@
 					"strict" : false
 				},
 				{
+					"name" : "clock",
+					"strict" : false
+				},
+				{
 					"name" : "mode",
 					"strict" : false
 				},
 				{
-					"name" : "clock",
+					"name" : "reset",
 					"strict" : false
 				},
 				{
@@ -185,10 +189,6 @@
 				},
 				{
 					"name" : "dir_btns[1]",
-					"strict" : false
-				},
-				{
-					"name" : "reset",
 					"strict" : false
 				},
 				{

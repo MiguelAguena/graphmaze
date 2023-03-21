@@ -89,7 +89,9 @@ BEGIN
 	set_mode : process(clock)
 	begin
 		if rising_edge(clock) then
-			if(aux_current_pos_select = "0000000") then aux_mode <= mode;
+			if(reset = '1') then
+				aux_mode <= '0';
+			elsif(aux_current_pos_select = "0000000") then aux_mode <= mode;
 			else aux_mode <= aux_mode;
 			end if;
 		end if;
@@ -151,8 +153,8 @@ BEGIN
 	
 	DEC_MONSTER: decoder_7seg port map(
 		data => aux_monster_current_pos,
-		sseg_2 => aux_sseg_4,
-		sseg_1 => aux_sseg_3,
-		sseg_0 => OPEN
+		sseg_2 => OPEN,
+		sseg_1 => aux_sseg_4,
+		sseg_0 => aux_sseg_3
 	);
 END behav;
