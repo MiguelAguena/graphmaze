@@ -4,8 +4,10 @@ USE ieee.numeric_std.ALL;
 
 ENTITY rom_128x20 IS
 	PORT (
-		endereco : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
-		dado_saida : OUT STD_LOGIC_VECTOR(19 DOWNTO 0)
+		enderecoA : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
+		enderecoB : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
+		dado_saidaA : OUT STD_LOGIC_VECTOR(19 DOWNTO 0);
+		dado_saidaB : OUT STD_LOGIC_VECTOR(19 DOWNTO 0)
 	);
 END ENTITY rom_128x20;
 
@@ -148,6 +150,7 @@ ARCHITECTURE rom_modelsim OF rom_128x20 IS
 
 BEGIN
 	-- saida da memoria
-	dado_saida <= memoria(to_integer(unsigned(endereco)));
+	dado_saidaA <= memoria(to_integer(unsigned(enderecoA)));
+	dado_saidaB <= memoria(to_integer(unsigned(enderecoB)));
 
 END ARCHITECTURE rom_modelsim;

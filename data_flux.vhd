@@ -16,10 +16,12 @@ END data_flux;
 ARCHITECTURE behav OF data_flux IS
 
     COMPONENT rom_128x20 IS
-        PORT (
-            endereco : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
-            dado_saida : OUT STD_LOGIC_VECTOR(19 DOWNTO 0)
-        );
+		PORT (
+			enderecoA : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
+			enderecoB : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
+			dado_saidaA : OUT STD_LOGIC_VECTOR(19 DOWNTO 0);
+			dado_saidaB : OUT STD_LOGIC_VECTOR(19 DOWNTO 0)
+		);
     END COMPONENT;
     COMPONENT edge_detector IS
         PORT (
@@ -59,7 +61,7 @@ BEGIN
 
     rom_addr <= STD_LOGIC_VECTOR(map_code & room_code);
 	 current_pos <= rom_addr;
-    map_mem : rom_128x20 PORT MAP(rom_addr, rom_data);
+    map_mem : rom_128x20 PORT MAP(rom_addr, (others => '0') , rom_data, OPEN);
 
     btns_or <= dir_btns(3) or dir_btns(2) or dir_btns(1) or dir_btns(0);
 --	 not_btns_or <= not btns_or;

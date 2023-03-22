@@ -176,6 +176,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "next_map_btn",
+					"strict" : false
+				},
+				{
 					"name" : "dir_btns[2]",
 					"strict" : false
 				},
@@ -189,10 +193,6 @@
 				},
 				{
 					"name" : "dir_btns[1]",
-					"strict" : false
-				},
-				{
-					"name" : "next_map_btn",
 					"strict" : false
 				}
 			]
