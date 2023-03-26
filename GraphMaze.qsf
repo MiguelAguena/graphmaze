@@ -88,7 +88,6 @@ set_location_assignment PIN_W21 -to walls[3]
 set_location_assignment PIN_Y22 -to walls[4]
 set_location_assignment PIN_Y21 -to walls[5]
 set_global_assignment -name VHDL_FILE graphmaze_tb_mode_0.vhd
-set_global_assignment -name VHDL_FILE data_flux_mode_1.vhd
 set_global_assignment -name VHDL_FILE decoder_7seg.vhd
 set_global_assignment -name VHDL_FILE data_flux.vhd
 set_global_assignment -name VHDL_FILE rom_128x20.vhd

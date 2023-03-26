@@ -56,6 +56,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "sseg_4[5]",
+					"strict" : false
+				},
+				{
 					"name" : "sseg_4[6]",
 					"strict" : false
 				},
@@ -132,6 +136,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "sseg_1[5]",
+					"strict" : false
+				},
+				{
 					"name" : "sseg_1[6]",
 					"strict" : false
 				},
@@ -164,14 +172,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "clock",
-					"strict" : false
-				},
-				{
-					"name" : "mode",
-					"strict" : false
-				},
-				{
 					"name" : "reset",
 					"strict" : false
 				},
@@ -180,11 +180,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "dir_btns[2]",
+					"name" : "dir_btns[1]",
 					"strict" : false
 				},
 				{
-					"name" : "dir_btns[3]",
+					"name" : "dir_btns[2]",
 					"strict" : false
 				},
 				{
@@ -192,7 +192,15 @@
 					"strict" : false
 				},
 				{
-					"name" : "dir_btns[1]",
+					"name" : "dir_btns[3]",
+					"strict" : false
+				},
+				{
+					"name" : "clock",
+					"strict" : false
+				},
+				{
+					"name" : "mode",
 					"strict" : false
 				}
 			]
