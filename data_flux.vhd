@@ -70,13 +70,15 @@ ARCHITECTURE behav OF data_flux IS
 	SIGNAL rom_addr_jog, rom_addr_mon : STD_LOGIC_VECTOR(6 DOWNTO 0);
 	SIGNAL rom_data_jog, rom_data_mon : STD_LOGIC_VECTOR(27 DOWNTO 0);
 
-	SIGNAL s_lost_v : STD_LOGIC_VECTOR(0 DOWNTO 0);
+	SIGNAL s_lost_v, s_next_lost_v : STD_LOGIC_VECTOR(0 DOWNTO 0);
 	SIGNAL room_cnt, map_cnt, btns_or, move_pulse, s_won, s_lost, jog_mon_nex_eq : STD_LOGIC;
 	SIGNAL has_door, mov_dir : STD_LOGIC_VECTOR(3 DOWNTO 0);
 
 	SIGNAL continue, crossed_to_mon, crossed_to_jog, crossed_path, crossed : STD_LOGIC := '0';
 
 	SIGNAL cur_move, last_move : STD_LOGIC_VECTOR(2 DOWNTO 0);
+
+	SIGNAL reset_or_map, room_cnt_cont : STD_LOGIC;
 
 BEGIN
 	continue <= (NOT(s_won) AND NOT(s_lost));
@@ -87,7 +89,7 @@ BEGIN
 	current_pos <= rom_addr_jog;
 	monster_current_pos <= rom_addr_mon;
 
-	monster_next_room <= rom_data_mon((to_integer(unsigned(monster_count)) * 7 + 6) DOWNTO (to_integer(unsigned(monster_count)) * 7 + 2));
+	monster_next_room <= rom_data_mon(((3 - to_integer(unsigned(monster_count))) * 7 + 6) DOWNTO ((3 - to_integer(unsigned(monster_count))) * 7 + 2));
 	next_map <= STD_LOGIC_VECTOR(unsigned(map_code) + to_unsigned(1, 2));
 	next_monster_count <= STD_LOGIC_VECTOR(unsigned(monster_count) + to_unsigned(1, 2));
 
@@ -96,10 +98,12 @@ BEGIN
 	PORT MAP(clock, reset, '1', next_monster_count, monster_count);
 
 	-- Position registers
+	reset_or_map <= reset OR map_cnt;
+	room_cnt_cont <= room_cnt AND continue;
 	mon_reg : registrador_n GENERIC MAP(5, 30)
-	PORT MAP(clock, reset OR map_cnt, room_cnt AND continue, monster_next_room, monster_room_code);
+	PORT MAP(clock, reset_or_map, room_cnt_cont, monster_next_room, monster_room_code);
 	jog_reg : registrador_n GENERIC MAP(5, 0)
-	PORT MAP(clock, reset OR map_cnt, room_cnt AND continue, jog_next_room_data(6 DOWNTO 2), jog_room_code);
+	PORT MAP(clock, reset_or_map, room_cnt_cont, jog_next_room_data(6 DOWNTO 2), jog_room_code);
 
 	full_state(6 DOWNTO 2) <= monster_room_code;
 	full_state(11 DOWNTO 7) <= jog_room_code;
@@ -110,7 +114,7 @@ BEGIN
 	full_state(1 DOWNTO 0) <= map_code;
 
 	-- Last move register
-	last_move_reg : registrador_n GENERIC MAP(3, 4) PORT MAP(clock, reset OR map_cnt, room_cnt AND continue, cur_move, last_move);
+	last_move_reg : registrador_n GENERIC MAP(3, 4) PORT MAP(clock, reset_or_map, room_cnt_cont, cur_move, last_move);
 	cur_move <= "000" WHEN mov_dir = "0001" ELSE
 		"001" WHEN mov_dir = "0010" ELSE
 		"010" WHEN mov_dir = "0100" ELSE
@@ -122,19 +126,21 @@ BEGIN
 	lost_reg : registrador_n GENERIC MAP(
 		1, 0) PORT MAP (
 		clock => clock,
-		reset => reset OR map_cnt,
-		load => room_cnt AND continue,
-		D => (0 => jog_mon_nex_eq OR crossed),
+		reset => reset_or_map,
+		load => room_cnt_cont,
+		D => s_next_lost_v,
 		Q => s_lost_v
 	);
+	s_next_lost_v(0) <= jog_mon_nex_eq OR crossed;
 	s_lost <= s_lost_v(0);
 
 	crossed_to_mon <= '1' WHEN jog_room_code = monster_next_room ELSE
 		'0';
 	crossed_to_jog <= '1' WHEN jog_next_room_data(6 DOWNTO 2) = monster_room_code ELSE
 		'0';
-	crossed_path <= '1' when jog_next_room_data(1 DOWNTO 0) = monster_count else '0';
-	
+	crossed_path <= '1' WHEN jog_next_room_data(1 DOWNTO 0) = monster_count ELSE
+		'0';
+
 	crossed <= crossed_to_mon AND crossed_to_jog AND crossed_path;
 
 	jog_mon_nex_eq <= '1' WHEN (STD_LOGIC_VECTOR(monster_next_room) = STD_LOGIC_VECTOR(jog_next_room_data(6 DOWNTO 2))) ELSE

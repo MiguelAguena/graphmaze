@@ -1,11 +1,11 @@
-Fitter Status : Successful - Sun Mar 26 02:38:22 2023
+Fitter Status : Successful - Sun Mar 26 11:41:42 2023
 Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 Revision Name : GraphMaze
 Top-level Entity Name : graphmaze
 Family : Cyclone V
 Device : 5CEBA4F23C7
 Timing Models : Final
-Logic utilization (in ALMs) : 816 / 18,480 ( 4 % )
+Logic utilization (in ALMs) : 93 / 18,480 ( < 1 % )
 Total registers : 18
 Total pins : 51 / 224 ( 23 % )
 Total virtual pins : 0

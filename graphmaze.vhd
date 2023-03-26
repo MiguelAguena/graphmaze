@@ -28,14 +28,15 @@ END graphmaze;
 ARCHITECTURE behav OF graphmaze IS
 	COMPONENT data_flux IS
 		PORT (
-			clock, reset : IN STD_LOGIC;
+			clock, reset, mode : IN STD_LOGIC;
 			dir_btns : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
 			next_map_btn : IN STD_LOGIC;
 			won : OUT STD_LOGIC;
 			lost : OUT STD_LOGIC;
 			walls : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
 			current_pos : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
-			monster_current_pos : OUT STD_LOGIC_VECTOR(6 DOWNTO 0)
+			monster_current_pos : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+			full_state : OUT STD_LOGIC_VECTOR(14 DOWNTO 0)
 		);
 	END COMPONENT;
 
@@ -63,8 +64,8 @@ BEGIN
 	set_mode : PROCESS (clock)
 	BEGIN
 		IF rising_edge(clock) THEN
---			IF (reset = '1') THEN
---				cur_mode <= '0';
+			--			IF (reset = '1') THEN
+			--				cur_mode <= '0';
 			IF (cur_pos = "0000000") THEN
 				cur_mode <= mode;
 			ELSE
@@ -86,13 +87,15 @@ BEGIN
 	DF : data_flux PORT MAP(
 		clock => clock,
 		reset => reset,
+		mode => cur_mode,
 		dir_btns => not_dir_btns,
 		next_map_btn => next_map_btn,
 		won => s_won,
 		lost => s_lost,
 		walls => s_walls,
 		current_pos => cur_pos,
-		monster_current_pos => monster_cur_pos
+		monster_current_pos => monster_cur_pos,
+		full_state => OPEN
 	);
 
 	DEC_PLAYER : decoder_7seg PORT MAP(

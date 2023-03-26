@@ -56,10 +56,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "sseg_4[5]",
-					"strict" : false
-				},
-				{
 					"name" : "sseg_4[6]",
 					"strict" : false
 				},
@@ -133,10 +129,6 @@
 				},
 				{
 					"name" : "sseg_1[4]",
-					"strict" : false
-				},
-				{
-					"name" : "sseg_1[5]",
 					"strict" : false
 				},
 				{
