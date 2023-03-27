@@ -56,6 +56,7 @@ ARCHITECTURE behav OF graphmaze IS
 	SIGNAL s_walls : STD_LOGIC_VECTOR(3 DOWNTO 0);
 	SIGNAL s_lost, s_won : STD_LOGIC;
 	SIGNAL aux_sseg_4, aux_sseg_3 : STD_LOGIC_VECTOR(6 DOWNTO 0);
+	signal full_state : STD_LOGIC_VECTOR(14 DOWNTO 0);
 
 BEGIN
 	not_dir_btns <= NOT dir_btns;

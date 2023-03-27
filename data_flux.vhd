@@ -58,12 +58,21 @@ ARCHITECTURE behav OF data_flux IS
 		);
 	END COMPONENT;
 
+	COMPONENT mon_mov_gen IS
+		PORT (
+			clock, reset : IN STD_LOGIC;
+			mon_rom_data : IN STD_LOGIC_VECTOR(27 DOWNTO 0);
+			jog_cur, mon_cur : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
+			nex_mov : OUT STD_LOGIC_VECTOR(1 DOWNTO 0)
+		);
+	END COMPONENT;
+
 	SIGNAL jog_room_code : STD_LOGIC_VECTOR(4 DOWNTO 0) := (OTHERS => '0');
 	SIGNAL jog_next_room_data : STD_LOGIC_VECTOR(6 DOWNTO 0);
 
 	SIGNAL monster_room_code : STD_LOGIC_VECTOR(4 DOWNTO 0) := "11110";
 	SIGNAL monster_next_room : STD_LOGIC_VECTOR(4 DOWNTO 0) := (OTHERS => '0');
-	SIGNAL monster_count, next_monster_count : STD_LOGIC_VECTOR(1 DOWNTO 0);
+	SIGNAL monster_direction : STD_LOGIC_VECTOR(1 DOWNTO 0);
 
 	SIGNAL map_code, next_map : STD_LOGIC_VECTOR(1 DOWNTO 0) := (OTHERS => '0');
 
@@ -89,18 +98,24 @@ BEGIN
 	current_pos <= rom_addr_jog;
 	monster_current_pos <= rom_addr_mon;
 
-	monster_next_room <= rom_data_mon(((3 - to_integer(unsigned(monster_count))) * 7 + 6) DOWNTO ((3 - to_integer(unsigned(monster_count))) * 7 + 2));
-	next_map <= STD_LOGIC_VECTOR(unsigned(map_code) + to_unsigned(1, 2));
-	next_monster_count <= STD_LOGIC_VECTOR(unsigned(monster_count) + to_unsigned(1, 2));
+	monster_next_room <= (rom_data_mon(6 DOWNTO 2)) WHEN monster_direction = "00" ELSE
+		(rom_data_mon(13 DOWNTO 9)) WHEN monster_direction = "01" ELSE
+		(rom_data_mon(20 DOWNTO 16)) WHEN monster_direction = "10" ELSE
+		(rom_data_mon(27 DOWNTO 23));
+
+	-- next_monster_count <= STD_LOGIC_VECTOR(unsigned(monster_count) + to_unsigned(1, 2));
 
 	-- Random monster
-	mon_count_reg : registrador_n GENERIC MAP(2, 0)
-	PORT MAP(clock, reset, '1', next_monster_count, monster_count);
+	-- mon_count_reg : registrador_n GENERIC MAP(2, 0)
+	-- PORT MAP(clock, reset, '1', next_monster_count, monster_count);
+
+	mon_mov : mon_mov_gen PORT MAP
+		(clock, reset, rom_data_mon, jog_room_code, monster_room_code, monster_direction);
 
 	-- Position registers
 	reset_or_map <= reset OR map_cnt;
 	room_cnt_cont <= room_cnt AND continue;
-	mon_reg : registrador_n GENERIC MAP(5, 30)
+	mon_reg : registrador_n GENERIC MAP(5, 31)
 	PORT MAP(clock, reset_or_map, room_cnt_cont, monster_next_room, monster_room_code);
 	jog_reg : registrador_n GENERIC MAP(5, 0)
 	PORT MAP(clock, reset_or_map, room_cnt_cont, jog_next_room_data(6 DOWNTO 2), jog_room_code);
@@ -111,6 +126,7 @@ BEGIN
 	-- Map Register
 	map_reg : registrador_n GENERIC MAP(2, 0)
 	PORT MAP(clock, reset, map_cnt, next_map, map_code);
+	next_map <= STD_LOGIC_VECTOR(unsigned(map_code) + to_unsigned(1, 2));
 	full_state(1 DOWNTO 0) <= map_code;
 
 	-- Last move register
@@ -138,10 +154,10 @@ BEGIN
 		'0';
 	crossed_to_jog <= '1' WHEN jog_next_room_data(6 DOWNTO 2) = monster_room_code ELSE
 		'0';
-	crossed_path <= '1' WHEN jog_next_room_data(1 DOWNTO 0) = monster_count ELSE
+	crossed_path <= '1' WHEN jog_next_room_data(1 DOWNTO 0) = monster_direction ELSE
 		'0';
 
-	crossed <= crossed_to_mon AND crossed_to_jog AND crossed_path;
+	crossed <= crossed_to_mon AND crossed_to_jog AND crossed_path AND (mov_dir(0) or mov_dir(1) or mov_dir(2) or mov_dir(3));
 
 	jog_mon_nex_eq <= '1' WHEN (STD_LOGIC_VECTOR(monster_next_room) = STD_LOGIC_VECTOR(jog_next_room_data(6 DOWNTO 2))) ELSE
 		'0';
@@ -166,7 +182,8 @@ BEGIN
 	jog_next_room_data <= (rom_data_jog(6 DOWNTO 0)) WHEN mov_dir = "0001" ELSE
 		(rom_data_jog(13 DOWNTO 7)) WHEN mov_dir = "0010" ELSE
 		(rom_data_jog(20 DOWNTO 14)) WHEN mov_dir = "0100" ELSE
-		(rom_data_jog(27 DOWNTO 21));
+		(rom_data_jog(27 DOWNTO 21)) WHEN mov_dir = "1000" ELSE
+		jog_room_code & "00";
 	s_won <= '1' WHEN STD_LOGIC_VECTOR(jog_room_code) = "11111" ELSE
 		'0';
 

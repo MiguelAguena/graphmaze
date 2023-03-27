@@ -35,7 +35,7 @@ ARCHITECTURE tb OF graphmaze_tb IS
 	SIGNAL sseg_0, sseg_1, sseg_2, sseg_3, sseg_4 : STD_LOGIC_VECTOR(6 DOWNTO 0) := (OTHERS => '0');
 
 	TYPE t_jogadas IS ARRAY(NATURAL RANGE <>) OF NATURAL;
-	CONSTANT jogadas : t_jogadas(0 to 2) := (3, 1, 0);
+	CONSTANT jogadas : t_jogadas(0 to 2) := (3, 3, 3);
 
 BEGIN
 	clock <= (NOT clock) AND keep_simulating AFTER clockPeriod/2;
@@ -67,7 +67,7 @@ BEGIN
 			dir_btns(jogadas(i)) <= '1';
 			WAIT FOR 5 * clockPeriod;
 			dir_btns(jogadas(i)) <= '0';
-			WAIT FOR 5 * clockPeriod;
+			WAIT FOR 20 * clockPeriod;
 		END LOOP;
 		
 		reset <= '1';
