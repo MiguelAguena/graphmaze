@@ -14,8 +14,8 @@ ENTITY clock_mul IS
 END ENTITY clock_mul;
 
 ARCHITECTURE comportamental OF clock_mul IS
-    SIGNAL clock_count : unsigned(NATURAL(ceil(log2(real(half_factor)))) - 1 DOWNTO 0);
-    CONSTANT unit : unsigned(NATURAL(ceil(log2(real(half_factor)))) - 1 DOWNTO 0) := (0 => '1', others=> '0');
+    SIGNAL clock_count : unsigned(NATURAL(ceil(log2(real(half_factor)))) - 1 DOWNTO 0) := (OTHERS => '0');
+    CONSTANT unit : unsigned(NATURAL(ceil(log2(real(half_factor)))) - 1 DOWNTO 0) := (0 => '1', OTHERS => '0');
     SIGNAL s_mul_clock : STD_LOGIC := '0';
 BEGIN
     PROCESS (clock)

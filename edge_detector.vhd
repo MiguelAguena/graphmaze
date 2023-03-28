@@ -19,36 +19,35 @@
 --     29/01/2023  1.2     Edson Midorikawa  revisao
 --------------------------------------------------------------------------
 
-library ieee;
-use ieee.std_logic_1164.all;
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
 
-entity edge_detector is
-    port (
-        clock  : in  std_logic;
-        reset  : in  std_logic;
-        sinal  : in  std_logic;
-        pulso  : out std_logic
+ENTITY edge_detector IS
+    PORT (
+        clock : IN STD_LOGIC;
+        reset : IN STD_LOGIC;
+        sinal : IN STD_LOGIC;
+        pulso : OUT STD_LOGIC
     );
-end entity edge_detector;
+END ENTITY edge_detector;
 
-architecture rtl of edge_detector is
+ARCHITECTURE rtl OF edge_detector IS
 
-    signal reg0   : std_logic;
-    signal reg1   : std_logic;
+    SIGNAL reg0, reg1 : STD_LOGIC := '0';
 
-begin
+BEGIN
 
-    detector : process(clock,reset)
-    begin
-        if(reset='1') then
+    detector : PROCESS (clock, reset)
+    BEGIN
+        IF (reset = '1') THEN
             reg0 <= '0';
             reg1 <= '0';
-        elsif(rising_edge(clock)) then
+        ELSIF (rising_edge(clock)) THEN
             reg0 <= sinal;
             reg1 <= reg0;
-        end if;
-    end process;
-    
-    pulso <= not reg1 and reg0;
+        END IF;
+    END PROCESS;
 
-end architecture rtl;
+    pulso <= NOT reg1 AND reg0;
+
+END ARCHITECTURE rtl;

@@ -3,10 +3,10 @@ USE ieee.std_logic_1164.ALL;
 USE std.textio.ALL;
 
 -- entidade do testbench
-ENTITY graphmaze_tb IS
+ENTITY graphmaze_tb_perda IS
 END ENTITY;
 
-ARCHITECTURE tb OF graphmaze_tb IS
+ARCHITECTURE tb OF graphmaze_tb_perda IS
 	COMPONENT graphmaze IS
 		PORT (
 			clock, reset : IN STD_LOGIC;
@@ -40,7 +40,7 @@ ARCHITECTURE tb OF graphmaze_tb IS
 	CONSTANT val_jogada : t_val_jogada := (ri => 3, up => 2, le => 1, do => 0, win => 0);
 
 	TYPE t_jogadas IS ARRAY(NATURAL RANGE <>) OF jogada;
-	CONSTANT jogadas : t_jogadas(0 TO 19) := (ri, do, do, le, le, le, le, do, ri, le, do, ri, up, do, le, do, ri, up, le, win);
+	CONSTANT jogadas : t_jogadas(0 TO 11) := (ri, do, do, ri, up, do, le, do, ri, up, le, win);
 	CONSTANT next_map_at : NATURAL := 1;
 
 BEGIN
