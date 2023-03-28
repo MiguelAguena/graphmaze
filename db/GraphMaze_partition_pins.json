@@ -188,11 +188,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "clock",
+					"name" : "mode",
 					"strict" : false
 				},
 				{
-					"name" : "mode",
+					"name" : "clock",
 					"strict" : false
 				}
 			]

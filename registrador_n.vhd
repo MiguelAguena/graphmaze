@@ -5,26 +5,26 @@ USE ieee.numeric_std.ALL;
 ENTITY registrador_n IS
     GENERIC (
         N : INTEGER := 8;
-        reset_value : natural
+        reset_value : NATURAL
     );
     PORT (
         clock : IN STD_LOGIC;
         reset : IN STD_LOGIC;
         load : IN STD_LOGIC;
-        D: IN STD_LOGIC_VECTOR (N - 1 DOWNTO 0);
+        D : IN STD_LOGIC_VECTOR (N - 1 DOWNTO 0);
         Q : OUT STD_LOGIC_VECTOR (N - 1 DOWNTO 0)
     );
 END ENTITY registrador_n;
 
 ARCHITECTURE comportamental OF registrador_n IS
-    SIGNAL IQ : STD_LOGIC_VECTOR(N - 1 DOWNTO 0) := std_logic_vector(to_unsigned(reset_value, n));
+    SIGNAL IQ : STD_LOGIC_VECTOR(N - 1 DOWNTO 0) := STD_LOGIC_VECTOR(to_unsigned(reset_value, n));
 BEGIN
 
     PROCESS (clock)
     BEGIN
         IF (rising_edge(clock)) THEN
             IF (reset = '1') THEN
-                IQ <= std_logic_vector(to_unsigned(reset_value, n));
+                IQ <= STD_LOGIC_VECTOR(to_unsigned(reset_value, n));
             ELSIF (load = '1') THEN
                 IQ <= D;
             ELSE

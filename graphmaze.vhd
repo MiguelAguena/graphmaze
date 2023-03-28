@@ -49,6 +49,17 @@ ARCHITECTURE behav OF graphmaze IS
 		);
 	END COMPONENT;
 
+	COMPONENT clock_mul IS
+		GENERIC (
+			half_factor : NATURAL
+		);
+		PORT (
+			clock : IN STD_LOGIC;
+			mul_clock : OUT STD_LOGIC
+		);
+	END COMPONENT;
+
+	SIGNAL mul_clock : STD_LOGIC;
 	SIGNAL cur_mode : STD_LOGIC := '0';
 	SIGNAL not_dir_btns : STD_LOGIC_VECTOR(3 DOWNTO 0);
 
@@ -56,15 +67,17 @@ ARCHITECTURE behav OF graphmaze IS
 	SIGNAL s_walls : STD_LOGIC_VECTOR(3 DOWNTO 0);
 	SIGNAL s_lost, s_won : STD_LOGIC;
 	SIGNAL aux_sseg_4, aux_sseg_3 : STD_LOGIC_VECTOR(6 DOWNTO 0);
-	signal full_state : STD_LOGIC_VECTOR(14 DOWNTO 0);
+	SIGNAL full_state : STD_LOGIC_VECTOR(14 DOWNTO 0);
 
 BEGIN
+	clock_gen : clock_mul GENERIC MAP(1000) PORT MAP(clock, mul_clock);
+
 	not_dir_btns <= NOT dir_btns;
 
 	--SET MODE
-	set_mode : PROCESS (clock)
+	set_mode : PROCESS (mul_clock)
 	BEGIN
-		IF rising_edge(clock) THEN
+		IF rising_edge(mul_clock) THEN
 			--			IF (reset = '1') THEN
 			--				cur_mode <= '0';
 			IF (cur_pos = "0000000") THEN
@@ -86,7 +99,7 @@ BEGIN
 		"1111111";
 
 	DF : data_flux PORT MAP(
-		clock => clock,
+		clock => mul_clock,
 		reset => reset,
 		mode => cur_mode,
 		dir_btns => not_dir_btns,

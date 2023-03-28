@@ -12,6 +12,7 @@ ENTITY data_flux IS
 		walls : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
 		current_pos : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
 		monster_current_pos : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+		-- last_move : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
 		full_state : OUT STD_LOGIC_VECTOR(14 DOWNTO 0)
 	);
 END data_flux;
@@ -85,9 +86,9 @@ ARCHITECTURE behav OF data_flux IS
 
 	SIGNAL continue, crossed_to_mon, crossed_to_jog, crossed_path, crossed : STD_LOGIC := '0';
 
-	SIGNAL cur_move, last_move : STD_LOGIC_VECTOR(2 DOWNTO 0);
+	SIGNAL cur_move, s_last_move : STD_LOGIC_VECTOR(2 DOWNTO 0);
 
-	SIGNAL reset_or_map, room_cnt_cont : STD_LOGIC;
+	SIGNAL reset_or_map, room_cnt_cont, reset_or_play : STD_LOGIC;
 
 BEGIN
 	continue <= (NOT(s_won) AND NOT(s_lost));
@@ -109,8 +110,9 @@ BEGIN
 	-- mon_count_reg : registrador_n GENERIC MAP(2, 0)
 	-- PORT MAP(clock, reset, '1', next_monster_count, monster_count);
 
+	reset_or_play <= reset_or_map OR room_cnt_cont;
 	mon_mov : mon_mov_gen PORT MAP
-		(clock, reset, rom_data_mon, jog_room_code, monster_room_code, monster_direction);
+		(clock, reset_or_play, rom_data_mon, jog_room_code, monster_room_code, monster_direction);
 
 	-- Position registers
 	reset_or_map <= reset OR map_cnt;
@@ -130,12 +132,13 @@ BEGIN
 	full_state(1 DOWNTO 0) <= map_code;
 
 	-- Last move register
-	last_move_reg : registrador_n GENERIC MAP(3, 4) PORT MAP(clock, reset_or_map, room_cnt_cont, cur_move, last_move);
+	last_move_reg : registrador_n GENERIC MAP(3, 4) PORT MAP(clock, reset_or_map, room_cnt_cont, cur_move, s_last_move);
 	cur_move <= "000" WHEN mov_dir = "0001" ELSE
 		"001" WHEN mov_dir = "0010" ELSE
 		"010" WHEN mov_dir = "0100" ELSE
 		"011";
-	full_state(14 DOWNTO 12) <= last_move;
+	full_state(14 DOWNTO 12) <= s_last_move;
+	-- last_move <= s_last_move;
 
 	-- Lost register
 
@@ -147,7 +150,7 @@ BEGIN
 		D => s_next_lost_v,
 		Q => s_lost_v
 	);
-	s_next_lost_v(0) <= jog_mon_nex_eq OR crossed;
+	s_next_lost_v(0) <= (jog_mon_nex_eq OR crossed) AND mode;
 	s_lost <= s_lost_v(0);
 
 	crossed_to_mon <= '1' WHEN jog_room_code = monster_next_room ELSE
@@ -157,7 +160,7 @@ BEGIN
 	crossed_path <= '1' WHEN jog_next_room_data(1 DOWNTO 0) = monster_direction ELSE
 		'0';
 
-	crossed <= crossed_to_mon AND crossed_to_jog AND crossed_path AND (mov_dir(0) or mov_dir(1) or mov_dir(2) or mov_dir(3));
+	crossed <= crossed_to_mon AND crossed_to_jog AND crossed_path AND (mov_dir(0) OR mov_dir(1) OR mov_dir(2) OR mov_dir(3));
 
 	jog_mon_nex_eq <= '1' WHEN (STD_LOGIC_VECTOR(monster_next_room) = STD_LOGIC_VECTOR(jog_next_room_data(6 DOWNTO 2))) ELSE
 		'0';
