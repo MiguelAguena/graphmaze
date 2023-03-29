@@ -21,7 +21,9 @@ ENTITY graphmaze IS
 		sseg_3 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
 		sseg_2 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
 		sseg_1 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
-		sseg_0 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0)
+		sseg_0 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+		full_state_addr : in std_logic_vector(4 downto 0);
+		full_state_bit : OUT STD_LOGIC
 	);
 END graphmaze;
 
@@ -67,7 +69,8 @@ ARCHITECTURE behav OF graphmaze IS
 	SIGNAL s_walls : STD_LOGIC_VECTOR(3 DOWNTO 0);
 	SIGNAL s_lost, s_won : STD_LOGIC;
 	SIGNAL aux_sseg_4, aux_sseg_3 : STD_LOGIC_VECTOR(6 DOWNTO 0);
-	SIGNAL full_state : STD_LOGIC_VECTOR(14 DOWNTO 0);
+	SIGNAL full_state_df : STD_LOGIC_VECTOR(14 DOWNTO 0);
+	SIGNAL full_state : STD_LOGIC_VECTOR(16 DOWNTO 0);
 
 BEGIN
 	clock_gen : clock_mul GENERIC MAP(1000) PORT MAP(clock, mul_clock);
@@ -109,8 +112,12 @@ BEGIN
 		walls => s_walls,
 		current_pos => cur_pos,
 		monster_current_pos => monster_cur_pos,
-		full_state => OPEN
+		full_state => full_state_df
 	);
+	
+	full_state <= s_lost & cur_mode & full_state_df;
+	
+	full_state_bit <= full_state(to_integer(unsigned(full_state_addr)));
 
 	DEC_PLAYER : decoder_7seg PORT MAP(
 		data => cur_pos,

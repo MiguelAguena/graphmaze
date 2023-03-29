@@ -50,6 +50,12 @@ sseg_0[3] << decoder_7seg:DEC_PLAYER.sseg_0[3]
 sseg_0[4] << decoder_7seg:DEC_PLAYER.sseg_0[4]
 sseg_0[5] << decoder_7seg:DEC_PLAYER.sseg_0[5]
 sseg_0[6] << decoder_7seg:DEC_PLAYER.sseg_0[6]
+full_state_addr[0] => Mux0.IN19
+full_state_addr[1] => Mux0.IN18
+full_state_addr[2] => Mux0.IN17
+full_state_addr[3] => Mux0.IN16
+full_state_addr[4] => Mux0.IN15
+full_state_bit << Mux0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |graphmaze|clock_mul:clock_gen
