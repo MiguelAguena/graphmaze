@@ -1,5 +1,5 @@
 Analysis & Synthesis report for GraphMaze
-Wed Mar 29 10:53:22 2023
+Thu Mar 30 14:05:34 2023
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -55,7 +55,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Wed Mar 29 10:53:22 2023       ;
+; Analysis & Synthesis Status     ; Successful - Thu Mar 30 14:05:34 2023       ;
 ; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                   ; GraphMaze                                   ;
 ; Top-level Entity Name           ; graphmaze                                   ;
@@ -167,34 +167,36 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 8           ;
-; Maximum allowed            ; 4           ;
+; Number detected on machine ; 12          ;
+; Maximum allowed            ; 6           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 4           ;
+; Maximum used               ; 6           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
 ;     Processor 2            ;   0.0%      ;
 ;     Processor 3            ;   0.0%      ;
 ;     Processor 4            ;   0.0%      ;
+;     Processor 5            ;   0.0%      ;
+;     Processor 6            ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                   ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                            ; Library ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------+---------+
-; decoder_7seg.vhd                 ; yes             ; User VHDL File  ; C:/Projetos/T4BB6/GraphMaze/graphmaze/decoder_7seg.vhd  ;         ;
-; data_flux.vhd                    ; yes             ; User VHDL File  ; C:/Projetos/T4BB6/GraphMaze/graphmaze/data_flux.vhd     ;         ;
-; rom_128x20.vhd                   ; yes             ; User VHDL File  ; C:/Projetos/T4BB6/GraphMaze/graphmaze/rom_128x20.vhd    ;         ;
-; edge_detector.vhd                ; yes             ; User VHDL File  ; C:/Projetos/T4BB6/GraphMaze/graphmaze/edge_detector.vhd ;         ;
-; graphmaze.vhd                    ; yes             ; User VHDL File  ; C:/Projetos/T4BB6/GraphMaze/graphmaze/graphmaze.vhd     ;         ;
-; registrador_n.vhd                ; yes             ; User VHDL File  ; C:/Projetos/T4BB6/GraphMaze/graphmaze/registrador_n.vhd ;         ;
-; mon_mov_gen.vhd                  ; yes             ; User VHDL File  ; C:/Projetos/T4BB6/GraphMaze/graphmaze/mon_mov_gen.vhd   ;         ;
-; clock_mul.vhd                    ; yes             ; User VHDL File  ; C:/Projetos/T4BB6/GraphMaze/graphmaze/clock_mul.vhd     ;         ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------+---------+
++----------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                       ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                ; Library ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------+---------+
+; decoder_7seg.vhd                 ; yes             ; User VHDL File  ; D:/USP/5_periodo/Labdig/Projeto/graphmaze/decoder_7seg.vhd  ;         ;
+; data_flux.vhd                    ; yes             ; User VHDL File  ; D:/USP/5_periodo/Labdig/Projeto/graphmaze/data_flux.vhd     ;         ;
+; rom_128x20.vhd                   ; yes             ; User VHDL File  ; D:/USP/5_periodo/Labdig/Projeto/graphmaze/rom_128x20.vhd    ;         ;
+; edge_detector.vhd                ; yes             ; User VHDL File  ; D:/USP/5_periodo/Labdig/Projeto/graphmaze/edge_detector.vhd ;         ;
+; graphmaze.vhd                    ; yes             ; User VHDL File  ; D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd     ;         ;
+; registrador_n.vhd                ; yes             ; User VHDL File  ; D:/USP/5_periodo/Labdig/Projeto/graphmaze/registrador_n.vhd ;         ;
+; mon_mov_gen.vhd                  ; yes             ; User VHDL File  ; D:/USP/5_periodo/Labdig/Projeto/graphmaze/mon_mov_gen.vhd   ;         ;
+; clock_mul.vhd                    ; yes             ; User VHDL File  ; D:/USP/5_periodo/Labdig/Projeto/graphmaze/clock_mul.vhd     ;         ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------+---------+
 
 
 +----------------------------------------------------------------------------------------+
@@ -460,56 +462,56 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Wed Mar 29 10:53:10 2023
+    Info: Processing started: Thu Mar 30 14:05:24 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off GraphMaze -c GraphMaze
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file decoder_7seg.vhd
-    Info (12022): Found design unit 1: decoder_7seg-comportamental File: C:/Projetos/T4BB6/GraphMaze/graphmaze/decoder_7seg.vhd Line: 50
-    Info (12023): Found entity 1: decoder_7seg File: C:/Projetos/T4BB6/GraphMaze/graphmaze/decoder_7seg.vhd Line: 4
+    Info (12022): Found design unit 1: decoder_7seg-comportamental File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/decoder_7seg.vhd Line: 50
+    Info (12023): Found entity 1: decoder_7seg File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/decoder_7seg.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file data_flux.vhd
-    Info (12022): Found design unit 1: data_flux-behav File: C:/Projetos/T4BB6/GraphMaze/graphmaze/data_flux.vhd Line: 29
-    Info (12023): Found entity 1: data_flux File: C:/Projetos/T4BB6/GraphMaze/graphmaze/data_flux.vhd Line: 5
+    Info (12022): Found design unit 1: data_flux-behav File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/data_flux.vhd Line: 29
+    Info (12023): Found entity 1: data_flux File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/data_flux.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file rom_128x20.vhd
-    Info (12022): Found design unit 1: rom_128x20-rom_modelsim File: C:/Projetos/T4BB6/GraphMaze/graphmaze/rom_128x20.vhd Line: 15
-    Info (12023): Found entity 1: rom_128x20 File: C:/Projetos/T4BB6/GraphMaze/graphmaze/rom_128x20.vhd Line: 5
+    Info (12022): Found design unit 1: rom_128x20-rom_modelsim File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/rom_128x20.vhd Line: 15
+    Info (12023): Found entity 1: rom_128x20 File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/rom_128x20.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file edge_detector.vhd
-    Info (12022): Found design unit 1: edge_detector-rtl File: C:/Projetos/T4BB6/GraphMaze/graphmaze/edge_detector.vhd Line: 34
-    Info (12023): Found entity 1: edge_detector File: C:/Projetos/T4BB6/GraphMaze/graphmaze/edge_detector.vhd Line: 25
+    Info (12022): Found design unit 1: edge_detector-rtl File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/edge_detector.vhd Line: 34
+    Info (12023): Found entity 1: edge_detector File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/edge_detector.vhd Line: 25
 Info (12021): Found 2 design units, including 1 entities, in source file graphmaze.vhd
-    Info (12022): Found design unit 1: graphmaze-behav File: C:/Projetos/T4BB6/GraphMaze/graphmaze/graphmaze.vhd Line: 30
-    Info (12023): Found entity 1: graphmaze File: C:/Projetos/T4BB6/GraphMaze/graphmaze/graphmaze.vhd Line: 11
+    Info (12022): Found design unit 1: graphmaze-behav File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 30
+    Info (12023): Found entity 1: graphmaze File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 11
 Info (12021): Found 2 design units, including 1 entities, in source file registrador_n.vhd
-    Info (12022): Found design unit 1: registrador_n-comportamental File: C:/Projetos/T4BB6/GraphMaze/graphmaze/registrador_n.vhd Line: 19
-    Info (12023): Found entity 1: registrador_n File: C:/Projetos/T4BB6/GraphMaze/graphmaze/registrador_n.vhd Line: 5
+    Info (12022): Found design unit 1: registrador_n-comportamental File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/registrador_n.vhd Line: 19
+    Info (12023): Found entity 1: registrador_n File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/registrador_n.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file graphmaze_tb.vhd
-    Info (12022): Found design unit 1: graphmaze_tb-tb File: C:/Projetos/T4BB6/GraphMaze/graphmaze/graphmaze_tb.vhd Line: 9
-    Info (12023): Found entity 1: graphmaze_tb File: C:/Projetos/T4BB6/GraphMaze/graphmaze/graphmaze_tb.vhd Line: 6
+    Info (12022): Found design unit 1: graphmaze_tb-tb File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze_tb.vhd Line: 9
+    Info (12023): Found entity 1: graphmaze_tb File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze_tb.vhd Line: 6
 Info (12021): Found 2 design units, including 1 entities, in source file mon_mov_gen.vhd
-    Info (12022): Found design unit 1: mon_mov_gen-behav File: C:/Projetos/T4BB6/GraphMaze/graphmaze/mon_mov_gen.vhd Line: 14
-    Info (12023): Found entity 1: mon_mov_gen File: C:/Projetos/T4BB6/GraphMaze/graphmaze/mon_mov_gen.vhd Line: 5
+    Info (12022): Found design unit 1: mon_mov_gen-behav File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/mon_mov_gen.vhd Line: 14
+    Info (12023): Found entity 1: mon_mov_gen File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/mon_mov_gen.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file clock_mul.vhd
-    Info (12022): Found design unit 1: clock_mul-comportamental File: C:/Projetos/T4BB6/GraphMaze/graphmaze/clock_mul.vhd Line: 16
-    Info (12023): Found entity 1: clock_mul File: C:/Projetos/T4BB6/GraphMaze/graphmaze/clock_mul.vhd Line: 6
+    Info (12022): Found design unit 1: clock_mul-comportamental File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/clock_mul.vhd Line: 16
+    Info (12023): Found entity 1: clock_mul File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/clock_mul.vhd Line: 6
 Info (12021): Found 2 design units, including 1 entities, in source file graphmaze_tb_perda.vhd
-    Info (12022): Found design unit 1: graphmaze_tb_perda-tb File: C:/Projetos/T4BB6/GraphMaze/graphmaze/graphmaze_tb_perda.vhd Line: 9
-    Info (12023): Found entity 1: graphmaze_tb_perda File: C:/Projetos/T4BB6/GraphMaze/graphmaze/graphmaze_tb_perda.vhd Line: 6
+    Info (12022): Found design unit 1: graphmaze_tb_perda-tb File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze_tb_perda.vhd Line: 9
+    Info (12023): Found entity 1: graphmaze_tb_perda File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze_tb_perda.vhd Line: 6
 Info (12127): Elaborating entity "graphmaze" for the top level hierarchy
-Info (12128): Elaborating entity "clock_mul" for hierarchy "clock_mul:clock_gen" File: C:/Projetos/T4BB6/GraphMaze/graphmaze/graphmaze.vhd Line: 76
-Info (12128): Elaborating entity "data_flux" for hierarchy "data_flux:DF" File: C:/Projetos/T4BB6/GraphMaze/graphmaze/graphmaze.vhd Line: 104
-Info (12128): Elaborating entity "mon_mov_gen" for hierarchy "data_flux:DF|mon_mov_gen:mon_mov" File: C:/Projetos/T4BB6/GraphMaze/graphmaze/data_flux.vhd Line: 114
-Info (12128): Elaborating entity "registrador_n" for hierarchy "data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dist" File: C:/Projetos/T4BB6/GraphMaze/graphmaze/mon_mov_gen.vhd Line: 59
-Info (12128): Elaborating entity "registrador_n" for hierarchy "data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dir" File: C:/Projetos/T4BB6/GraphMaze/graphmaze/mon_mov_gen.vhd Line: 60
-Info (12128): Elaborating entity "registrador_n" for hierarchy "data_flux:DF|registrador_n:jog_reg" File: C:/Projetos/T4BB6/GraphMaze/graphmaze/data_flux.vhd Line: 122
-Info (12128): Elaborating entity "registrador_n" for hierarchy "data_flux:DF|registrador_n:last_move_reg" File: C:/Projetos/T4BB6/GraphMaze/graphmaze/data_flux.vhd Line: 135
-Info (12128): Elaborating entity "registrador_n" for hierarchy "data_flux:DF|registrador_n:lost_reg" File: C:/Projetos/T4BB6/GraphMaze/graphmaze/data_flux.vhd Line: 145
-Info (12128): Elaborating entity "rom_128x20" for hierarchy "data_flux:DF|rom_128x20:map_mem" File: C:/Projetos/T4BB6/GraphMaze/graphmaze/data_flux.vhd Line: 169
-Info (12128): Elaborating entity "edge_detector" for hierarchy "data_flux:DF|edge_detector:mov_dect" File: C:/Projetos/T4BB6/GraphMaze/graphmaze/data_flux.vhd Line: 176
-Info (12128): Elaborating entity "decoder_7seg" for hierarchy "decoder_7seg:DEC_PLAYER" File: C:/Projetos/T4BB6/GraphMaze/graphmaze/graphmaze.vhd Line: 122
+Info (12128): Elaborating entity "clock_mul" for hierarchy "clock_mul:clock_gen" File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 76
+Info (12128): Elaborating entity "data_flux" for hierarchy "data_flux:DF" File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 104
+Info (12128): Elaborating entity "mon_mov_gen" for hierarchy "data_flux:DF|mon_mov_gen:mon_mov" File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/data_flux.vhd Line: 114
+Info (12128): Elaborating entity "registrador_n" for hierarchy "data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dist" File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/mon_mov_gen.vhd Line: 59
+Info (12128): Elaborating entity "registrador_n" for hierarchy "data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dir" File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/mon_mov_gen.vhd Line: 60
+Info (12128): Elaborating entity "registrador_n" for hierarchy "data_flux:DF|registrador_n:jog_reg" File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/data_flux.vhd Line: 122
+Info (12128): Elaborating entity "registrador_n" for hierarchy "data_flux:DF|registrador_n:last_move_reg" File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/data_flux.vhd Line: 135
+Info (12128): Elaborating entity "registrador_n" for hierarchy "data_flux:DF|registrador_n:lost_reg" File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/data_flux.vhd Line: 145
+Info (12128): Elaborating entity "rom_128x20" for hierarchy "data_flux:DF|rom_128x20:map_mem" File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/data_flux.vhd Line: 169
+Info (12128): Elaborating entity "edge_detector" for hierarchy "data_flux:DF|edge_detector:mov_dect" File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/data_flux.vhd Line: 176
+Info (12128): Elaborating entity "decoder_7seg" for hierarchy "decoder_7seg:DEC_PLAYER" File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 122
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "sseg_4[5]" is stuck at VCC File: C:/Projetos/T4BB6/GraphMaze/graphmaze/graphmaze.vhd Line: 20
-    Warning (13410): Pin "sseg_2[1]" is stuck at GND File: C:/Projetos/T4BB6/GraphMaze/graphmaze/graphmaze.vhd Line: 22
-    Warning (13410): Pin "sseg_1[5]" is stuck at VCC File: C:/Projetos/T4BB6/GraphMaze/graphmaze/graphmaze.vhd Line: 23
+    Warning (13410): Pin "sseg_4[5]" is stuck at VCC File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 20
+    Warning (13410): Pin "sseg_2[1]" is stuck at GND File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 22
+    Warning (13410): Pin "sseg_1[5]" is stuck at VCC File: D:/USP/5_periodo/Labdig/Projeto/graphmaze/graphmaze.vhd Line: 23
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
@@ -518,9 +520,9 @@ Info (21057): Implemented 369 device resources after synthesis - the final resou
     Info (21059): Implemented 44 output pins
     Info (21061): Implemented 312 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 5 warnings
-    Info: Peak virtual memory: 4842 megabytes
-    Info: Processing ended: Wed Mar 29 10:53:22 2023
-    Info: Elapsed time: 00:00:12
-    Info: Total CPU time (on all processors): 00:00:26
+    Info: Peak virtual memory: 4860 megabytes
+    Info: Processing ended: Thu Mar 30 14:05:34 2023
+    Info: Elapsed time: 00:00:10
+    Info: Total CPU time (on all processors): 00:00:11
 
 
