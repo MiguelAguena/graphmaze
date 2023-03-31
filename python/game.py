@@ -2,27 +2,16 @@ import pygame
 
 
 class Component():
-    def __init__(self, tl_point, parent=False):
+    def __init__(self, parent=False):
         self.parent = parent
-        self.tl_point = tl_point
         if parent:
             parent.add_component(self)
         self.show = True
         self.transparent = False
+        self.color = 'black'
 
     def set_color(self, color):
         self.color = pygame.Color(color)
-
-    def rescale(self, screen):
-        sc_x, sc_y = screen.get_size()
-        if self.parent:
-            self.tl_point_px = (
-                self.tl_point[0] * self.parent.children_cont.size_px[0] +
-                self.parent.children_cont.tl_point_px[0],
-                self.tl_point[1] * self.parent.children_cont.size_px[1] + self.parent.children_cont.tl_point_px[1])
-        else:
-            self.tl_point_px = (
-                self.tl_point[0] * sc_x, self.tl_point[1] * sc_y)
 
     def set_show(self, show):
         self.show = show
@@ -31,20 +20,74 @@ class Component():
         self.transparent = is_transparent
 
 
+class SegmentComponent(Component):
+    def __init__(self, start_point, end_point, parent=False):
+        super().__init__(parent)
+        self.start_point = start_point
+        self.end_point = end_point
+
+    def rescale(self, screen):
+        sc_x, sc_y = screen.get_size()
+        if self.parent:
+            self.start_point_px = (
+                self.start_point[0] * self.parent.children_cont.size_px[0] +
+                self.parent.children_cont.tl_point_px[0],
+                self.start_point[1] * self.parent.children_cont.size_px[1] + self.parent.children_cont.tl_point_px[1])
+
+            self.end_point_px = (
+                self.end_point[0] * self.parent.children_cont.size_px[0] +
+                self.parent.children_cont.tl_point_px[0],
+                self.end_point[1] * self.parent.children_cont.size_px[1] + self.parent.children_cont.tl_point_px[1])
+        else:
+            self.end_point_px = (
+                self.end_point[0] * sc_x, self.end_point[1] * sc_y)
+            self.start_point_px = (
+                self.start_point[0] * sc_x,
+                self.start_point[1] * sc_y)
+
+    def render(self, screen):
+        if self.show and not self.transparent:
+            pygame.draw.line(screen, self.color,
+                             self.start_point_px, self.end_point_px)
+
+
+class SegsLineComponent(Component):
+    def __init__(self, points: list[int], parent=False):
+        super().__init__(parent)
+        self.points = points
+
+    def rescale(self, screen):
+        sc_x, sc_y = screen.get_size()
+        self.points_px = list(map(lambda p: (
+            p[0] * self.parent.children_cont.size_px[0] +
+            self.parent.children_cont.tl_point_px[0],
+            p[1] * self.parent.children_cont.size_px[1] + self.parent.children_cont.tl_point_px[1]) if self.parent else (p[0] * sc_x, p[1] * sc_y), self.points))
+
+    def render(self, screen):
+        if self.show and not self.transparent:
+            pygame.draw.lines(screen, self.color, False, self.points_px)
+
+
 class AreaComponent(Component):
     def __init__(self, tl_point, size, parent=False):
-        super().__init__(tl_point, parent)
+        super().__init__(parent)
+        self.tl_point = tl_point
         self.size = size
         self.color = "black"
 
     def rescale(self, screen):
-        super().rescale(screen)
+        sc_x, sc_y = screen.get_size()
         if self.parent:
+            self.tl_point_px = (
+                self.tl_point[0] * self.parent.children_cont.size_px[0] +
+                self.parent.children_cont.tl_point_px[0],
+                self.tl_point[1] * self.parent.children_cont.size_px[1] + self.parent.children_cont.tl_point_px[1])
             self.size_px = (
                 self.size[0] * self.parent.children_cont.size_px[0], self.size[1] * self.parent.children_cont.size_px[1])
         else:
-            sc_x, sc_y = screen.get_size()
             self.size_px = (self.size[0] * sc_x, self.size[1] * sc_y)
+            self.tl_point_px = (
+                self.tl_point[0] * sc_x, self.tl_point[1] * sc_y)
 
 
 class RectComponent(AreaComponent):
@@ -156,7 +199,7 @@ class Game:
         self.dt = self.clock.tick(60) / 1000
 
         return True
-    
+
     def apply_change(self):
         self._render()
 

@@ -60,6 +60,12 @@ if __name__ == '__main__':
             in_square.set_color(color_scheme['light'])
             squares.append(in_square)
 
+    test_line = game.SegmentComponent((0, 0), (1, 1), main_container)
+    test_line.set_color(color_scheme['primary'])
+
+    test_segs = game.SegsLineComponent([(0, 0), (0, 0.5), (1, 0.5), (1, 1)], main_container)
+    test_segs.set_color(color_scheme['light'])
+
     # in_square = game.RectComponent((0,0), (1,1/2), parent=main_container)
 
     # in_square = game.RectComponent(
@@ -80,8 +86,6 @@ if __name__ == '__main__':
     while running:
         running = game_inst.tick()
         if c % 10 == 0:
-            squares[c//10].set_show(False)
+            squares[(c//10) % 32].set_show(False)
             squares[(c//10 + 31) % 32].set_show(True)
-        if c == 310:
-            c = 0
         c += 1
