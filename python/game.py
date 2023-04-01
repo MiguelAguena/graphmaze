@@ -1,8 +1,9 @@
+from enum import Enum
 import pygame
 
 
 class Component():
-    def __init__(self, parent=False):
+    def __init__(self, parent=None):
         self.parent = parent
         if parent:
             parent.add_component(self)
@@ -20,8 +21,67 @@ class Component():
         self.transparent = is_transparent
 
 
+class BoxAlignment(Enum):
+    TOPLEFT = 0
+    TOPCENTER = 1
+    TOPRIGHT = 2
+    CENTERLEFT = 3
+    CENTER = 4
+    CENTERRIGHT = 5
+    BOTTOMLEFT = 6
+    BOTTOMCENTER = 7
+    BOTTOMRIGHT = 8
+
+    def get_offset(self):
+        return ((self.value % 3)*0.5, ((self.value-(self.value % 3)) / 6))
+
+
+class TextComponent(Component):
+    def __init__(self, content: str, pos, alignment: BoxAlignment = BoxAlignment.TOPLEFT, parent=None):
+        super().__init__(parent)
+        self.content = content
+        self.alignment = alignment
+        self.set_font("Comic Sans MS", 12)
+        self.pos = pos
+        self.background = None
+
+    def set_font(self, family=None, size=None):
+        if family:
+            self.font_family = family
+        if size:
+            self.font_size = size
+
+    def set_content(self, content):
+        self.content = content
+
+    def set_background(self, background):
+        self.background = background
+
+    def rescale(self, screen):
+        self.font = pygame.font.SysFont(self.font_family, self.font_size)
+        txt_x, txt_y = self.font.size(self.content)
+        align_offset_x, align_offset_y = self.alignment.get_offset()
+        if self.parent:
+            self.tl_point_px = (
+                self.pos[0] * self.parent.children_cont.size_px[0] +
+                self.parent.children_cont.tl_point_px[0] -
+                (align_offset_x * txt_x),
+                self.pos[1] * self.parent.children_cont.size_px[1] + self.parent.children_cont.tl_point_px[1] - (align_offset_y * txt_y))
+        else:
+            sc_x, sc_y = screen.get_size()
+            self.tl_point_px = (
+                self.pos[0] * sc_x - (align_offset_x * txt_x),
+                self.pos[1] * sc_y - (align_offset_y * txt_y))
+        # self.size = (txt_x, txt_y)
+
+    def render(self, screen):
+        txt_surface = self.font.render(
+            self.content, True, self.color, self.background)
+        screen.blit(source=txt_surface, dest=self.tl_point_px)
+
+
 class SegmentComponent(Component):
-    def __init__(self, start_point, end_point, parent=False):
+    def __init__(self, start_point, end_point, parent=None):
         super().__init__(parent)
         self.start_point = start_point
         self.end_point = end_point
@@ -69,7 +129,7 @@ class SegsLineComponent(Component):
 
 
 class AreaComponent(Component):
-    def __init__(self, tl_point, size, parent=False):
+    def __init__(self, tl_point, size, parent=None):
         super().__init__(parent)
         self.tl_point = tl_point
         self.size = size
@@ -91,17 +151,21 @@ class AreaComponent(Component):
 
 
 class RectComponent(AreaComponent):
-    def __init__(self, tl_point, size, parent=False):
+    def __init__(self, tl_point, size, parent=None):
         super().__init__(tl_point, size, parent)
+        self.width = 0
 
     def render(self, screen):
         if self.show and not self.transparent:
             pygame.draw.rect(screen, self.color, pygame.Rect(
-                self.tl_point_px, self.size_px))
+                self.tl_point_px, self.size_px), width=self.width)
+
+    def set_width(self, width):
+        self.width = width
 
 
 class Container(RectComponent):
-    def __init__(self, tl_point, size, parent=False, ratio=False):
+    def __init__(self, tl_point, size, parent=None, ratio=None):
         super().__init__(tl_point, size, parent)
         self.children_cont = ChildContainer(parent=self, ratio=ratio)
 
@@ -114,11 +178,12 @@ class Container(RectComponent):
         self.children_cont.rescale(screen)
 
     def set_color(self, color):
-        # super().set_color("white")
         self.children_cont.set_color(color)
 
+    def set_width(self, width):
+        self.children_cont.set_width(width)
+
     def render(self, screen):
-        # super().render(screen)
         if self.show:
             self.children_cont.render(screen)
 
@@ -137,7 +202,6 @@ class ChildContainer(RectComponent):
         self.children.append(child)
 
     def rescale(self, screen):
-        # super().rescale(screen)
         if self.ratio:
             if (self.parent.size_px[0] / self.parent.size_px[1]) > self.ratio:
                 self.size_px = (
@@ -166,15 +230,15 @@ class ChildContainer(RectComponent):
 class Game:
 
     def __init__(self, containers):
-        # pygame setup
         pygame.init()
         self.screen = pygame.display.set_mode(
             (1600, 900), flags=pygame.RESIZABLE)
         self.clock = pygame.time.Clock()
         self.running = True
-        self.dt = 0
+        # self.dt = 0
         self.containers = containers
         self.background_color = "black"
+        pygame.font.init()
         self._resize_screen()
 
     def set_background_color(self, background_color):
@@ -194,9 +258,8 @@ class Game:
         self.screen.fill(self.background_color)
         self._render()
 
-        # pygame.draw.circle(self.screen, "red", self.player_pos, 40)
-
-        self.dt = self.clock.tick(60) / 1000
+        self.clock.tick(60)
+        # self.dt = self.clock.tick(60) / 1000
 
         return True
 
@@ -218,11 +281,3 @@ class Game:
 
     def _verify_movement(self):
         keys = pygame.key.get_pressed()
-        # if keys[pygame.K_w] | keys[pygame.K_UP]:
-        #     self.player_pos.y -= 300 * self.dt
-        # if keys[pygame.K_s] | keys[pygame.K_DOWN]:
-        #     self.player_pos.y += 300 * self.dt
-        # if keys[pygame.K_a] | keys[pygame.K_LEFT]:
-        #     self.player_pos.x -= 300 * self.dt
-        # if keys[pygame.K_d] | keys[pygame.K_RIGHT]:
-        #     self.player_pos.x += 300 * self.dt

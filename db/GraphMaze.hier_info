@@ -50,12 +50,17 @@ sseg_0[3] << decoder_7seg:DEC_PLAYER.sseg_0[3]
 sseg_0[4] << decoder_7seg:DEC_PLAYER.sseg_0[4]
 sseg_0[5] << decoder_7seg:DEC_PLAYER.sseg_0[5]
 sseg_0[6] << decoder_7seg:DEC_PLAYER.sseg_0[6]
-full_state_addr[0] => Mux0.IN19
-full_state_addr[1] => Mux0.IN18
-full_state_addr[2] => Mux0.IN17
-full_state_addr[3] => Mux0.IN16
-full_state_addr[4] => Mux0.IN15
-full_state_bit << Mux0.DB_MAX_OUTPUT_PORT_TYPE
+full_state_addr[0] => Mux5.IN19
+full_state_addr[1] => Mux5.IN18
+full_state_addr[2] => Mux5.IN17
+full_state_addr[3] => Mux5.IN16
+full_state_addr[4] => Mux5.IN15
+full_state_bit << Mux5.DB_MAX_OUTPUT_PORT_TYPE
+arrived_dir_leds[0] << Mux4.DB_MAX_OUTPUT_PORT_TYPE
+arrived_dir_leds[1] << Mux3.DB_MAX_OUTPUT_PORT_TYPE
+arrived_dir_leds[2] << Mux2.DB_MAX_OUTPUT_PORT_TYPE
+arrived_dir_leds[3] << Mux1.DB_MAX_OUTPUT_PORT_TYPE
+arrived_dir_leds[4] << Mux0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |graphmaze|clock_mul:clock_gen
@@ -77,8 +82,8 @@ mul_clock <= s_mul_clock.DB_MAX_OUTPUT_PORT_TYPE
 clock => mon_mov_gen:mon_mov.clock
 clock => registrador_n:mon_reg.clock
 clock => registrador_n:jog_reg.clock
+clock => registrador_n:arrival_dir_reg.clock
 clock => registrador_n:map_reg.clock
-clock => registrador_n:last_move_reg.clock
 clock => registrador_n:lost_reg.clock
 clock => edge_detector:mov_dect.clock
 reset => reset_or_map.IN1
@@ -94,12 +99,12 @@ dir_btns[2] => mov_dir[2].IN1
 dir_btns[3] => btns_or.IN1
 dir_btns[3] => mov_dir[3].IN1
 next_map_btn => map_cnt.IN1
-won <= Equal18.DB_MAX_OUTPUT_PORT_TYPE
+won <= Equal15.DB_MAX_OUTPUT_PORT_TYPE
 lost <= lost.DB_MAX_OUTPUT_PORT_TYPE
-walls[0] <= Equal10.DB_MAX_OUTPUT_PORT_TYPE
-walls[1] <= Equal11.DB_MAX_OUTPUT_PORT_TYPE
-walls[2] <= Equal12.DB_MAX_OUTPUT_PORT_TYPE
-walls[3] <= Equal13.DB_MAX_OUTPUT_PORT_TYPE
+walls[0] <= Equal7.DB_MAX_OUTPUT_PORT_TYPE
+walls[1] <= Equal8.DB_MAX_OUTPUT_PORT_TYPE
+walls[2] <= Equal9.DB_MAX_OUTPUT_PORT_TYPE
+walls[3] <= Equal10.DB_MAX_OUTPUT_PORT_TYPE
 current_pos[0] <= registrador_n:jog_reg.Q[0]
 current_pos[1] <= registrador_n:jog_reg.Q[1]
 current_pos[2] <= registrador_n:jog_reg.Q[2]
@@ -126,9 +131,12 @@ full_state[8] <= registrador_n:jog_reg.Q[1]
 full_state[9] <= registrador_n:jog_reg.Q[2]
 full_state[10] <= registrador_n:jog_reg.Q[3]
 full_state[11] <= registrador_n:jog_reg.Q[4]
-full_state[12] <= registrador_n:last_move_reg.Q[0]
-full_state[13] <= registrador_n:last_move_reg.Q[1]
-full_state[14] <= registrador_n:last_move_reg.Q[2]
+full_state[12] <= registrador_n:arrival_dir_reg.Q[0]
+full_state[13] <= registrador_n:arrival_dir_reg.Q[1]
+full_state[14] <= registrador_n:arrival_dir_reg.Q[2]
+arrival_dir[0] <= registrador_n:arrival_dir_reg.Q[0]
+arrival_dir[1] <= registrador_n:arrival_dir_reg.Q[1]
+arrival_dir[2] <= registrador_n:arrival_dir_reg.Q[2]
 
 
 |graphmaze|data_flux:DF|mon_mov_gen:mon_mov
@@ -277,20 +285,7 @@ Q[3] <= IQ[3].DB_MAX_OUTPUT_PORT_TYPE
 Q[4] <= IQ[4].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|graphmaze|data_flux:DF|registrador_n:map_reg
-clock => IQ[0].CLK
-clock => IQ[1].CLK
-reset => IQ.OUTPUTSELECT
-reset => IQ.OUTPUTSELECT
-load => IQ.OUTPUTSELECT
-load => IQ.OUTPUTSELECT
-D[0] => IQ.DATAB
-D[1] => IQ.DATAB
-Q[0] <= IQ[0].DB_MAX_OUTPUT_PORT_TYPE
-Q[1] <= IQ[1].DB_MAX_OUTPUT_PORT_TYPE
-
-
-|graphmaze|data_flux:DF|registrador_n:last_move_reg
+|graphmaze|data_flux:DF|registrador_n:arrival_dir_reg
 clock => IQ[0].CLK
 clock => IQ[1].CLK
 clock => IQ[2].CLK
@@ -306,6 +301,19 @@ D[2] => IQ.DATAB
 Q[0] <= IQ[0].DB_MAX_OUTPUT_PORT_TYPE
 Q[1] <= IQ[1].DB_MAX_OUTPUT_PORT_TYPE
 Q[2] <= IQ[2].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|graphmaze|data_flux:DF|registrador_n:map_reg
+clock => IQ[0].CLK
+clock => IQ[1].CLK
+reset => IQ.OUTPUTSELECT
+reset => IQ.OUTPUTSELECT
+load => IQ.OUTPUTSELECT
+load => IQ.OUTPUTSELECT
+D[0] => IQ.DATAB
+D[1] => IQ.DATAB
+Q[0] <= IQ[0].DB_MAX_OUTPUT_PORT_TYPE
+Q[1] <= IQ[1].DB_MAX_OUTPUT_PORT_TYPE
 
 
 |graphmaze|data_flux:DF|registrador_n:lost_reg

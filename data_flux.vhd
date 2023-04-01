@@ -12,8 +12,8 @@ ENTITY data_flux IS
 		walls : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
 		current_pos : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
 		monster_current_pos : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
-		-- last_move : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
-		full_state : OUT STD_LOGIC_VECTOR(14 DOWNTO 0)
+		full_state : OUT STD_LOGIC_VECTOR(14 DOWNTO 0);
+		arrival_dir : OUT STD_LOGIC_VECTOR(2 DOWNTO 0)
 	);
 END data_flux;
 
@@ -21,7 +21,7 @@ END data_flux;
 
 -- 15 bits
 
---	14 .. 12		LAST MOVE
+--	14 .. 12		ARRIVAL DIR
 --	11 ..  7		CUR POS
 --	6  ..  2		MON POS
 --	1  ..  0		MAP
@@ -86,7 +86,7 @@ ARCHITECTURE behav OF data_flux IS
 
 	SIGNAL continue, crossed_to_mon, crossed_to_jog, crossed_path, crossed : STD_LOGIC := '0';
 
-	SIGNAL cur_move, s_last_move : STD_LOGIC_VECTOR(2 DOWNTO 0);
+	SIGNAL cur_move, s_last_move, s_arrival_dir, s_nex_arrival_dir : STD_LOGIC_VECTOR(2 DOWNTO 0);
 
 	SIGNAL reset_or_map, room_cnt_cont, reset_or_play : STD_LOGIC;
 
@@ -125,20 +125,28 @@ BEGIN
 	full_state(6 DOWNTO 2) <= monster_room_code;
 	full_state(11 DOWNTO 7) <= jog_room_code;
 
+	-- Arrival Direction
+
+	s_nex_arrival_dir <= "0" & jog_next_room_data(1 DOWNTO 0);
+	arrival_dir_reg : registrador_n GENERIC MAP(3, 4)
+	PORT MAP(clock, reset_or_map, room_cnt_cont, s_nex_arrival_dir, s_arrival_dir);
+	arrival_dir <= s_arrival_dir;
+	full_state(14 DOWNTO 12) <= s_arrival_dir;
+
 	-- Map Register
+
 	map_reg : registrador_n GENERIC MAP(2, 0)
 	PORT MAP(clock, reset, map_cnt, next_map, map_code);
 	next_map <= STD_LOGIC_VECTOR(unsigned(map_code) + to_unsigned(1, 2));
 	full_state(1 DOWNTO 0) <= map_code;
 
 	-- Last move register
-	last_move_reg : registrador_n GENERIC MAP(3, 4) PORT MAP(clock, reset_or_map, room_cnt_cont, cur_move, s_last_move);
-	cur_move <= "000" WHEN mov_dir = "0001" ELSE
-		"001" WHEN mov_dir = "0010" ELSE
-		"010" WHEN mov_dir = "0100" ELSE
-		"011";
-	full_state(14 DOWNTO 12) <= s_last_move;
-	-- last_move <= s_last_move;
+--	last_move_reg : registrador_n GENERIC MAP(3, 4) PORT MAP(clock, reset_or_map, room_cnt_cont, cur_move, s_last_move);
+--	cur_move <= "000" WHEN mov_dir = "0001" ELSE
+--		"001" WHEN mov_dir = "0010" ELSE
+--		"010" WHEN mov_dir = "0100" ELSE
+--		"011";
+--	full_state(14 DOWNTO 12) <= s_last_move;
 
 	-- Lost register
 

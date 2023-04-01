@@ -55,15 +55,17 @@ if __name__ == '__main__':
     squares = []
     for x in range(8):
         for y in range(4):
-            in_square = game.RectComponent(
+            in_square = game.Container(
                 ((4*x+3)/36, (4*y+3)/20), (1/18, 1/10), parent=main_container)
             in_square.set_color(color_scheme['light'])
+            in_square.set_width(1)
+            square_text = game.TextComponent(
+                str(x*4+y), (0.5, 0.5), game.BoxAlignment.CENTER, in_square)
+            square_text.set_color(color_scheme['light'])
             squares.append(in_square)
 
-    test_line = game.SegmentComponent((0, 0), (1, 1), main_container)
-    test_line.set_color(color_scheme['primary'])
-
-    test_segs = game.SegsLineComponent([(0, 0), (0, 0.5), (1, 0.5), (1, 1)], main_container)
+    test_segs = game.SegsLineComponent(
+        [(0, 0), (0, 0.5), (1, 0.5), (1, 1)], main_container)
     test_segs.set_color(color_scheme['light'])
 
     # in_square = game.RectComponent((0,0), (1,1/2), parent=main_container)
@@ -75,6 +77,11 @@ if __name__ == '__main__':
     side_container = game.Container(
         (15/20, 1/20), (4/20, 18/20))
     side_container.set_color(color_scheme['light'])
+
+    title_box = game.TextComponent(
+        "Graphmaze", (0.5, 0.01), game.BoxAlignment.TOPCENTER, side_container)
+    title_box.color = color_scheme['dark']
+    title_box.set_font(size=36)
 
     containers = [main_container, side_container]
 

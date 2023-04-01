@@ -22,8 +22,9 @@ ENTITY graphmaze IS
 		sseg_2 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
 		sseg_1 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
 		sseg_0 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
-		full_state_addr : in std_logic_vector(4 downto 0);
-		full_state_bit : OUT STD_LOGIC
+		full_state_addr : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
+		full_state_bit : OUT STD_LOGIC;
+		arrived_dir_leds : OUT STD_LOGIC_VECTOR(4 DOWNTO 0)
 	);
 END graphmaze;
 
@@ -38,7 +39,8 @@ ARCHITECTURE behav OF graphmaze IS
 			walls : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
 			current_pos : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
 			monster_current_pos : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
-			full_state : OUT STD_LOGIC_VECTOR(14 DOWNTO 0)
+			full_state : OUT STD_LOGIC_VECTOR(14 DOWNTO 0);
+			arrival_dir : OUT STD_LOGIC_VECTOR(2 DOWNTO 0)
 		);
 	END COMPONENT;
 
@@ -71,6 +73,7 @@ ARCHITECTURE behav OF graphmaze IS
 	SIGNAL aux_sseg_4, aux_sseg_3 : STD_LOGIC_VECTOR(6 DOWNTO 0);
 	SIGNAL full_state_df : STD_LOGIC_VECTOR(14 DOWNTO 0);
 	SIGNAL full_state : STD_LOGIC_VECTOR(16 DOWNTO 0);
+	SIGNAL arrival_dir : STD_LOGIC_VECTOR(2 DOWNTO 0);
 
 BEGIN
 	clock_gen : clock_mul GENERIC MAP(1000) PORT MAP(clock, mul_clock);
@@ -94,6 +97,13 @@ BEGIN
 	won <= s_won;
 	lost <= s_lost;
 	walls <= (s_walls(1), s_walls(1), s_walls(0), s_walls(3), s_walls(3), s_walls(2));
+	WITH arrival_dir SELECT arrived_dir_leds <=
+		"00001" WHEN "000",
+		"00010" WHEN "001",
+		"00100" WHEN "010",
+		"01000" WHEN "011",
+		"10000" WHEN "100",
+		"00000" WHEN OTHERS;
 
 	sseg_4 <= aux_sseg_4 WHEN cur_mode = '1' ELSE
 		"1111111";
@@ -112,11 +122,12 @@ BEGIN
 		walls => s_walls,
 		current_pos => cur_pos,
 		monster_current_pos => monster_cur_pos,
-		full_state => full_state_df
+		full_state => full_state_df,
+		arrival_dir => arrival_dir
 	);
-	
+
 	full_state <= s_lost & cur_mode & full_state_df;
-	
+
 	full_state_bit <= full_state(to_integer(unsigned(full_state_addr)));
 
 	DEC_PLAYER : decoder_7seg PORT MAP(
