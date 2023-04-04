@@ -3,6 +3,7 @@ import json
 from enum import Enum
 import time
 import game
+import graphmaze
 
 
 class Move(Enum):
@@ -29,13 +30,6 @@ def arduino_read(ser):
         return False
 
 
-color_scheme = {
-    'primary': (239, 51, 64),
-    'secondary': (241, 180, 32),
-    'light': (255, 250, 224),
-    'dark': (0, 12, 32)
-}
-
 if __name__ == '__main__':
     # arduino = arduino_init()
     # while True:
@@ -46,53 +40,67 @@ if __name__ == '__main__':
     #             data = arduino_read(arduino)
     #             if data:
     #                 print(f"\r{data}")
+    color_scheme = {
+        'primary': (239, 51, 64),
+        'secondary': (241, 180, 32),
+        'light': (255, 250, 224),
+        'dark': (0, 12, 32)
+    }
 
-    main_container = game.Container(
-        (1/20, 1/20), (13/20, 18/20), ratio=2)
-    main_container.set_transparent()
-    # main_container.set_color(color_scheme['primary'])
+    distribution = ((0, 1, 3, 9), (2, 6, 7, 8), (4, 13, 10, 14), (5, 12, 11, 16),
+                    (15, 22, 20, 18), (17, 24, 23, 25), (19, 30, 29, 26), (21, 28, 27, 31))
 
-    squares = []
-    for x in range(8):
-        for y in range(4):
-            in_square = game.Container(
-                ((4*x+3)/36, (4*y+3)/20), (1/18, 1/10), parent=main_container)
-            in_square.set_color(color_scheme['light'])
-            in_square.set_width(1)
-            square_text = game.TextComponent(
-                str(x*4+y), (0.5, 0.5), game.BoxAlignment.CENTER, in_square)
-            square_text.set_color(color_scheme['light'])
-            squares.append(in_square)
+    links = (
+        (2, graphmaze.MazeDirection.LEFT, 0, graphmaze.MazeDirection.RIGHT),
+        (4, graphmaze.MazeDirection.LEFT, 2, graphmaze.MazeDirection.RIGHT),
+        (9, graphmaze.MazeDirection.LEFT, 6, graphmaze.MazeDirection.RIGHT),
+        (10, graphmaze.MazeDirection.LEFT, 7, graphmaze.MazeDirection.RIGHT),
+        (9, graphmaze.MazeDirection.UP, 8, graphmaze.MazeDirection.RIGHT),
+        (12, graphmaze.MazeDirection.DOWN, 10, graphmaze.MazeDirection.RIGHT),
+        (15, graphmaze.MazeDirection.LEFT, 11, graphmaze.MazeDirection.RIGHT),
+        (13, graphmaze.MazeDirection.LEFT, 12, graphmaze.MazeDirection.RIGHT),
+        (16, graphmaze.MazeDirection.LEFT, 14, graphmaze.MazeDirection.RIGHT),
+        (19, graphmaze.MazeDirection.LEFT, 15, graphmaze.MazeDirection.RIGHT),
+        (18, graphmaze.MazeDirection.LEFT, 16, graphmaze.MazeDirection.RIGHT),
+        (20, graphmaze.MazeDirection.LEFT, 18, graphmaze.MazeDirection.RIGHT),
+        (21, graphmaze.MazeDirection.LEFT, 19, graphmaze.MazeDirection.RIGHT),
+        (24, graphmaze.MazeDirection.LEFT, 23, graphmaze.MazeDirection.RIGHT),
+        (25, graphmaze.MazeDirection.RIGHT, 24, graphmaze.MazeDirection.RIGHT),
+        (27, graphmaze.MazeDirection.LEFT, 26, graphmaze.MazeDirection.RIGHT),
+        (29, graphmaze.MazeDirection.UP, 27, graphmaze.MazeDirection.RIGHT),
+        (30, graphmaze.MazeDirection.LEFT, 28, graphmaze.MazeDirection.RIGHT),
+        (3, graphmaze.MazeDirection.DOWN, 0, graphmaze.MazeDirection.UP),
+        (5, graphmaze.MazeDirection.UP, 2, graphmaze.MazeDirection.UP),
+        (11, graphmaze.MazeDirection.UP, 10, graphmaze.MazeDirection.UP),
+        (17, graphmaze.MazeDirection.UP, 15, graphmaze.MazeDirection.UP),
+        (18, graphmaze.MazeDirection.UP, 16, graphmaze.MazeDirection.UP),
+        (22, graphmaze.MazeDirection.DOWN, 20, graphmaze.MazeDirection.UP),
+        (24, graphmaze.MazeDirection.DOWN, 23, graphmaze.MazeDirection.UP),
+        (28, graphmaze.MazeDirection.DOWN, 27, graphmaze.MazeDirection.UP),
+        (30, graphmaze.MazeDirection.RIGHT, 28, graphmaze.MazeDirection.UP),
+        (4, graphmaze.MazeDirection.RIGHT, 0, graphmaze.MazeDirection.LEFT),
+        (5, graphmaze.MazeDirection.LEFT, 1, graphmaze.MazeDirection.LEFT),
+        (9, graphmaze.MazeDirection.RIGHT, 8, graphmaze.MazeDirection.LEFT),
+        (13, graphmaze.MazeDirection.RIGHT, 12, graphmaze.MazeDirection.LEFT),
+        (25, graphmaze.MazeDirection.LEFT, 23, graphmaze.MazeDirection.LEFT),
+        (31, graphmaze.MazeDirection.LEFT, 28, graphmaze.MazeDirection.LEFT),
+        (1, graphmaze.MazeDirection.UP, 0, graphmaze.MazeDirection.DOWN),
+        (3, graphmaze.MazeDirection.UP, 1, graphmaze.MazeDirection.DOWN),
+        (6, graphmaze.MazeDirection.UP, 2, graphmaze.MazeDirection.DOWN),
+        (5, graphmaze.MazeDirection.DOWN, 4, graphmaze.MazeDirection.DOWN),
+        (7, graphmaze.MazeDirection.UP, 6, graphmaze.MazeDirection.DOWN),
+        (8, graphmaze.MazeDirection.UP, 7, graphmaze.MazeDirection.DOWN),
+        (9, graphmaze.MazeDirection.DOWN, 8, graphmaze.MazeDirection.DOWN),
+        (14, graphmaze.MazeDirection.UP, 10, graphmaze.MazeDirection.DOWN),
+        (23, graphmaze.MazeDirection.DOWN, 11, graphmaze.MazeDirection.DOWN),
+        (17, graphmaze.MazeDirection.DOWN, 15, graphmaze.MazeDirection.DOWN),
+        (18, graphmaze.MazeDirection.DOWN, 16, graphmaze.MazeDirection.DOWN),
+        (22, graphmaze.MazeDirection.UP, 20, graphmaze.MazeDirection.DOWN),
+        (26, graphmaze.MazeDirection.DOWN, 25, graphmaze.MazeDirection.DOWN),
+        (29, graphmaze.MazeDirection.DOWN, 27, graphmaze.MazeDirection.DOWN)
+    )
 
-    test_segs = game.SegsLineComponent(
-        [(0, 0), (0, 0.5), (1, 0.5), (1, 1)], main_container)
-    test_segs.set_color(color_scheme['light'])
-
-    # in_square = game.RectComponent((0,0), (1,1/2), parent=main_container)
-
-    # in_square = game.RectComponent(
-    #     (1/16, 1/8), (1/4, 1/2), parent=main_container)
-    # in_square.set_color("black")
-
-    side_container = game.Container(
-        (15/20, 1/20), (4/20, 18/20))
-    side_container.set_color(color_scheme['light'])
-
-    title_box = game.TextComponent(
-        "Graphmaze", (0.5, 0.01), game.BoxAlignment.TOPCENTER, side_container)
-    title_box.color = color_scheme['dark']
-    title_box.set_font(size=36)
-
-    containers = [main_container, side_container]
-
-    game_inst = game.Game(containers)
-    game_inst.set_background_color(color_scheme['dark'])
-    running = True
-
-    c = 0
-    while running:
-        running = game_inst.tick()
-        if c % 10 == 0:
-            squares[(c//10) % 32].set_show(False)
-            squares[(c//10 + 31) % 32].set_show(True)
-        c += 1
+    maze = graphmaze.GraphMaze()
+    map1 = graphmaze.MazeMap(distribution, links)
+    maze.set_map(map1)
+    maze.run()
