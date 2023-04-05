@@ -348,7 +348,7 @@ class Game:
     def __init__(self):
         pygame.init()
         self.screen = pygame.display.set_mode(
-            (1600, 900), flags=pygame.RESIZABLE)
+            (800, 450), flags=pygame.RESIZABLE)
         self.clock = pygame.time.Clock()
         self.running = True
         # self.dt = 0
@@ -362,7 +362,7 @@ class Game:
     def set_background_color(self, background_color):
         self.container.set_color(background_color)
 
-    def tick(self):
+    def tick(self, delay: bool = True):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -371,7 +371,8 @@ class Game:
                 self._resize_screen()
         # self._verify_movement()
         self._render()
-        self.clock.tick(60)
+        if delay:
+            self.clock.tick(60)
         return True
 
     def apply_change(self):

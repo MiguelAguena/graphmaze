@@ -57,7 +57,7 @@ class MazeRoom(MazeEntity):
         self.text_ent = square_text
 
         self.player_img = game.ImageContainer((0.5, 0.5), 0.45, os.path.join(
-            "imgs", "player_light.png"), parent=self.visual_entity, alignment=game.BoxAlignment.TOPCENTER)
+            r"D:\USP\5_periodo\Labdig\Projeto\graphmaze\python\imgs", "player_light.png"), parent=self.visual_entity, alignment=game.BoxAlignment.TOPCENTER)
 
         self.paths = {
             MazeDirection.UP: None,
@@ -296,12 +296,16 @@ class GraphMaze:
         self.map.link_parent(self.main_container)
         self.game_inst.get_container().rescale()
 
+    def tick(self, delay: bool = False):
+        self.game_inst.tick(delay)
+
+
     def run(self):
         self.running = True
         c = 0
         while self.running:
             self.running = self.game_inst.tick()
-            c += 1
-            if c% 10 == 0:
-                self.map.move_player_through(MazeDirection(random.randint(0,3)))
-                print("moved")
+            # c += 1
+            # if c% 10 == 0 and c > 200:
+            #     self.map.move_player_through(MazeDirection(random.randint(0,3)))
+            #     print("moved")

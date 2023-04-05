@@ -4,6 +4,7 @@ from enum import Enum
 import time
 import game
 import graphmaze
+import multiprocessing
 
 
 class Move(Enum):
@@ -103,4 +104,11 @@ if __name__ == '__main__':
     maze = graphmaze.GraphMaze()
     map1 = graphmaze.MazeMap(distribution, links)
     maze.set_map(map1)
-    maze.run()
+    while True:
+        maze.tick(False)
+        time.sleep(0.1)
+    # maze.run()
+    
+    # proc = multiprocessing.Process(target=maze.run)
+    # proc.start()
+    # proc.join()
