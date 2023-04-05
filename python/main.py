@@ -5,15 +5,23 @@ import time
 import game
 import graphmaze
 import multiprocessing
+from multiprocessing.managers import BaseManager
 
 
-class Move(Enum):
-    RESET = 7
-    RESTART = 4
-    DIREITA = 3
-    CIMA = 2
-    ESQUERDA = 1
-    BAIXO = 0
+
+class CustomManager(BaseManager):
+    pass
+
+
+class DirList():
+    def __init__(self):
+        self.list = []
+
+    def set_list(self, values):
+        self.list = list(values)
+
+    def get_list(self):
+        return self.list
 
 
 def arduino_init():
@@ -31,22 +39,25 @@ def arduino_read(ser):
         return False
 
 
-if __name__ == '__main__':
-    # arduino = arduino_init()
-    # while True:
-    #     for i in range(100):
-    #         time.sleep(0.001)
-    #         print(f"\r{i}", end="")
-    #         if True:
-    #             data = arduino_read(arduino)
-    #             if data:
-    #                 print(f"\r{data}")
-    color_scheme = {
-        'primary': (239, 51, 64),
-        'secondary': (241, 180, 32),
-        'light': (255, 250, 224),
-        'dark': (0, 12, 32)
-    }
+def arduino_print(shared):
+    last_val = []
+    while True:
+        cur_list = shared.get_list()
+        if cur_list != last_val:
+            print(cur_list)
+            last_val = cur_list
+
+
+def arduino_pro(shared):
+    ser = arduino_init()
+    while True:
+        data = arduino_read(ser)
+        if data:
+            print(data)
+            shared.set_list(list(data.values()))
+
+
+def game_pro(shared):
 
     distribution = ((0, 1, 3, 9), (2, 6, 7, 8), (4, 13, 10, 14), (5, 12, 11, 16),
                     (15, 22, 20, 18), (17, 24, 23, 25), (19, 30, 29, 26), (21, 28, 27, 31))
@@ -104,11 +115,35 @@ if __name__ == '__main__':
     maze = graphmaze.GraphMaze()
     map1 = graphmaze.MazeMap(distribution, links)
     maze.set_map(map1)
+    cur_list = shared.get_list()
+    last_val = []
     while True:
-        maze.tick(False)
-        time.sleep(0.1)
-    # maze.run()
+        cur_list = shared.get_list()
+        if cur_list != last_val:
+            map1.move_player_state(cur_list)
+        last_val = cur_list
+        maze.tick(True)
+
+
+if __name__ == '__main__':
     
-    # proc = multiprocessing.Process(target=maze.run)
-    # proc.start()
-    # proc.join()
+    # color_scheme = {
+    #     'primary': (239, 51, 64),
+    #     'secondary': (241, 180, 32),
+    #     'light': (255, 250, 224),
+    #     'dark': (0, 12, 32)
+    # }
+
+    # maze.run()
+
+    CustomManager.register('DirList', DirList)
+    with CustomManager() as manager:
+        shared = manager.DirList()
+
+        ard_comm = multiprocessing.Process(
+            target=arduino_pro, name="arduino_comm", args=(shared,))
+        game_pro_inst = multiprocessing.Process(
+            target=game_pro, name="game_pro", args=(shared,))
+        ard_comm.start()
+        game_pro_inst.start()
+        ard_comm.join()

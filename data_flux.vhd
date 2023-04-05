@@ -90,6 +90,8 @@ ARCHITECTURE behav OF data_flux IS
 
 	SIGNAL reset_or_map, room_cnt_cont, reset_or_play : STD_LOGIC;
 
+	SIGNAL player_is_moving : std_logic;
+
 BEGIN
 	continue <= (NOT(s_won) AND NOT(s_lost));
 
@@ -120,16 +122,17 @@ BEGIN
 	mon_reg : registrador_n GENERIC MAP(5, 31)
 	PORT MAP(clock, reset_or_map, room_cnt_cont, monster_next_room, monster_room_code);
 	jog_reg : registrador_n GENERIC MAP(5, 0)
-	PORT MAP(clock, reset_or_map, room_cnt_cont, jog_next_room_data(6 DOWNTO 2), jog_room_code);
+	PORT MAP(clock, reset_or_map, room_cnt_cont, jog_next_room_data(6 DOWNTO 2), jog_roo_mcode);
 
 	full_state(6 DOWNTO 2) <= monster_room_code;
 	full_state(11 DOWNTO 7) <= jog_room_code;
 
 	-- Arrival Direction
 
+	player_is_moving <= ('1' WHEN jog_next_room_data(6 DOWNTO 2) != jog_roo_mcode ELSE '0') AND room_cnt_cont;
 	s_nex_arrival_dir <= "0" & jog_next_room_data(1 DOWNTO 0);
 	arrival_dir_reg : registrador_n GENERIC MAP(3, 4)
-	PORT MAP(clock, reset_or_map, room_cnt_cont, s_nex_arrival_dir, s_arrival_dir);
+	PORT MAP(clock, reset_or_map, player_is_moving, s_nex_arrival_dir, s_arrival_dir);
 	arrival_dir <= s_arrival_dir;
 	full_state(14 DOWNTO 12) <= s_arrival_dir;
 

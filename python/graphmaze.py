@@ -2,6 +2,7 @@ from enum import Enum
 import math
 import os
 import random
+import sys
 import game
 
 
@@ -200,16 +201,16 @@ class MazeMap:
             for n_line, room in enumerate(col):
                 assert room not in saved_rooms, f"Distribution has repeated rooms {room}"
                 new_room = MazeRoom(room,
-                                    (n_col, n_line), visited=(room==0))
-                if room == 0:
-                    self.player_room: MazeRoom = new_room
+                                    (n_col, n_line), visited=False)
+                # if room == 0:
+                #     self.player_room: MazeRoom = new_room
                 new_room.set_color('room')
                 # breakpoint()
                 new_room.set_has_player(room == player_pos)
                 self.entities[room] = new_room
                 saved_rooms.add(room)
         self.parent = None
-
+        self.player_room: MazeRoom = None
         for link in links:
             new_link = MazePath(
                 self.entities[link[0]], link[1], self.entities[link[2]], link[3], visited=False)
@@ -245,6 +246,28 @@ class MazeMap:
         self.parent = parent
         for ent in self.entities:
             ent.link_parent(parent)
+
+    def move_player_state(self, state):
+        try:
+            # self.entities[state[2]].set_visited(True)
+            if state[1] != 4:
+                path_data = self.entities[state[2]].get_path(MazeDirection(state[1]))
+                if path_data:
+                    path_data[1].set_visited(True)
+            self.set_player_pos(state[2])
+        except Exception as e:
+            print("Erro",e)
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+            print(exc_type, fname, exc_tb.tb_lineno)
+
+    def set_player_pos(self, pos):
+        if self.player_room:
+            self.player_room.set_has_player(False)
+        self.player_room = self.entities[pos]
+        self.player_room.set_has_player(True)
+        self.player_room.set_visited(True)
+
 
 
 class GraphMaze:
@@ -304,8 +327,8 @@ class GraphMaze:
         self.running = True
         c = 0
         while self.running:
-            self.running = self.game_inst.tick()
-            # c += 1
-            # if c% 10 == 0 and c > 200:
-            #     self.map.move_player_through(MazeDirection(random.randint(0,3)))
-            #     print("moved")
+            self.running = self.game_inst.tick(True)
+            c += 1
+            if c% 20 == 0:
+                self.map.move_player_through(MazeDirection(random.randint(0,3)))
+                print("moved")
