@@ -20,6 +20,7 @@ class Component():
         self.transparent = False
         self.color = 'black'
         self.add_parent(parent)
+        self.is_priority = False
 
     def set_color(self, color):
         self.color = color
@@ -48,6 +49,12 @@ class Component():
         if hasattr(self, 'parent') and self.parent:
             self.parent.unlink_child(self)
             self.parent = None
+
+    def set_is_priority(self, is_priority=True):
+        self.is_priority = is_priority
+
+    def get_is_priority(self):
+        return self.is_priority
 
 
 class BoxAlignment(Enum):
@@ -91,6 +98,7 @@ class TextComponent(Component):
 
     def set_content(self, content):
         self.content = content
+        self.rescale()
 
     def set_background(self, background):
         self.background = background
@@ -155,7 +163,7 @@ class SegmentComponent(Component):
 
     def render(self):
         if not self.transparent:
-            pygame.draw.line(self.get_screen(), self.get_color(),
+            pygame.draw.aaline(self.get_screen(), self.get_color(),
                              self.start_point_px, self.end_point_px)
 
 
@@ -173,7 +181,7 @@ class SegsLineComponent(Component):
 
     def render(self):
         if not self.transparent:
-            pygame.draw.lines(self.get_screen(), self.get_color(),
+            pygame.draw.aalines(self.get_screen(), self.get_color(),
                               False, self.points_px)
 
     def set_points(self, points):
@@ -207,6 +215,42 @@ class AreaComponent(Component):
 
     def get_size(self):
         return self.size
+
+
+class CircleComponent(Component):
+    def __init__(self, center, radius, parent=None, radius_ref_dim: int = 0):
+        super().__init__(parent)
+        self.center = center
+        self.radius = radius
+        self.radius_ref_dim = radius_ref_dim
+        self.width = 0
+
+    def rescale(self):
+        if self.get_screen():
+            sc_x, sc_y = self.get_screen().get_size()
+            if isinstance(self.parent, Component):
+                self.center_px = (
+                    self.center[0] * self.parent.children_cont.size_px[0] +
+                    self.parent.children_cont.tl_point_px[0],
+                    self.center[1] * self.parent.children_cont.size_px[1] + self.parent.children_cont.tl_point_px[1])
+                self.radius_px = self.radius * \
+                    self.parent.children_cont.size_px[self.radius_ref_dim]
+            else:
+                self.size_px = (self.center[0] * sc_x, self.center[1] * sc_y)
+                self.tl_point_px = self.radius_px * \
+                    (sc_x if self.radius_red_dim else sc_y)
+
+    def render(self):
+        if not self.transparent:
+            pygame.draw.circle(self.get_screen(), self.get_color(
+            ), self.center_px, self.radius_px, width=self.width)
+
+    def set_width(self, width):
+        self.width = width
+
+    def set_center(self, center):
+        self.center = center
+        self.rescale()
 
 
 class RectComponent(AreaComponent):
@@ -298,9 +342,15 @@ class ChildContainer(RectComponent):
 
     def render(self):
         super().render()
+        priorities = []
         if not self.transparent:
             for child in self.children:
-                child.render()
+                if child.get_is_priority():
+                    priorities.append(child)
+                else:
+                    child.render()
+            for ch in priorities:
+                ch.render()
 
     def set_transparent(self, is_transparent: bool = True):
         super().set_transparent(is_transparent)
@@ -308,7 +358,7 @@ class ChildContainer(RectComponent):
         #     child.set_transparent(is_transparent)
 
 
-class ImageContainer(Component):
+class ImageComponent(Component):
     def __init__(self, pos, width, img_path: str, alignment: BoxAlignment = BoxAlignment.TOPLEFT, parent=None):
         super().__init__(parent)
         self.alignment = alignment
@@ -320,7 +370,8 @@ class ImageContainer(Component):
         align_offset_x, align_offset_y = self.alignment.get_offset()
         img_x, img_y = self.image.get_size()
         if self.parent:
-            self.scale = self.parent.children_cont.size_px[0] * self.width / img_x
+            self.scale = self.parent.children_cont.size_px[0] * \
+                self.width / img_x
             img_y *= self.scale
             img_x = self.parent.children_cont.size_px[0] * self.width
             self.tl_point_px = (

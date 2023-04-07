@@ -130,7 +130,7 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : AB8       :        :                   :      
 GND                          : AB9       : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AB10      :        :                   :         : 3B        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AB11      :        :                   :         : 3B        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AB12      :        :                   :         : 4A        :                
+reset                        : AB12      : input  : 2.5 V             :         : 4A        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AB13      :        :                   :         : 4A        :                
 GND                          : AB14      : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AB15      :        :                   :         : 4A        :                
@@ -505,7 +505,7 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : V9        :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : V10       :        :                   :         : 3B        :                
 NC                           : V11       :        :                   :         :           :                
 GND                          : V12       : gnd    :                   :         :           :                
-reset                        : V13       : input  : 2.5 V             :         : 4A        : Y              
+retry                        : V13       : input  : 2.5 V             :         : 4A        : Y              
 sseg_4[4]                    : V14       : output : 2.5 V             :         : 4A        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : V15       :        :                   :         : 4A        :                
 sseg_0[3]                    : V16       : output : 2.5 V             :         : 4A        : Y              

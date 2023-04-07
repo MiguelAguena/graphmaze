@@ -208,6 +208,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "retry",
+					"strict" : false
+				},
+				{
 					"name" : "reset",
 					"strict" : false
 				},

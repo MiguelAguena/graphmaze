@@ -14,6 +14,7 @@ ENTITY graphmaze IS
 		mode : IN STD_LOGIC;
 		dir_btns : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
 		next_map_btn : IN STD_LOGIC;
+		retry : IN STD_LOGIC;
 		won : OUT STD_LOGIC;
 		lost : OUT STD_LOGIC;
 		walls : OUT STD_LOGIC_VECTOR(5 DOWNTO 0);
@@ -34,6 +35,7 @@ ARCHITECTURE behav OF graphmaze IS
 			clock, reset, mode : IN STD_LOGIC;
 			dir_btns : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
 			next_map_btn : IN STD_LOGIC;
+			retry : IN STD_LOGIC;
 			won : OUT STD_LOGIC;
 			lost : OUT STD_LOGIC;
 			walls : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
@@ -117,6 +119,7 @@ BEGIN
 		mode => cur_mode,
 		dir_btns => not_dir_btns,
 		next_map_btn => next_map_btn,
+		retry => retry,
 		won => s_won,
 		lost => s_lost,
 		walls => s_walls,

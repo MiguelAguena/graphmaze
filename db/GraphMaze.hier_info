@@ -7,6 +7,7 @@ dir_btns[1] => data_flux:DF.dir_btns[1]
 dir_btns[2] => data_flux:DF.dir_btns[2]
 dir_btns[3] => data_flux:DF.dir_btns[3]
 next_map_btn => data_flux:DF.next_map_btn
+retry => data_flux:DF.retry
 won << data_flux:DF.won
 lost << data_flux:DF.lost
 walls[0] << data_flux:DF.walls[2]
@@ -80,13 +81,18 @@ mul_clock <= s_mul_clock.DB_MAX_OUTPUT_PORT_TYPE
 
 |graphmaze|data_flux:DF
 clock => mon_mov_gen:mon_mov.clock
+clock => s_arrival_dir[0].CLK
+clock => s_arrival_dir[1].CLK
+clock => s_arrival_dir[2].CLK
 clock => registrador_n:mon_reg.clock
 clock => registrador_n:jog_reg.clock
-clock => registrador_n:arrival_dir_reg.clock
 clock => registrador_n:map_reg.clock
 clock => registrador_n:lost_reg.clock
 clock => edge_detector:mov_dect.clock
 reset => reset_or_map.IN1
+reset => s_arrival_dir.OUTPUTSELECT
+reset => s_arrival_dir.OUTPUTSELECT
+reset => s_arrival_dir.OUTPUTSELECT
 reset => registrador_n:map_reg.reset
 reset => edge_detector:mov_dect.reset
 mode => s_next_lost_v[0].IN1
@@ -99,6 +105,10 @@ dir_btns[2] => mov_dir[2].IN1
 dir_btns[3] => btns_or.IN1
 dir_btns[3] => mov_dir[3].IN1
 next_map_btn => map_cnt.IN1
+retry => reset_or_map.IN1
+retry => s_arrival_dir.OUTPUTSELECT
+retry => s_arrival_dir.OUTPUTSELECT
+retry => s_arrival_dir.OUTPUTSELECT
 won <= Equal16.DB_MAX_OUTPUT_PORT_TYPE
 lost <= lost.DB_MAX_OUTPUT_PORT_TYPE
 walls[0] <= Equal8.DB_MAX_OUTPUT_PORT_TYPE
@@ -131,12 +141,12 @@ full_state[8] <= registrador_n:jog_reg.Q[1]
 full_state[9] <= registrador_n:jog_reg.Q[2]
 full_state[10] <= registrador_n:jog_reg.Q[3]
 full_state[11] <= registrador_n:jog_reg.Q[4]
-full_state[12] <= registrador_n:arrival_dir_reg.Q[0]
-full_state[13] <= registrador_n:arrival_dir_reg.Q[1]
-full_state[14] <= registrador_n:arrival_dir_reg.Q[2]
-arrival_dir[0] <= registrador_n:arrival_dir_reg.Q[0]
-arrival_dir[1] <= registrador_n:arrival_dir_reg.Q[1]
-arrival_dir[2] <= registrador_n:arrival_dir_reg.Q[2]
+full_state[12] <= s_arrival_dir[0].DB_MAX_OUTPUT_PORT_TYPE
+full_state[13] <= s_arrival_dir[1].DB_MAX_OUTPUT_PORT_TYPE
+full_state[14] <= s_arrival_dir[2].DB_MAX_OUTPUT_PORT_TYPE
+arrival_dir[0] <= s_arrival_dir[0].DB_MAX_OUTPUT_PORT_TYPE
+arrival_dir[1] <= s_arrival_dir[1].DB_MAX_OUTPUT_PORT_TYPE
+arrival_dir[2] <= s_arrival_dir[2].DB_MAX_OUTPUT_PORT_TYPE
 
 
 |graphmaze|data_flux:DF|mon_mov_gen:mon_mov
@@ -283,24 +293,6 @@ Q[1] <= IQ[1].DB_MAX_OUTPUT_PORT_TYPE
 Q[2] <= IQ[2].DB_MAX_OUTPUT_PORT_TYPE
 Q[3] <= IQ[3].DB_MAX_OUTPUT_PORT_TYPE
 Q[4] <= IQ[4].DB_MAX_OUTPUT_PORT_TYPE
-
-
-|graphmaze|data_flux:DF|registrador_n:arrival_dir_reg
-clock => IQ[0].CLK
-clock => IQ[1].CLK
-clock => IQ[2].CLK
-reset => IQ.OUTPUTSELECT
-reset => IQ.OUTPUTSELECT
-reset => IQ.OUTPUTSELECT
-load => IQ.OUTPUTSELECT
-load => IQ.OUTPUTSELECT
-load => IQ.OUTPUTSELECT
-D[0] => IQ.DATAB
-D[1] => IQ.DATAB
-D[2] => IQ.DATAB
-Q[0] <= IQ[0].DB_MAX_OUTPUT_PORT_TYPE
-Q[1] <= IQ[1].DB_MAX_OUTPUT_PORT_TYPE
-Q[2] <= IQ[2].DB_MAX_OUTPUT_PORT_TYPE
 
 
 |graphmaze|data_flux:DF|registrador_n:map_reg

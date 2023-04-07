@@ -7,6 +7,7 @@ ENTITY data_flux IS
 		clock, reset, mode : IN STD_LOGIC;
 		dir_btns : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
 		next_map_btn : IN STD_LOGIC;
+		retry : IN STD_LOGIC;
 		won : OUT STD_LOGIC;
 		lost : OUT STD_LOGIC;
 		walls : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
@@ -86,11 +87,12 @@ ARCHITECTURE behav OF data_flux IS
 
 	SIGNAL continue, crossed_to_mon, crossed_to_jog, crossed_path, crossed : STD_LOGIC := '0';
 
-	SIGNAL cur_move, s_last_move, s_arrival_dir, s_nex_arrival_dir : STD_LOGIC_VECTOR(2 DOWNTO 0);
+	SIGNAL cur_move, s_last_move, s_nex_arrival_dir : STD_LOGIC_VECTOR(2 DOWNTO 0);
+	SIGNAL s_arrival_dir : STD_LOGIC_VECTOR(2 DOWNTO 0) := "111";
 
 	SIGNAL reset_or_map, room_cnt_cont, reset_or_play : STD_LOGIC;
 
-	SIGNAL player_is_moving, last_dir_load : std_logic;
+	SIGNAL player_is_moving, last_dir_load : STD_LOGIC;
 
 BEGIN
 	continue <= (NOT(s_won) AND NOT(s_lost));
@@ -117,7 +119,7 @@ BEGIN
 		(clock, reset_or_play, rom_data_mon, jog_room_code, monster_room_code, monster_direction);
 
 	-- Position registers
-	reset_or_map <= reset OR map_cnt;
+	reset_or_map <= reset OR map_cnt OR retry;
 	room_cnt_cont <= room_cnt AND continue;
 	mon_reg : registrador_n GENERIC MAP(5, 31)
 	PORT MAP(clock, reset_or_map, room_cnt_cont, monster_next_room, monster_room_code);
@@ -129,11 +131,29 @@ BEGIN
 
 	-- Arrival Direction
 
-	player_is_moving <= '0' WHEN jog_next_room_data(6 DOWNTO 2) = jog_room_code ELSE '1';
+	player_is_moving <= '0' WHEN jog_next_room_data(6 DOWNTO 2) = jog_room_code ELSE
+		'1';
 	last_dir_load <= player_is_moving AND room_cnt_cont;
 	s_nex_arrival_dir <= "0" & jog_next_room_data(1 DOWNTO 0);
-	arrival_dir_reg : registrador_n GENERIC MAP(3, 4)
-	PORT MAP(clock, reset_or_map, last_dir_load, s_nex_arrival_dir, s_arrival_dir);
+
+	arrival_dir_pro : PROCESS (clock)
+	BEGIN
+		IF rising_edge(clock) THEN
+			IF reset = '1' THEN
+				s_arrival_dir <= "111";
+			ELSIF map_cnt = '1' THEN
+				s_arrival_dir <= "110";
+			ELSIF retry = '1' THEN
+				s_arrival_dir <= "100";
+			ELSIF last_dir_load = '1' THEN
+				s_arrival_dir <= s_nex_arrival_dir;
+			END IF;
+		END IF;
+	END PROCESS; -- arrival_dir
+
+	-- arrival_dir_reg : registrador_n GENERIC MAP(3, 4)
+	-- PORT MAP(clock, reset_or_map, last_dir_load, s_nex_arrival_dir, s_arrival_dir);
+
 	arrival_dir <= s_arrival_dir;
 	full_state(14 DOWNTO 12) <= s_arrival_dir;
 
@@ -145,12 +165,12 @@ BEGIN
 	full_state(1 DOWNTO 0) <= map_code;
 
 	-- Last move register
---	last_move_reg : registrador_n GENERIC MAP(3, 4) PORT MAP(clock, reset_or_map, room_cnt_cont, cur_move, s_last_move);
---	cur_move <= "000" WHEN mov_dir = "0001" ELSE
---		"001" WHEN mov_dir = "0010" ELSE
---		"010" WHEN mov_dir = "0100" ELSE
---		"011";
---	full_state(14 DOWNTO 12) <= s_last_move;
+	--	last_move_reg : registrador_n GENERIC MAP(3, 4) PORT MAP(clock, reset_or_map, room_cnt_cont, cur_move, s_last_move);
+	--	cur_move <= "000" WHEN mov_dir = "0001" ELSE
+	--		"001" WHEN mov_dir = "0010" ELSE
+	--		"010" WHEN mov_dir = "0100" ELSE
+	--		"011";
+	--	full_state(14 DOWNTO 12) <= s_last_move;
 
 	-- Lost register
 
