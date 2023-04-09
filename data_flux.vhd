@@ -90,7 +90,7 @@ ARCHITECTURE behav OF data_flux IS
 	SIGNAL cur_move, s_last_move, s_nex_arrival_dir : STD_LOGIC_VECTOR(2 DOWNTO 0);
 	SIGNAL s_arrival_dir : STD_LOGIC_VECTOR(2 DOWNTO 0) := "111";
 
-	SIGNAL reset_or_map, room_cnt_cont, reset_or_play : STD_LOGIC;
+	SIGNAL reset_or_map, room_cnt_cont, reset_or_play, reset_mon : STD_LOGIC;
 
 	SIGNAL player_is_moving, last_dir_load : STD_LOGIC;
 
@@ -121,8 +121,9 @@ BEGIN
 	-- Position registers
 	reset_or_map <= reset OR map_cnt OR retry;
 	room_cnt_cont <= room_cnt AND continue;
+	reset_mon <= reset_or_map or (not mode);
 	mon_reg : registrador_n GENERIC MAP(5, 31)
-	PORT MAP(clock, reset_or_map, room_cnt_cont, monster_next_room, monster_room_code);
+	PORT MAP(clock, reset_mon, room_cnt_cont, monster_next_room, monster_room_code);
 	jog_reg : registrador_n GENERIC MAP(5, 0)
 	PORT MAP(clock, reset_or_map, room_cnt_cont, jog_next_room_data(6 DOWNTO 2), jog_room_code);
 

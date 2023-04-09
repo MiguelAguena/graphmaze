@@ -62,6 +62,7 @@ class MazeRoom(MazeEntity):
 
         self.monster_img = game.ImageComponent((0.5, 0.5), 0.45, os.path.join(
             r"D:\USP\5_periodo\Labdig\Projeto\graphmaze\python\imgs", "monster.png"), parent=self.visual_entity, alignment=game.BoxAlignment.TOPLEFT)
+        self.mode = 0
 
         self.set_has_player(False)
         self.set_has_monster(False)
@@ -113,19 +114,28 @@ class MazeRoom(MazeEntity):
         return self.paths[dir]
 
     def set_has_monster(self, has_monster):
-        self.monster_img.set_transparent(not has_monster)
         self.has_monster = has_monster
+        self.monster_img.set_transparent(
+            (self.mode == 0) or not self.has_monster)
+
+    def set_mode(self, mode):
+        self.monster_img.set_transparent((mode == 0) or not self.has_monster)
+        self.mode = mode
 
 
 class MazePath(MazeEntity):
     def __init__(self, room_from: MazeRoom, dir_from: MazeDirection, room_to: MazeRoom, dir_to: MazeDirection,
-                 visited: bool = False, parent: game.Container = None) -> None:
+                 visited: bool = False, parent: game.Container = None, factor: float = None) -> None:
         super().__init__(visited, parent)
         self.room_from = room_from
         self.dir_from = dir_from
         self.room_to = room_to
         self.dir_to = dir_to
         # self.visual_entity = game.SegsLineComponent([self.room_from.get_door_point(self.dir_from), self.room_from.get_door_point(self.dir_to)])
+        if factor is None:
+            self.factor: float = random.uniform(0.25, 0.75)
+        else:
+            self.factor: float = factor
         self._calculate_points()
         self.visual_entity = game.SegsLineComponent(self.points)
         self.start_circle: game.CircleComponent = game.CircleComponent(
@@ -137,6 +147,9 @@ class MazePath(MazeEntity):
         self.room_from.add_path(dir_from, room_to, self)
         self.room_to.add_path(dir_to, room_from, self)
         self.set_visited(visited)
+
+    def set_factor(self, factor):
+        self.factor = factor
 
     def get_circle(self, room) -> game.CircleComponent:
         if room == self.room_from:
@@ -175,7 +188,7 @@ class MazePath(MazeEntity):
         points.append(cur_point)
         cur_dir = self.start_lane_dir
         for l in self.lanes:
-            lane_coord = get_lane_coord(cur_dir, l, random.uniform(0.25, 0.75))
+            lane_coord = get_lane_coord(cur_dir, l, self.factor)
             nex_point = [0, 0]
             nex_point[int(not cur_dir)] = lane_coord
             nex_point[cur_dir] = cur_point[cur_dir]
@@ -253,9 +266,10 @@ class MazeMap:
         self.parent = None
         self.player_room: MazeRoom = None
         self.monster_room: MazeRoom = None
-        for link in links:
+        for link_i, link in enumerate(links):
             new_link = MazePath(
-                self.entities[link[0]], link[1], self.entities[link[2]], link[3], visited=False)
+                self.entities[link[0]], link[1], self.entities[link[2]], link[3], visited=False, 
+                factor=(0.8*(link_i/(len(links) - 1)) + 0.1))
             new_link.set_color("path")
             self.entities.append(new_link)
             # print(new_link.get_points())
@@ -313,6 +327,10 @@ class MazeMap:
         for ent in self.entities:
             ent.set_visited(False)
 
+    def set_mode(self, mode):
+        for ent in self.entities[:32]:
+            ent.set_mode(mode)
+
 
 class GraphMaze:
     def __init__(self) -> None:
@@ -362,10 +380,10 @@ class GraphMaze:
         self.monster_box.set_font(
             size=8, mode=game.FontSizeMode.PERCENTAGEPARENTW)
 
-        self.monster_warning = game.TextComponent(
+        self.text_warning = game.TextComponent(
             "Fuja...", (0.5, 0.7), game.BoxAlignment.TOPCENTER, self.side_container)
-        self.monster_warning.set_color('monster_warning')
-        self.monster_warning.set_font(
+        self.text_warning.set_color('monster_warning')
+        self.text_warning.set_font(
             size=15, mode=game.FontSizeMode.PERCENTAGEPARENTW)
 
         self.monster_scare = game.ImageComponent((0.5, 0.5), 0.5, os.path.join(
@@ -473,8 +491,20 @@ class GraphMaze:
                     (26, MazeDirection.DOWN, 25, MazeDirection.DOWN),
                     (29, MazeDirection.DOWN, 27, MazeDirection.DOWN)
                     ))
+            # MazeMap((
+            #     (0,1,9,11),
+            #     (2,3,5,10),
+            #     (8,4,6,7),
+            #     (13,14,15,12),
+            #     (19,18,17,16),
+            #     (30,29,20,23),
+            #     (26,22,21,27),
+            #     (28,25,24,31),
+            # ),
+            # )
         ]
         self.set_map(0)
+        self.won = False
 
     def set_map(self, map_id: int):
         if not hasattr(self, 'map_id') or self.map_id != map_id:
@@ -487,7 +517,8 @@ class GraphMaze:
 
     def set_mode(self, mode):
         self.monster_box.set_transparent(mode == 0)
-        self.monster_warning.set_transparent(mode == 0)
+        self.text_warning.set_transparent((mode == 0) and not self.won)
+        self.map.set_mode(mode)
 
     def _set_map_obj(self, map: MazeMap):
 
@@ -500,18 +531,20 @@ class GraphMaze:
     def set_lost(self, lost):
         if lost:
             self.monster_box.set_transparent(True)
-            self.monster_warning.set_content("Perdeu")
+            self.text_warning.set_content("Perdeu")
             self.monster_scare.set_transparent(False)
         else:
             self.monster_scare.set_transparent(True)
-            self.monster_warning.set_content("Fuja...")
+            self.text_warning.set_content(
+                "Fuja..." if not self.won else "Escapou!")
 
     def set_won(self, won):
+        self.won = won
         if won:
-            self.monster_warning.set_content("Escapou!")
-            self.monster_warning.set_color("warning_won")
+            # self.text_warning.set_content("Escapou!")
+            self.text_warning.set_color("warning_won")
         else:
-            self.monster_warning.set_color("monster_warning")
+            self.text_warning.set_color("monster_warning")
 
     def tick(self, delay: bool = False):
         return self.game_inst.tick(delay)
@@ -541,6 +574,6 @@ class GraphMaze:
             self.set_map(cur_state[4])
         self.map.move_player_state(cur_state)
         self.set_monster_pos(cur_state[3])
+        self.set_won(cur_state[2] == 31)
         self.set_mode(cur_state[0])
         self.set_lost(cur_state[5])
-        self.set_won(cur_state[2] == 31)

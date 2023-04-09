@@ -78,6 +78,12 @@ ARCHITECTURE behav OF graphmaze IS
 	SIGNAL arrival_dir : STD_LOGIC_VECTOR(2 DOWNTO 0);
 
 BEGIN
+	-- BUTTONS:
+	-- 0	DOWN
+	-- 1	LEFT
+	-- 2	UP
+	-- 3	RIGHT
+
 	clock_gen : clock_mul GENERIC MAP(1000) PORT MAP(clock, mul_clock);
 
 	not_dir_btns <= NOT dir_btns;
@@ -100,12 +106,12 @@ BEGIN
 	lost <= s_lost;
 	walls <= (s_walls(1), s_walls(1), s_walls(0), s_walls(3), s_walls(3), s_walls(2));
 	WITH arrival_dir SELECT arrived_dir_leds <=
-		"00001" WHEN "000",
-		"00010" WHEN "001",
+		"00010" WHEN "000",
+		"01000" WHEN "001",
 		"00100" WHEN "010",
-		"01000" WHEN "011",
+		"00001" WHEN "011",
 		"10000" WHEN "100",
-		"00000" WHEN OTHERS;
+		"10000" WHEN OTHERS;
 
 	sseg_4 <= aux_sseg_4 WHEN cur_mode = '1' ELSE
 		"1111111";
