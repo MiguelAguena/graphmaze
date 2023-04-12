@@ -1,5 +1,5 @@
 Fitter report for GraphMaze
-Sat Apr 08 11:12:34 2023
+Tue Apr 11 23:31:02 2023
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -63,15 +63,15 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Fitter Summary                                                                ;
 +---------------------------------+---------------------------------------------+
-; Fitter Status                   ; Successful - Sat Apr 08 11:12:34 2023       ;
+; Fitter Status                   ; Successful - Tue Apr 11 23:31:02 2023       ;
 ; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                   ; GraphMaze                                   ;
 ; Top-level Entity Name           ; graphmaze                                   ;
 ; Family                          ; Cyclone V                                   ;
 ; Device                          ; 5CEBA4F23C7                                 ;
 ; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 231 / 18,480 ( 1 % )                        ;
-; Total registers                 ; 40                                          ;
+; Logic utilization (in ALMs)     ; 238 / 18,480 ( 1 % )                        ;
+; Total registers                 ; 41                                          ;
 ; Total pins                      ; 63 / 224 ( 28 % )                           ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0 / 3,153,920 ( 0 % )                       ;
@@ -158,11 +158,11 @@ https://fpgasoftware.intel.com/eula.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   1.3%      ;
-;     Processor 3            ;   1.1%      ;
-;     Processor 4            ;   1.0%      ;
-;     Processor 5            ;   0.9%      ;
-;     Processor 6            ;   0.9%      ;
+;     Processor 2            ;   1.2%      ;
+;     Processor 3            ;   1.0%      ;
+;     Processor 4            ;   0.9%      ;
+;     Processor 5            ;   0.8%      ;
+;     Processor 6            ;   0.8%      ;
 +----------------------------+-------------+
 
 
@@ -172,6 +172,7 @@ https://fpgasoftware.intel.com/eula.
 ; Node                                         ; Action     ; Operation                                         ; Reason                     ; Node Port ; Node Port Name ; Destination Node                                       ; Destination Port ; Destination Port Name ;
 +----------------------------------------------+------------+---------------------------------------------------+----------------------------+-----------+----------------+--------------------------------------------------------+------------------+-----------------------+
 ; clock~inputCLKENA0                           ; Created    ; Placement                                         ; Fitter Periphery Placement ;           ;                ;                                                        ;                  ;                       ;
+; data_flux:DF|mon_mov_gen:mon_mov|test_mov[0] ; Duplicated ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ;                ; data_flux:DF|mon_mov_gen:mon_mov|test_mov[0]~DUPLICATE ;                  ;                       ;
 ; data_flux:DF|mon_mov_gen:mon_mov|test_mov[1] ; Duplicated ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ;                ; data_flux:DF|mon_mov_gen:mon_mov|test_mov[1]~DUPLICATE ;                  ;                       ;
 +----------------------------------------------+------------+---------------------------------------------------+----------------------------+-----------+----------------+--------------------------------------------------------+------------------+-----------------------+
 
@@ -182,8 +183,8 @@ https://fpgasoftware.intel.com/eula.
 ; Type                ; Total [A + B]      ; From Design Partitions [A] ; From Rapid Recompile [B] ;
 +---------------------+--------------------+----------------------------+--------------------------+
 ; Placement (by node) ;                    ;                            ;                          ;
-;     -- Requested    ; 0.00 % ( 0 / 504 ) ; 0.00 % ( 0 / 504 )         ; 0.00 % ( 0 / 504 )       ;
-;     -- Achieved     ; 0.00 % ( 0 / 504 ) ; 0.00 % ( 0 / 504 )         ; 0.00 % ( 0 / 504 )       ;
+;     -- Requested    ; 0.00 % ( 0 / 501 ) ; 0.00 % ( 0 / 501 )         ; 0.00 % ( 0 / 501 )       ;
+;     -- Achieved     ; 0.00 % ( 0 / 501 ) ; 0.00 % ( 0 / 501 )         ; 0.00 % ( 0 / 501 )       ;
 ;                     ;                    ;                            ;                          ;
 ; Routing (by net)    ;                    ;                            ;                          ;
 ;     -- Requested    ; 0.00 % ( 0 / 0 )   ; 0.00 % ( 0 / 0 )           ; 0.00 % ( 0 / 0 )         ;
@@ -206,7 +207,7 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 ; Partition Name                 ; Preservation Achieved ; Preservation Level Used ; Netlist Type Used ; Preservation Method ; Notes ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
-; Top                            ; 0.00 % ( 0 / 504 )    ; N/A                     ; Source File       ; N/A                 ;       ;
+; Top                            ; 0.00 % ( 0 / 501 )    ; N/A                     ; Source File       ; N/A                 ;       ;
 ; hard_block:auto_generated_inst ; 0.00 % ( 0 / 0 )      ; N/A                     ; Source File       ; N/A                 ;       ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 
@@ -222,14 +223,14 @@ The pin-out file can be found in D:/USP/5_periodo/Labdig/Projeto/graphmaze/outpu
 +-------------------------------------------------------------+--------------------+-------+
 ; Resource                                                    ; Usage              ; %     ;
 +-------------------------------------------------------------+--------------------+-------+
-; Logic utilization (ALMs needed / total ALMs on device)      ; 231 / 18,480       ; 1 %   ;
-; ALMs needed [=A-B+C]                                        ; 231                ;       ;
-;     [A] ALMs used in final placement [=a+b+c+d]             ; 235 / 18,480       ; 1 %   ;
-;         [a] ALMs used for LUT logic and registers           ; 15                 ;       ;
-;         [b] ALMs used for LUT logic                         ; 215                ;       ;
-;         [c] ALMs used for registers                         ; 5                  ;       ;
+; Logic utilization (ALMs needed / total ALMs on device)      ; 238 / 18,480       ; 1 %   ;
+; ALMs needed [=A-B+C]                                        ; 238                ;       ;
+;     [A] ALMs used in final placement [=a+b+c+d]             ; 245 / 18,480       ; 1 %   ;
+;         [a] ALMs used for LUT logic and registers           ; 17                 ;       ;
+;         [b] ALMs used for LUT logic                         ; 225                ;       ;
+;         [c] ALMs used for registers                         ; 3                  ;       ;
 ;         [d] ALMs used for memory (up to half of total ALMs) ; 0                  ;       ;
-;     [B] Estimate of ALMs recoverable by dense packing       ; 4 / 18,480         ; < 1 % ;
+;     [B] Estimate of ALMs recoverable by dense packing       ; 7 / 18,480         ; < 1 % ;
 ;     [C] Estimate of ALMs unavailable [=a+b+c+d]             ; 0 / 18,480         ; 0 %   ;
 ;         [a] Due to location constrained logic               ; 0                  ;       ;
 ;         [b] Due to LAB-wide signal conflicts                ; 0                  ;       ;
@@ -242,21 +243,21 @@ The pin-out file can be found in D:/USP/5_periodo/Labdig/Projeto/graphmaze/outpu
 ;     -- Logic LABs                                           ; 32                 ;       ;
 ;     -- Memory LABs (up to half of total LABs)               ; 0                  ;       ;
 ;                                                             ;                    ;       ;
-; Combinational ALUT usage for logic                          ; 338                ;       ;
+; Combinational ALUT usage for logic                          ; 335                ;       ;
 ;     -- 7 input functions                                    ; 0                  ;       ;
-;     -- 6 input functions                                    ; 140                ;       ;
-;     -- 5 input functions                                    ; 49                 ;       ;
-;     -- 4 input functions                                    ; 51                 ;       ;
-;     -- <=3 input functions                                  ; 98                 ;       ;
+;     -- 6 input functions                                    ; 156                ;       ;
+;     -- 5 input functions                                    ; 46                 ;       ;
+;     -- 4 input functions                                    ; 36                 ;       ;
+;     -- <=3 input functions                                  ; 97                 ;       ;
 ; Combinational ALUT usage for route-throughs                 ; 1                  ;       ;
 ;                                                             ;                    ;       ;
-; Dedicated logic registers                                   ; 40                 ;       ;
+; Dedicated logic registers                                   ; 41                 ;       ;
 ;     -- By type:                                             ;                    ;       ;
 ;         -- Primary logic registers                          ; 39 / 36,960        ; < 1 % ;
-;         -- Secondary logic registers                        ; 1 / 36,960         ; < 1 % ;
+;         -- Secondary logic registers                        ; 2 / 36,960         ; < 1 % ;
 ;     -- By function:                                         ;                    ;       ;
 ;         -- Design implementation registers                  ; 39                 ;       ;
-;         -- Routing optimization registers                   ; 1                  ;       ;
+;         -- Routing optimization registers                   ; 2                  ;       ;
 ;                                                             ;                    ;       ;
 ; Virtual pins                                                ; 0                  ;       ;
 ; I/O pins                                                    ; 63 / 224           ; 28 %  ;
@@ -283,11 +284,11 @@ The pin-out file can be found in D:/USP/5_periodo/Labdig/Projeto/graphmaze/outpu
 ; Oscillator blocks                                           ; 0 / 1              ; 0 %   ;
 ; Impedance control blocks                                    ; 0 / 3              ; 0 %   ;
 ; Average interconnect usage (total/H/V)                      ; 0.4% / 0.4% / 0.4% ;       ;
-; Peak interconnect usage (total/H/V)                         ; 5.3% / 5.5% / 5.0% ;       ;
-; Maximum fan-out                                             ; 92                 ;       ;
-; Highest non-global fan-out                                  ; 92                 ;       ;
-; Total fan-out                                               ; 1753               ;       ;
-; Average fan-out                                             ; 3.46               ;       ;
+; Peak interconnect usage (total/H/V)                         ; 5.2% / 5.0% / 5.7% ;       ;
+; Maximum fan-out                                             ; 102                ;       ;
+; Highest non-global fan-out                                  ; 102                ;       ;
+; Total fan-out                                               ; 1771               ;       ;
+; Average fan-out                                             ; 3.51               ;       ;
 +-------------------------------------------------------------+--------------------+-------+
 
 
@@ -296,14 +297,14 @@ The pin-out file can be found in D:/USP/5_periodo/Labdig/Projeto/graphmaze/outpu
 +-------------------------------------------------------------+----------------------+--------------------------------+
 ; Statistic                                                   ; Top                  ; hard_block:auto_generated_inst ;
 +-------------------------------------------------------------+----------------------+--------------------------------+
-; Logic utilization (ALMs needed / total ALMs on device)      ; 231 / 18480 ( 1 % )  ; 0 / 18480 ( 0 % )              ;
-; ALMs needed [=A-B+C]                                        ; 231                  ; 0                              ;
-;     [A] ALMs used in final placement [=a+b+c+d]             ; 235 / 18480 ( 1 % )  ; 0 / 18480 ( 0 % )              ;
-;         [a] ALMs used for LUT logic and registers           ; 15                   ; 0                              ;
-;         [b] ALMs used for LUT logic                         ; 215                  ; 0                              ;
-;         [c] ALMs used for registers                         ; 5                    ; 0                              ;
+; Logic utilization (ALMs needed / total ALMs on device)      ; 238 / 18480 ( 1 % )  ; 0 / 18480 ( 0 % )              ;
+; ALMs needed [=A-B+C]                                        ; 238                  ; 0                              ;
+;     [A] ALMs used in final placement [=a+b+c+d]             ; 245 / 18480 ( 1 % )  ; 0 / 18480 ( 0 % )              ;
+;         [a] ALMs used for LUT logic and registers           ; 17                   ; 0                              ;
+;         [b] ALMs used for LUT logic                         ; 225                  ; 0                              ;
+;         [c] ALMs used for registers                         ; 3                    ; 0                              ;
 ;         [d] ALMs used for memory (up to half of total ALMs) ; 0                    ; 0                              ;
-;     [B] Estimate of ALMs recoverable by dense packing       ; 4 / 18480 ( < 1 % )  ; 0 / 18480 ( 0 % )              ;
+;     [B] Estimate of ALMs recoverable by dense packing       ; 7 / 18480 ( < 1 % )  ; 0 / 18480 ( 0 % )              ;
 ;     [C] Estimate of ALMs unavailable [=a+b+c+d]             ; 0 / 18480 ( 0 % )    ; 0 / 18480 ( 0 % )              ;
 ;         [a] Due to location constrained logic               ; 0                    ; 0                              ;
 ;         [b] Due to LAB-wide signal conflicts                ; 0                    ; 0                              ;
@@ -316,12 +317,12 @@ The pin-out file can be found in D:/USP/5_periodo/Labdig/Projeto/graphmaze/outpu
 ;     -- Logic LABs                                           ; 32                   ; 0                              ;
 ;     -- Memory LABs (up to half of total LABs)               ; 0                    ; 0                              ;
 ;                                                             ;                      ;                                ;
-; Combinational ALUT usage for logic                          ; 338                  ; 0                              ;
+; Combinational ALUT usage for logic                          ; 335                  ; 0                              ;
 ;     -- 7 input functions                                    ; 0                    ; 0                              ;
-;     -- 6 input functions                                    ; 140                  ; 0                              ;
-;     -- 5 input functions                                    ; 49                   ; 0                              ;
-;     -- 4 input functions                                    ; 51                   ; 0                              ;
-;     -- <=3 input functions                                  ; 98                   ; 0                              ;
+;     -- 6 input functions                                    ; 156                  ; 0                              ;
+;     -- 5 input functions                                    ; 46                   ; 0                              ;
+;     -- 4 input functions                                    ; 36                   ; 0                              ;
+;     -- <=3 input functions                                  ; 97                   ; 0                              ;
 ; Combinational ALUT usage for route-throughs                 ; 1                    ; 0                              ;
 ; Memory ALUT usage                                           ; 0                    ; 0                              ;
 ;     -- 64-address deep                                      ; 0                    ; 0                              ;
@@ -330,10 +331,10 @@ The pin-out file can be found in D:/USP/5_periodo/Labdig/Projeto/graphmaze/outpu
 ; Dedicated logic registers                                   ; 0                    ; 0                              ;
 ;     -- By type:                                             ;                      ;                                ;
 ;         -- Primary logic registers                          ; 39 / 36960 ( < 1 % ) ; 0 / 36960 ( 0 % )              ;
-;         -- Secondary logic registers                        ; 1 / 36960 ( < 1 % )  ; 0 / 36960 ( 0 % )              ;
+;         -- Secondary logic registers                        ; 2 / 36960 ( < 1 % )  ; 0 / 36960 ( 0 % )              ;
 ;     -- By function:                                         ;                      ;                                ;
 ;         -- Design implementation registers                  ; 39                   ; 0                              ;
-;         -- Routing optimization registers                   ; 1                    ; 0                              ;
+;         -- Routing optimization registers                   ; 2                    ; 0                              ;
 ;                                                             ;                      ;                                ;
 ;                                                             ;                      ;                                ;
 ; Virtual pins                                                ; 0                    ; 0                              ;
@@ -350,8 +351,8 @@ The pin-out file can be found in D:/USP/5_periodo/Labdig/Projeto/graphmaze/outpu
 ;     -- Registered Output Connections                        ; 0                    ; 0                              ;
 ;                                                             ;                      ;                                ;
 ; Internal Connections                                        ;                      ;                                ;
-;     -- Total Connections                                    ; 1758                 ; 0                              ;
-;     -- Registered Connections                               ; 939                  ; 0                              ;
+;     -- Total Connections                                    ; 1776                 ; 0                              ;
+;     -- Registered Connections                               ; 979                  ; 0                              ;
 ;                                                             ;                      ;                                ;
 ; External Connections                                        ;                      ;                                ;
 ;     -- Top                                                  ; 0                    ; 0                              ;
@@ -386,17 +387,17 @@ The pin-out file can be found in D:/USP/5_periodo/Labdig/Projeto/graphmaze/outpu
 ; clock              ; M9    ; 3B       ; 22           ; 0            ; 0            ; 11                    ; 0                  ; yes    ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
 ; dir_btns[0]        ; W9    ; 3A       ; 11           ; 0            ; 34           ; 2                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
 ; dir_btns[1]        ; M6    ; 3A       ; 14           ; 0            ; 17           ; 2                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
-; dir_btns[2]        ; M7    ; 3A       ; 14           ; 0            ; 0            ; 3                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
-; dir_btns[3]        ; U7    ; 3A       ; 10           ; 0            ; 91           ; 3                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
+; dir_btns[2]        ; M7    ; 3A       ; 14           ; 0            ; 0            ; 2                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
+; dir_btns[3]        ; U7    ; 3A       ; 10           ; 0            ; 91           ; 2                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
 ; full_state_addr[0] ; T15   ; 5A       ; 54           ; 15           ; 3            ; 4                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
 ; full_state_addr[1] ; T18   ; 5A       ; 54           ; 14           ; 43           ; 4                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
 ; full_state_addr[2] ; T20   ; 5A       ; 54           ; 14           ; 94           ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
 ; full_state_addr[3] ; R17   ; 5A       ; 54           ; 16           ; 20           ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
 ; full_state_addr[4] ; P18   ; 5A       ; 54           ; 17           ; 54           ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
 ; mode               ; T13   ; 4A       ; 34           ; 0            ; 0            ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
-; next_map_btn       ; U13   ; 4A       ; 33           ; 0            ; 40           ; 4                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
-; reset              ; AB12  ; 4A       ; 33           ; 0            ; 74           ; 9                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
-; retry              ; V13   ; 4A       ; 33           ; 0            ; 57           ; 7                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
+; next_map_btn       ; U13   ; 4A       ; 33           ; 0            ; 40           ; 3                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
+; reset              ; AB12  ; 4A       ; 33           ; 0            ; 74           ; 8                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
+; retry              ; V13   ; 4A       ; 33           ; 0            ; 57           ; 6                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; User                 ; no        ;
 +--------------------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+-----------------+----------+--------------+--------------+-------------+---------------------------+----------------------+-----------+
 
 
@@ -1042,20 +1043,20 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +-----------------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+--------------------------------------------------------------------+---------------+--------------+
 ; Compilation Hierarchy Node        ; ALMs needed [=A-B+C] ; [A] ALMs used in final placement ; [B] Estimate of ALMs recoverable by dense packing ; [C] Estimate of ALMs unavailable ; ALMs used for memory ; Combinational ALUTs ; Dedicated Logic Registers ; I/O Registers ; Block Memory Bits ; M10Ks ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                ; Entity Name   ; Library Name ;
 +-----------------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+--------------------------------------------------------------------+---------------+--------------+
-; |graphmaze                        ; 230.5 (20.2)         ; 234.0 (21.0)                     ; 3.5 (0.8)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 338 (27)            ; 40 (1)                    ; 0 (0)         ; 0                 ; 0     ; 0          ; 63   ; 0            ; |graphmaze                                                         ; graphmaze     ; work         ;
-;    |clock_mul:clock_gen|          ; 7.0 (7.0)            ; 7.5 (7.5)                        ; 0.5 (0.5)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 13 (13)             ; 11 (11)                   ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |graphmaze|clock_mul:clock_gen                                     ; clock_mul     ; work         ;
-;    |data_flux:DF|                 ; 187.8 (44.5)         ; 189.0 (44.5)                     ; 1.2 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 269 (74)            ; 28 (3)                    ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF                                            ; data_flux     ; work         ;
-;       |edge_detector:mov_dect|    ; 0.7 (0.7)            ; 0.7 (0.7)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 0 (0)               ; 2 (2)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF|edge_detector:mov_dect                     ; edge_detector ; work         ;
-;       |mon_mov_gen:mon_mov|       ; 20.2 (9.4)           ; 20.8 (9.4)                       ; 0.7 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 31 (17)             ; 10 (3)                    ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF|mon_mov_gen:mon_mov                        ; mon_mov_gen   ; work         ;
-;          |registrador_n:reg_dir|  ; 7.2 (7.2)            ; 7.9 (7.9)                        ; 0.7 (0.7)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 9 (9)               ; 2 (2)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dir  ; registrador_n ; work         ;
-;          |registrador_n:reg_dist| ; 3.5 (3.5)            ; 3.5 (3.5)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 5 (5)               ; 5 (5)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dist ; registrador_n ; work         ;
-;       |registrador_n:jog_reg|     ; 7.8 (7.8)            ; 7.8 (7.8)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 10 (10)             ; 5 (5)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF|registrador_n:jog_reg                      ; registrador_n ; work         ;
-;       |registrador_n:lost_reg|    ; 8.7 (8.7)            ; 9.5 (9.5)                        ; 0.8 (0.8)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 10 (10)             ; 1 (1)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF|registrador_n:lost_reg                     ; registrador_n ; work         ;
-;       |registrador_n:map_reg|     ; 1.7 (1.7)            ; 1.7 (1.7)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 3 (3)               ; 2 (2)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF|registrador_n:map_reg                      ; registrador_n ; work         ;
-;       |registrador_n:mon_reg|     ; 3.5 (3.5)            ; 4.0 (4.0)                        ; 0.5 (0.5)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 6 (6)               ; 5 (5)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF|registrador_n:mon_reg                      ; registrador_n ; work         ;
-;       |rom_128x20:map_mem|        ; 99.5 (99.5)          ; 100.0 (100.0)                    ; 0.5 (0.5)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 135 (135)           ; 0 (0)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF|rom_128x20:map_mem                         ; rom_128x20    ; work         ;
-;    |decoder_7seg:DEC_MONSTER|     ; 3.5 (3.5)            ; 3.5 (3.5)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 7 (7)               ; 0 (0)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |graphmaze|decoder_7seg:DEC_MONSTER                                ; decoder_7seg  ; work         ;
-;    |decoder_7seg:DEC_PLAYER|      ; 12.0 (12.0)          ; 13.0 (13.0)                      ; 1.0 (1.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 22 (22)             ; 0 (0)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |graphmaze|decoder_7seg:DEC_PLAYER                                 ; decoder_7seg  ; work         ;
+; |graphmaze                        ; 237.5 (22.0)         ; 244.5 (23.4)                     ; 7.0 (1.4)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 335 (30)            ; 41 (1)                    ; 0 (0)         ; 0                 ; 0     ; 0          ; 63   ; 0            ; |graphmaze                                                         ; graphmaze     ; work         ;
+;    |clock_mul:clock_gen|          ; 6.5 (6.5)            ; 7.5 (7.5)                        ; 1.0 (1.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 13 (13)             ; 11 (11)                   ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |graphmaze|clock_mul:clock_gen                                     ; clock_mul     ; work         ;
+;    |data_flux:DF|                 ; 199.0 (50.8)         ; 201.1 (52.9)                     ; 2.1 (2.1)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 273 (74)            ; 29 (3)                    ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF                                            ; data_flux     ; work         ;
+;       |edge_detector:mov_dect|    ; 0.5 (0.5)            ; 0.5 (0.5)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 0 (0)               ; 2 (2)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF|edge_detector:mov_dect                     ; edge_detector ; work         ;
+;       |mon_mov_gen:mon_mov|       ; 21.8 (9.2)           ; 22.2 (9.8)                       ; 0.3 (0.7)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 34 (18)             ; 11 (4)                    ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF|mon_mov_gen:mon_mov                        ; mon_mov_gen   ; work         ;
+;          |registrador_n:reg_dir|  ; 8.7 (8.7)            ; 8.7 (8.7)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 11 (11)             ; 2 (2)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dir  ; registrador_n ; work         ;
+;          |registrador_n:reg_dist| ; 3.3 (3.3)            ; 3.7 (3.7)                        ; 0.3 (0.3)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 5 (5)               ; 5 (5)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dist ; registrador_n ; work         ;
+;       |registrador_n:jog_reg|     ; 7.3 (7.3)            ; 7.5 (7.5)                        ; 0.2 (0.2)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 11 (11)             ; 5 (5)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF|registrador_n:jog_reg                      ; registrador_n ; work         ;
+;       |registrador_n:lost_reg|    ; 7.5 (7.5)            ; 7.7 (7.7)                        ; 0.2 (0.2)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 9 (9)               ; 1 (1)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF|registrador_n:lost_reg                     ; registrador_n ; work         ;
+;       |registrador_n:map_reg|     ; 2.0 (2.0)            ; 2.0 (2.0)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 3 (3)               ; 2 (2)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF|registrador_n:map_reg                      ; registrador_n ; work         ;
+;       |registrador_n:mon_reg|     ; 3.0 (3.0)            ; 3.3 (3.3)                        ; 0.3 (0.3)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 6 (6)               ; 5 (5)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF|registrador_n:mon_reg                      ; registrador_n ; work         ;
+;       |rom_128x20:map_mem|        ; 105.0 (105.0)        ; 105.0 (105.0)                    ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 136 (136)           ; 0 (0)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |graphmaze|data_flux:DF|rom_128x20:map_mem                         ; rom_128x20    ; work         ;
+;    |decoder_7seg:DEC_MONSTER|     ; 3.0 (3.0)            ; 3.0 (3.0)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 6 (6)               ; 0 (0)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |graphmaze|decoder_7seg:DEC_MONSTER                                ; decoder_7seg  ; work         ;
+;    |decoder_7seg:DEC_PLAYER|      ; 7.0 (7.0)            ; 9.5 (9.5)                        ; 2.5 (2.5)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 13 (13)             ; 0 (0)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |graphmaze|decoder_7seg:DEC_PLAYER                                 ; decoder_7seg  ; work         ;
 +-----------------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+--------------------------------------------------------------------+---------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -1116,100 +1117,95 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; arrived_dir_leds[4] ; Output   ; -- ; --   ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
 ; full_state_addr[4]  ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; full_state_addr[0]  ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
-; full_state_addr[1]  ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
+; full_state_addr[1]  ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; full_state_addr[2]  ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; full_state_addr[3]  ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
-; retry               ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
+; retry               ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; reset               ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; next_map_btn        ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
-; dir_btns[1]         ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
+; dir_btns[1]         ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; dir_btns[2]         ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
-; dir_btns[3]         ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
+; dir_btns[3]         ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; dir_btns[0]         ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; mode                ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; clock               ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 +---------------------+----------+----+------+------+----+------+-------+--------+------------------------+--------------------------+
 
 
-+---------------------------------------------------------------------------------------------------+
-; Pad To Core Delay Chain Fanout                                                                    ;
-+---------------------------------------------------------------------+-------------------+---------+
-; Source Pin / Fanout                                                 ; Pad To Core Index ; Setting ;
-+---------------------------------------------------------------------+-------------------+---------+
-; full_state_addr[4]                                                  ;                   ;         ;
-;      - Mux4~5                                                       ; 1                 ; 0       ;
-; full_state_addr[0]                                                  ;                   ;         ;
-;      - Mux4~0                                                       ; 1                 ; 0       ;
-;      - Mux4~1                                                       ; 1                 ; 0       ;
-;      - Mux4~2                                                       ; 1                 ; 0       ;
-;      - Mux4~3                                                       ; 1                 ; 0       ;
-; full_state_addr[1]                                                  ;                   ;         ;
-;      - Mux4~0                                                       ; 0                 ; 0       ;
-;      - Mux4~1                                                       ; 0                 ; 0       ;
-;      - Mux4~2                                                       ; 0                 ; 0       ;
-;      - Mux4~3                                                       ; 0                 ; 0       ;
-; full_state_addr[2]                                                  ;                   ;         ;
-;      - Mux4~4                                                       ; 1                 ; 0       ;
-; full_state_addr[3]                                                  ;                   ;         ;
-;      - Mux4~4                                                       ; 0                 ; 0       ;
-; retry                                                               ;                   ;         ;
-;      - data_flux:DF|registrador_n:lost_reg|IQ[0]~0                  ; 0                 ; 0       ;
-;      - data_flux:DF|registrador_n:jog_reg|IQ[4]~1                   ; 0                 ; 0       ;
-;      - data_flux:DF|s_arrival_dir[0]~0                              ; 0                 ; 0       ;
-;      - data_flux:DF|registrador_n:lost_reg|IQ[0]~2                  ; 0                 ; 0       ;
-;      - data_flux:DF|s_arrival_dir~1                                 ; 0                 ; 0       ;
-;      - data_flux:DF|s_arrival_dir~4                                 ; 0                 ; 0       ;
-;      - data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dist|IQ~1 ; 0                 ; 0       ;
-; reset                                                               ;                   ;         ;
-;      - data_flux:DF|edge_detector:mov_dect|reg0                     ; 0                 ; 0       ;
-;      - data_flux:DF|edge_detector:mov_dect|reg1                     ; 0                 ; 0       ;
-;      - data_flux:DF|registrador_n:lost_reg|IQ[0]~0                  ; 0                 ; 0       ;
-;      - data_flux:DF|registrador_n:map_reg|IQ[0]~0                   ; 0                 ; 0       ;
-;      - data_flux:DF|registrador_n:lost_reg|IQ[0]~2                  ; 0                 ; 0       ;
-;      - data_flux:DF|registrador_n:map_reg|IQ~1                      ; 0                 ; 0       ;
-;      - data_flux:DF|registrador_n:map_reg|IQ~2                      ; 0                 ; 0       ;
-;      - data_flux:DF|s_arrival_dir~2                                 ; 0                 ; 0       ;
-;      - data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dist|IQ~1 ; 0                 ; 0       ;
-; next_map_btn                                                        ;                   ;         ;
-;      - data_flux:DF|registrador_n:lost_reg|IQ[0]~0                  ; 0                 ; 0       ;
-;      - data_flux:DF|registrador_n:map_reg|IQ[0]~0                   ; 0                 ; 0       ;
-;      - data_flux:DF|s_arrival_dir~1                                 ; 0                 ; 0       ;
-;      - data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dist|IQ~1 ; 0                 ; 0       ;
-; dir_btns[1]                                                         ;                   ;         ;
-;      - data_flux:DF|mov_dir[1]                                      ; 0                 ; 0       ;
-;      - data_flux:DF|btns_or                                         ; 0                 ; 0       ;
-; dir_btns[2]                                                         ;                   ;         ;
-;      - data_flux:DF|Equal15~0                                       ; 0                 ; 0       ;
-;      - data_flux:DF|mov_dir[2]                                      ; 0                 ; 0       ;
-;      - data_flux:DF|btns_or                                         ; 0                 ; 0       ;
-; dir_btns[3]                                                         ;                   ;         ;
-;      - data_flux:DF|Equal15~0                                       ; 0                 ; 0       ;
-;      - data_flux:DF|mov_dir[3]                                      ; 0                 ; 0       ;
-;      - data_flux:DF|btns_or                                         ; 0                 ; 0       ;
-; dir_btns[0]                                                         ;                   ;         ;
-;      - data_flux:DF|s_nex_arrival_dir[0]~0                          ; 1                 ; 0       ;
-;      - data_flux:DF|btns_or                                         ; 1                 ; 0       ;
-; mode                                                                ;                   ;         ;
-;      - cur_mode~0                                                   ; 0                 ; 0       ;
-; clock                                                               ;                   ;         ;
-;      - clock_mul:clock_gen|s_mul_clock                              ; 0                 ; 0       ;
-+---------------------------------------------------------------------+-------------------+---------+
++----------------------------------------------------------------------------------+
+; Pad To Core Delay Chain Fanout                                                   ;
++----------------------------------------------------+-------------------+---------+
+; Source Pin / Fanout                                ; Pad To Core Index ; Setting ;
++----------------------------------------------------+-------------------+---------+
+; full_state_addr[4]                                 ;                   ;         ;
+;      - Mux4~5                                      ; 1                 ; 0       ;
+; full_state_addr[0]                                 ;                   ;         ;
+;      - Mux4~0                                      ; 1                 ; 0       ;
+;      - Mux4~1                                      ; 1                 ; 0       ;
+;      - Mux4~2                                      ; 1                 ; 0       ;
+;      - Mux4~3                                      ; 1                 ; 0       ;
+; full_state_addr[1]                                 ;                   ;         ;
+;      - Mux4~0                                      ; 1                 ; 0       ;
+;      - Mux4~1                                      ; 1                 ; 0       ;
+;      - Mux4~2                                      ; 1                 ; 0       ;
+;      - Mux4~3                                      ; 1                 ; 0       ;
+; full_state_addr[2]                                 ;                   ;         ;
+;      - Mux4~4                                      ; 1                 ; 0       ;
+; full_state_addr[3]                                 ;                   ;         ;
+;      - Mux4~4                                      ; 0                 ; 0       ;
+; retry                                              ;                   ;         ;
+;      - data_flux:DF|registrador_n:lost_reg|IQ[0]~0 ; 1                 ; 0       ;
+;      - data_flux:DF|registrador_n:jog_reg|IQ[4]~1  ; 1                 ; 0       ;
+;      - data_flux:DF|registrador_n:lost_reg|IQ[0]~1 ; 1                 ; 0       ;
+;      - data_flux:DF|s_arrival_dir[0]~0             ; 1                 ; 0       ;
+;      - data_flux:DF|s_arrival_dir~1                ; 1                 ; 0       ;
+;      - data_flux:DF|s_arrival_dir~4                ; 1                 ; 0       ;
+; reset                                              ;                   ;         ;
+;      - data_flux:DF|edge_detector:mov_dect|reg0    ; 0                 ; 0       ;
+;      - data_flux:DF|edge_detector:mov_dect|reg1    ; 0                 ; 0       ;
+;      - data_flux:DF|registrador_n:lost_reg|IQ[0]~0 ; 0                 ; 0       ;
+;      - data_flux:DF|registrador_n:map_reg|IQ[0]~0  ; 0                 ; 0       ;
+;      - data_flux:DF|registrador_n:lost_reg|IQ[0]~1 ; 0                 ; 0       ;
+;      - data_flux:DF|registrador_n:map_reg|IQ~1     ; 0                 ; 0       ;
+;      - data_flux:DF|registrador_n:map_reg|IQ~2     ; 0                 ; 0       ;
+;      - data_flux:DF|s_arrival_dir~2                ; 0                 ; 0       ;
+; next_map_btn                                       ;                   ;         ;
+;      - data_flux:DF|registrador_n:lost_reg|IQ[0]~0 ; 0                 ; 0       ;
+;      - data_flux:DF|registrador_n:map_reg|IQ[0]~0  ; 0                 ; 0       ;
+;      - data_flux:DF|s_arrival_dir~1                ; 0                 ; 0       ;
+; dir_btns[1]                                        ;                   ;         ;
+;      - data_flux:DF|mov_dir[1]                     ; 1                 ; 0       ;
+;      - data_flux:DF|btns_or                        ; 1                 ; 0       ;
+; dir_btns[2]                                        ;                   ;         ;
+;      - data_flux:DF|mov_dir[2]                     ; 0                 ; 0       ;
+;      - data_flux:DF|btns_or                        ; 0                 ; 0       ;
+; dir_btns[3]                                        ;                   ;         ;
+;      - data_flux:DF|mov_dir[3]                     ; 1                 ; 0       ;
+;      - data_flux:DF|btns_or                        ; 1                 ; 0       ;
+; dir_btns[0]                                        ;                   ;         ;
+;      - data_flux:DF|s_nex_arrival_dir[0]~0         ; 1                 ; 0       ;
+;      - data_flux:DF|btns_or                        ; 1                 ; 0       ;
+; mode                                               ;                   ;         ;
+;      - cur_mode~0                                  ; 0                 ; 0       ;
+; clock                                              ;                   ;         ;
+;      - clock_mul:clock_gen|s_mul_clock             ; 0                 ; 0       ;
++----------------------------------------------------+-------------------+---------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Control Signals                                                                                                                                                                              ;
-+----------------------------------------------------------------+---------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
-; Name                                                           ; Location            ; Fan-Out ; Usage        ; Global ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
-+----------------------------------------------------------------+---------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
-; clock                                                          ; PIN_M9              ; 2       ; Clock        ; no     ; --                   ; --               ; --                        ;
-; clock                                                          ; PIN_M9              ; 10      ; Clock        ; yes    ; Global Clock         ; GCLK6            ; --                        ;
-; clock_mul:clock_gen|s_mul_clock                                ; FF_X37_Y3_N11       ; 30      ; Clock        ; no     ; --                   ; --               ; --                        ;
-; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dir|IQ[1]~6 ; LABCELL_X39_Y2_N24  ; 7       ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; data_flux:DF|registrador_n:map_reg|IQ[0]~0                     ; LABCELL_X39_Y2_N45  ; 5       ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; data_flux:DF|registrador_n:mon_reg|IQ[4]~1                     ; LABCELL_X40_Y5_N15  ; 5       ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; data_flux:DF|s_arrival_dir[0]~3                                ; MLABCELL_X42_Y3_N54 ; 2       ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; reset                                                          ; PIN_AB12            ; 9       ; Async. clear ; no     ; --                   ; --               ; --                        ;
-+----------------------------------------------------------------+---------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Control Signals                                                                                                                                                                             ;
++----------------------------------------------------------------+--------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
+; Name                                                           ; Location           ; Fan-Out ; Usage        ; Global ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
++----------------------------------------------------------------+--------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
+; clock                                                          ; PIN_M9             ; 2       ; Clock        ; no     ; --                   ; --               ; --                        ;
+; clock                                                          ; PIN_M9             ; 10      ; Clock        ; yes    ; Global Clock         ; GCLK6            ; --                        ;
+; clock_mul:clock_gen|s_mul_clock                                ; FF_X40_Y3_N11      ; 31      ; Clock        ; no     ; --                   ; --               ; --                        ;
+; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dir|IQ[1]~6 ; LABCELL_X43_Y4_N12 ; 7       ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; data_flux:DF|registrador_n:map_reg|IQ[0]~0                     ; LABCELL_X39_Y3_N39 ; 5       ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; data_flux:DF|registrador_n:mon_reg|IQ[4]~1                     ; LABCELL_X40_Y5_N36 ; 5       ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; data_flux:DF|s_arrival_dir[0]~3                                ; LABCELL_X40_Y7_N18 ; 2       ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; reset                                                          ; PIN_AB12           ; 8       ; Async. clear ; no     ; --                   ; --               ; --                        ;
++----------------------------------------------------------------+--------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
 
 
 +--------------------------------------------------------------------------------------------------+
@@ -1226,21 +1222,21 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +------------------------------+-------------------------+
 ; Routing Resource Type        ; Usage                   ;
 +------------------------------+-------------------------+
-; Block interconnects          ; 682 / 140,056 ( < 1 % ) ;
-; C12 interconnects            ; 6 / 6,048 ( < 1 % )     ;
-; C2 interconnects             ; 182 / 54,648 ( < 1 % )  ;
-; C4 interconnects             ; 144 / 25,920 ( < 1 % )  ;
+; Block interconnects          ; 636 / 140,056 ( < 1 % ) ;
+; C12 interconnects            ; 10 / 6,048 ( < 1 % )    ;
+; C2 interconnects             ; 208 / 54,648 ( < 1 % )  ;
+; C4 interconnects             ; 151 / 25,920 ( < 1 % )  ;
 ; DQS bus muxes                ; 0 / 17 ( 0 % )          ;
 ; DQS-18 I/O buses             ; 0 / 17 ( 0 % )          ;
 ; DQS-9 I/O buses              ; 0 / 17 ( 0 % )          ;
-; Direct links                 ; 86 / 140,056 ( < 1 % )  ;
+; Direct links                 ; 70 / 140,056 ( < 1 % )  ;
 ; Global clocks                ; 1 / 16 ( 6 % )          ;
-; Local interconnects          ; 181 / 36,960 ( < 1 % )  ;
+; Local interconnects          ; 183 / 36,960 ( < 1 % )  ;
 ; Quadrant clocks              ; 0 / 88 ( 0 % )          ;
-; R14 interconnects            ; 45 / 5,984 ( < 1 % )    ;
+; R14 interconnects            ; 46 / 5,984 ( < 1 % )    ;
 ; R14/C12 interconnect drivers ; 47 / 9,504 ( < 1 % )    ;
-; R3 interconnects             ; 280 / 60,192 ( < 1 % )  ;
-; R6 interconnects             ; 319 / 127,072 ( < 1 % ) ;
+; R3 interconnects             ; 277 / 60,192 ( < 1 % )  ;
+; R6 interconnects             ; 272 / 127,072 ( < 1 % ) ;
 ; Spine clocks                 ; 1 / 120 ( < 1 % )       ;
 ; Wire stub REs                ; 0 / 7,344 ( 0 % )       ;
 +------------------------------+-------------------------+
@@ -1414,72 +1410,69 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------------------+--------+
 
 
-+-----------------------------------------------------------------------------------------------+
-; Estimated Delay Added for Hold Timing Summary                                                 ;
-+-------------------------------------+-------------------------------------+-------------------+
-; Source Clock(s)                     ; Destination Clock(s)                ; Delay Added in ns ;
-+-------------------------------------+-------------------------------------+-------------------+
-; clock_mul:clock_gen|s_mul_clock     ; clock_mul:clock_gen|s_mul_clock     ; 13.3              ;
-; clock_mul:clock_gen|s_mul_clock,I/O ; clock_mul:clock_gen|s_mul_clock     ; 7.2               ;
-; clock                               ; clock                               ; 6.2               ;
-; clock                               ; clock_mul:clock_gen|s_mul_clock     ; 2.2               ;
-; clock_mul:clock_gen|s_mul_clock     ; clock_mul:clock_gen|s_mul_clock,I/O ; 1.6               ;
-+-------------------------------------+-------------------------------------+-------------------+
++-------------------------------------------------------------------------------------------+
+; Estimated Delay Added for Hold Timing Summary                                             ;
++-------------------------------------+---------------------------------+-------------------+
+; Source Clock(s)                     ; Destination Clock(s)            ; Delay Added in ns ;
++-------------------------------------+---------------------------------+-------------------+
+; clock_mul:clock_gen|s_mul_clock     ; clock_mul:clock_gen|s_mul_clock ; 12.1              ;
+; clock                               ; clock                           ; 6.6               ;
+; clock_mul:clock_gen|s_mul_clock,I/O ; clock_mul:clock_gen|s_mul_clock ; 2.7               ;
+; clock                               ; clock_mul:clock_gen|s_mul_clock ; 1.2               ;
++-------------------------------------+---------------------------------+-------------------+
 Note: For more information on problematic transfers, consider running the Fitter again with the Optimize hold timing option (Settings Menu) turned off.
 This will disable optimization of problematic paths and expose them for further analysis using the Timing Analyzer.
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------+
-; Estimated Delay Added for Hold Timing Details                                                                                                     ;
-+---------------------------------------------------------------+---------------------------------------------------------------+-------------------+
-; Source Register                                               ; Destination Register                                          ; Delay Added in ns ;
-+---------------------------------------------------------------+---------------------------------------------------------------+-------------------+
-; clock_mul:clock_gen|s_mul_clock                               ; clock_mul:clock_gen|s_mul_clock                               ; 5.733             ;
-; clock_mul:clock_gen|clock_count[8]                            ; clock_mul:clock_gen|s_mul_clock                               ; 1.819             ;
-; clock_mul:clock_gen|clock_count[7]                            ; clock_mul:clock_gen|s_mul_clock                               ; 1.819             ;
-; clock_mul:clock_gen|clock_count[6]                            ; clock_mul:clock_gen|s_mul_clock                               ; 1.819             ;
-; clock_mul:clock_gen|clock_count[5]                            ; clock_mul:clock_gen|s_mul_clock                               ; 1.819             ;
-; clock_mul:clock_gen|clock_count[4]                            ; clock_mul:clock_gen|s_mul_clock                               ; 1.819             ;
-; clock_mul:clock_gen|clock_count[3]                            ; clock_mul:clock_gen|s_mul_clock                               ; 1.819             ;
-; clock_mul:clock_gen|clock_count[2]                            ; clock_mul:clock_gen|s_mul_clock                               ; 1.819             ;
-; clock_mul:clock_gen|clock_count[1]                            ; clock_mul:clock_gen|s_mul_clock                               ; 1.819             ;
-; clock_mul:clock_gen|clock_count[0]                            ; clock_mul:clock_gen|s_mul_clock                               ; 1.819             ;
-; clock_mul:clock_gen|clock_count[9]                            ; clock_mul:clock_gen|s_mul_clock                               ; 1.819             ;
-; data_flux:DF|registrador_n:lost_reg|IQ[0]                     ; data_flux:DF|registrador_n:lost_reg|IQ[0]                     ; 1.086             ;
-; data_flux:DF|registrador_n:jog_reg|IQ[3]                      ; data_flux:DF|registrador_n:jog_reg|IQ[3]                      ; 1.083             ;
-; data_flux:DF|mon_mov_gen:mon_mov|test_mov[0]                  ; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dir|IQ[0]  ; 0.865             ;
-; data_flux:DF|registrador_n:jog_reg|IQ[1]                      ; data_flux:DF|registrador_n:jog_reg|IQ[1]                      ; 0.836             ;
-; data_flux:DF|registrador_n:jog_reg|IQ[4]                      ; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dist|IQ[4] ; 0.780             ;
-; data_flux:DF|registrador_n:jog_reg|IQ[2]                      ; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dist|IQ[4] ; 0.702             ;
-; data_flux:DF|registrador_n:jog_reg|IQ[0]                      ; data_flux:DF|registrador_n:lost_reg|IQ[0]                     ; 0.694             ;
-; data_flux:DF|edge_detector:mov_dect|reg0                      ; data_flux:DF|edge_detector:mov_dect|reg1                      ; 0.610             ;
-; data_flux:DF|edge_detector:mov_dect|reg1                      ; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dist|IQ[4] ; 0.598             ;
-; data_flux:DF|registrador_n:mon_reg|IQ[4]                      ; data_flux:DF|registrador_n:lost_reg|IQ[0]                     ; 0.535             ;
-; data_flux:DF|registrador_n:map_reg|IQ[0]                      ; data_flux:DF|registrador_n:jog_reg|IQ[1]                      ; 0.497             ;
-; data_flux:DF|registrador_n:map_reg|IQ[1]                      ; data_flux:DF|registrador_n:jog_reg|IQ[1]                      ; 0.497             ;
-; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dist|IQ[3] ; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dir|IQ[1]  ; 0.459             ;
-; dir_btns[1]                                                   ; data_flux:DF|registrador_n:jog_reg|IQ[1]                      ; 0.455             ;
-; dir_btns[2]                                                   ; data_flux:DF|registrador_n:jog_reg|IQ[1]                      ; 0.455             ;
-; dir_btns[3]                                                   ; data_flux:DF|registrador_n:jog_reg|IQ[1]                      ; 0.455             ;
-; dir_btns[0]                                                   ; data_flux:DF|registrador_n:jog_reg|IQ[1]                      ; 0.455             ;
-; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dir|IQ[0]  ; data_flux:DF|registrador_n:mon_reg|IQ[1]                      ; 0.403             ;
-; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dir|IQ[1]  ; data_flux:DF|registrador_n:mon_reg|IQ[1]                      ; 0.403             ;
-; data_flux:DF|registrador_n:mon_reg|IQ[1]                      ; data_flux:DF|registrador_n:mon_reg|IQ[1]                      ; 0.403             ;
-; data_flux:DF|registrador_n:mon_reg|IQ[0]                      ; data_flux:DF|registrador_n:mon_reg|IQ[1]                      ; 0.403             ;
-; data_flux:DF|registrador_n:mon_reg|IQ[2]                      ; data_flux:DF|registrador_n:mon_reg|IQ[1]                      ; 0.403             ;
-; next_map_btn                                                  ; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dist|IQ[3] ; 0.403             ;
-; retry                                                         ; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dist|IQ[3] ; 0.403             ;
-; reset                                                         ; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dist|IQ[3] ; 0.403             ;
-; data_flux:DF|registrador_n:mon_reg|IQ[3]                      ; data_flux:DF|registrador_n:mon_reg|IQ[1]                      ; 0.403             ;
-; cur_mode                                                      ; data_flux:DF|registrador_n:mon_reg|IQ[3]                      ; 0.288             ;
-; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dist|IQ[1] ; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dir|IQ[1]  ; 0.173             ;
-; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dist|IQ[2] ; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dir|IQ[1]  ; 0.128             ;
-; data_flux:DF|mon_mov_gen:mon_mov|test_mov[1]                  ; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dist|IQ[1] ; 0.128             ;
-; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dist|IQ[0] ; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dir|IQ[1]  ; 0.072             ;
-; data_flux:DF|s_arrival_dir[2]                                 ; data_flux:DF|s_arrival_dir[2]                                 ; 0.063             ;
-; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dist|IQ[4] ; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dir|IQ[1]  ; 0.010             ;
-+---------------------------------------------------------------+---------------------------------------------------------------+-------------------+
-Note: This table only shows the top 44 path(s) that have the largest delay added for hold.
++--------------------------------------------------------------------------------------------------------------------------------------------------+
+; Estimated Delay Added for Hold Timing Details                                                                                                    ;
++---------------------------------------------------------------+--------------------------------------------------------------+-------------------+
+; Source Register                                               ; Destination Register                                         ; Delay Added in ns ;
++---------------------------------------------------------------+--------------------------------------------------------------+-------------------+
+; clock_mul:clock_gen|s_mul_clock                               ; clock_mul:clock_gen|s_mul_clock                              ; 6.106             ;
+; clock_mul:clock_gen|clock_count[8]                            ; clock_mul:clock_gen|s_mul_clock                              ; 1.997             ;
+; clock_mul:clock_gen|clock_count[7]                            ; clock_mul:clock_gen|s_mul_clock                              ; 1.997             ;
+; clock_mul:clock_gen|clock_count[6]                            ; clock_mul:clock_gen|s_mul_clock                              ; 1.997             ;
+; clock_mul:clock_gen|clock_count[5]                            ; clock_mul:clock_gen|s_mul_clock                              ; 1.997             ;
+; clock_mul:clock_gen|clock_count[4]                            ; clock_mul:clock_gen|s_mul_clock                              ; 1.997             ;
+; clock_mul:clock_gen|clock_count[3]                            ; clock_mul:clock_gen|s_mul_clock                              ; 1.997             ;
+; clock_mul:clock_gen|clock_count[2]                            ; clock_mul:clock_gen|s_mul_clock                              ; 1.997             ;
+; clock_mul:clock_gen|clock_count[1]                            ; clock_mul:clock_gen|s_mul_clock                              ; 1.997             ;
+; clock_mul:clock_gen|clock_count[0]                            ; clock_mul:clock_gen|s_mul_clock                              ; 1.997             ;
+; clock_mul:clock_gen|clock_count[9]                            ; clock_mul:clock_gen|s_mul_clock                              ; 1.997             ;
+; data_flux:DF|mon_mov_gen:mon_mov|test_mov[0]                  ; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dir|IQ[0] ; 0.695             ;
+; data_flux:DF|edge_detector:mov_dect|reg0                      ; data_flux:DF|edge_detector:mov_dect|reg1                     ; 0.673             ;
+; data_flux:DF|registrador_n:jog_reg|IQ[3]                      ; data_flux:DF|s_arrival_dir[1]                                ; 0.570             ;
+; data_flux:DF|registrador_n:jog_reg|IQ[2]                      ; data_flux:DF|s_arrival_dir[1]                                ; 0.545             ;
+; data_flux:DF|registrador_n:jog_reg|IQ[0]                      ; data_flux:DF|registrador_n:jog_reg|IQ[0]                     ; 0.536             ;
+; data_flux:DF|registrador_n:map_reg|IQ[0]                      ; data_flux:DF|registrador_n:jog_reg|IQ[0]                     ; 0.536             ;
+; data_flux:DF|registrador_n:map_reg|IQ[1]                      ; data_flux:DF|registrador_n:jog_reg|IQ[0]                     ; 0.536             ;
+; data_flux:DF|registrador_n:jog_reg|IQ[4]                      ; data_flux:DF|registrador_n:jog_reg|IQ[0]                     ; 0.536             ;
+; data_flux:DF|registrador_n:jog_reg|IQ[1]                      ; data_flux:DF|registrador_n:jog_reg|IQ[0]                     ; 0.536             ;
+; reset                                                         ; data_flux:DF|registrador_n:map_reg|IQ[1]                     ; 0.456             ;
+; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dist|IQ[4] ; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dir|IQ[0] ; 0.424             ;
+; dir_btns[3]                                                   ; data_flux:DF|s_arrival_dir[1]                                ; 0.326             ;
+; cur_mode                                                      ; data_flux:DF|registrador_n:mon_reg|IQ[0]                     ; 0.320             ;
+; data_flux:DF|edge_detector:mov_dect|reg1                      ; data_flux:DF|registrador_n:jog_reg|IQ[4]                     ; 0.320             ;
+; dir_btns[1]                                                   ; data_flux:DF|s_arrival_dir[1]                                ; 0.290             ;
+; dir_btns[2]                                                   ; data_flux:DF|s_arrival_dir[1]                                ; 0.290             ;
+; dir_btns[0]                                                   ; data_flux:DF|s_arrival_dir[1]                                ; 0.290             ;
+; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dist|IQ[3] ; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dir|IQ[0] ; 0.251             ;
+; mode                                                          ; cur_mode                                                     ; 0.238             ;
+; next_map_btn                                                  ; data_flux:DF|registrador_n:jog_reg|IQ[4]                     ; 0.231             ;
+; retry                                                         ; data_flux:DF|registrador_n:jog_reg|IQ[4]                     ; 0.231             ;
+; data_flux:DF|registrador_n:lost_reg|IQ[0]                     ; data_flux:DF|registrador_n:jog_reg|IQ[4]                     ; 0.231             ;
+; data_flux:DF|registrador_n:mon_reg|IQ[0]                      ; data_flux:DF|registrador_n:lost_reg|IQ[0]                    ; 0.224             ;
+; data_flux:DF|registrador_n:mon_reg|IQ[1]                      ; data_flux:DF|registrador_n:lost_reg|IQ[0]                    ; 0.203             ;
+; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dir|IQ[0]  ; data_flux:DF|registrador_n:mon_reg|IQ[1]                     ; 0.190             ;
+; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dir|IQ[1]  ; data_flux:DF|registrador_n:mon_reg|IQ[1]                     ; 0.190             ;
+; data_flux:DF|registrador_n:mon_reg|IQ[4]                      ; data_flux:DF|registrador_n:mon_reg|IQ[1]                     ; 0.190             ;
+; data_flux:DF|registrador_n:mon_reg|IQ[2]                      ; data_flux:DF|registrador_n:mon_reg|IQ[1]                     ; 0.190             ;
+; data_flux:DF|registrador_n:mon_reg|IQ[3]                      ; data_flux:DF|registrador_n:mon_reg|IQ[1]                     ; 0.190             ;
+; data_flux:DF|mon_mov_gen:mon_mov|test_mov[1]                  ; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dir|IQ[1] ; 0.184             ;
+; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dist|IQ[2] ; data_flux:DF|mon_mov_gen:mon_mov|registrador_n:reg_dir|IQ[0] ; 0.069             ;
++---------------------------------------------------------------+--------------------------------------------------------------+-------------------+
+Note: This table only shows the top 42 path(s) that have the largest delay added for hold.
 
 
 +-----------------+
@@ -1517,18 +1510,18 @@ Info (170195): Router estimated average interconnect usage is 0% of the availabl
     Info (170196): Router estimated peak interconnect usage is 3% of the available device resources in the region that extends from location X33_Y0 to location X43_Y10
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
-Info (170194): Fitter routing operations ending: elapsed time is 00:00:04
-Info (11888): Total time spent on timing analysis during the Fitter is 0.86 seconds.
+Info (170194): Fitter routing operations ending: elapsed time is 00:00:05
+Info (11888): Total time spent on timing analysis during the Fitter is 0.79 seconds.
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
-Info (11801): Fitter post-fit operations ending: elapsed time is 00:00:04
+Info (11801): Fitter post-fit operations ending: elapsed time is 00:00:03
 Info (144001): Generated suppressed messages file D:/USP/5_periodo/Labdig/Projeto/graphmaze/output_files/GraphMaze.fit.smsg
 Info: Quartus Prime Fitter was successful. 0 errors, 4 warnings
-    Info: Peak virtual memory: 6474 megabytes
-    Info: Processing ended: Sat Apr 08 11:12:35 2023
-    Info: Elapsed time: 00:00:33
+    Info: Peak virtual memory: 6471 megabytes
+    Info: Processing ended: Tue Apr 11 23:31:03 2023
+    Info: Elapsed time: 00:00:34
     Info: Total CPU time (on all processors): 00:00:25
 
 

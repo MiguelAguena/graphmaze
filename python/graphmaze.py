@@ -87,13 +87,17 @@ class MazeRoom(MazeEntity):
         tl_point = self.visual_entity.get_tl_point()
         size = self.visual_entity.get_size()
         if direction == MazeDirection.RIGHT:
-            return (tl_point[0]+size[0], tl_point[1]+(3*size[1]/4))
+            return (tl_point[0]+size[0], tl_point[1]+(size[1]/2))
+            # return (tl_point[0]+size[0], tl_point[1]+(3*size[1]/4))
         if direction == MazeDirection.LEFT:
-            return (tl_point[0], tl_point[1]+(size[1]/4))
+            return (tl_point[0], tl_point[1]+(size[1]/2))
+            # return (tl_point[0], tl_point[1]+(size[1]/4))
         if direction == MazeDirection.UP:
-            return (tl_point[0]+(3 * size[0]/4), tl_point[1])
+            return (tl_point[0]+(size[0]/2), tl_point[1])
+            # return (tl_point[0]+(3 * size[0]/4), tl_point[1])
         if direction == MazeDirection.DOWN:
-            return (tl_point[0]+(size[0]/4), tl_point[1] + size[1])
+            return (tl_point[0]+(size[0]/2), tl_point[1] + size[1])
+            # return (tl_point[0]+(size[0]/4), tl_point[1] + size[1])
 
     def add_path(self, dir: MazeDirection, room, path):
         if self.paths[dir] and isinstance(self.path[dir][3], game.CircleComponent):
@@ -268,8 +272,10 @@ class MazeMap:
         self.monster_room: MazeRoom = None
         for link_i, link in enumerate(links):
             new_link = MazePath(
-                self.entities[link[0]], link[1], self.entities[link[2]], link[3], visited=False, 
-                factor=(0.8*(link_i/(len(links) - 1)) + 0.1))
+                self.entities[link[0]], link[1], self.entities[link[2]
+                                                               ], link[3], visited=False,
+                factor=(0.5 if len(link) == 4 else link[4]))
+            # factor=(0.8*(link_i/(len(links) - 1)) + 0.1))
             new_link.set_color("path")
             self.entities.append(new_link)
             # print(new_link.get_points())
@@ -445,63 +451,176 @@ class GraphMaze:
                      (15, 22, 20, 18), (17, 24, 23, 25), (19, 30, 29, 26), (21, 28, 27, 31)), (
                     (2, MazeDirection.LEFT, 0, MazeDirection.RIGHT),
                     (4, MazeDirection.LEFT, 2, MazeDirection.RIGHT),
-                    (9, MazeDirection.LEFT, 6, MazeDirection.RIGHT),
+                    (9, MazeDirection.LEFT, 6, MazeDirection.RIGHT, 0.25),
                     (10, MazeDirection.LEFT, 7, MazeDirection.RIGHT),
                     (9, MazeDirection.UP, 8, MazeDirection.RIGHT),
-                    (12, MazeDirection.DOWN, 10, MazeDirection.RIGHT),
-                    (15, MazeDirection.LEFT, 11, MazeDirection.RIGHT),
+                    (12, MazeDirection.DOWN, 10, MazeDirection.RIGHT, 0.25),
+                    (15, MazeDirection.LEFT, 11, MazeDirection.RIGHT, 0.25),
                     (13, MazeDirection.LEFT, 12, MazeDirection.RIGHT),
                     (16, MazeDirection.LEFT, 14, MazeDirection.RIGHT),
                     (19, MazeDirection.LEFT, 15, MazeDirection.RIGHT),
                     (18, MazeDirection.LEFT, 16, MazeDirection.RIGHT),
-                    (20, MazeDirection.LEFT, 18, MazeDirection.RIGHT),
+                    (20, MazeDirection.LEFT, 18, MazeDirection.RIGHT, 0.4),
                     (21, MazeDirection.LEFT, 19, MazeDirection.RIGHT),
-                    (24, MazeDirection.LEFT, 23, MazeDirection.RIGHT),
-                    (25, MazeDirection.RIGHT, 24, MazeDirection.RIGHT),
+                    (24, MazeDirection.LEFT, 23, MazeDirection.RIGHT, 0.8),
+                    (25, MazeDirection.RIGHT, 24, MazeDirection.RIGHT, 0.25),
                     (27, MazeDirection.LEFT, 26, MazeDirection.RIGHT),
-                    (29, MazeDirection.UP, 27, MazeDirection.RIGHT),
+                    (29, MazeDirection.UP, 27, MazeDirection.RIGHT, 0.25),
                     (30, MazeDirection.LEFT, 28, MazeDirection.RIGHT),
-                    (3, MazeDirection.DOWN, 0, MazeDirection.UP),
+                    (3, MazeDirection.DOWN, 0, MazeDirection.UP, 0.25),
                     (5, MazeDirection.UP, 2, MazeDirection.UP),
-                    (11, MazeDirection.UP, 10, MazeDirection.UP),
+                    (11, MazeDirection.UP, 10, MazeDirection.UP, 0.75),
                     (17, MazeDirection.UP, 15, MazeDirection.UP),
-                    (18, MazeDirection.UP, 16, MazeDirection.UP),
+                    (18, MazeDirection.UP, 16, MazeDirection.UP, 0.8),
                     (22, MazeDirection.DOWN, 20, MazeDirection.UP),
                     (24, MazeDirection.DOWN, 23, MazeDirection.UP),
                     (28, MazeDirection.DOWN, 27, MazeDirection.UP),
                     (30, MazeDirection.RIGHT, 28, MazeDirection.UP),
                     (4, MazeDirection.RIGHT, 0, MazeDirection.LEFT),
-                    (5, MazeDirection.LEFT, 1, MazeDirection.LEFT),
+                    (5, MazeDirection.LEFT, 1, MazeDirection.LEFT, 0.75),
                     (9, MazeDirection.RIGHT, 8, MazeDirection.LEFT),
                     (13, MazeDirection.RIGHT, 12, MazeDirection.LEFT),
-                    (25, MazeDirection.LEFT, 23, MazeDirection.LEFT),
-                    (31, MazeDirection.LEFT, 28, MazeDirection.LEFT),
+                    (25, MazeDirection.LEFT, 23, MazeDirection.LEFT, 0.8),
+                    (31, MazeDirection.LEFT, 28, MazeDirection.LEFT, 0.75),
                     (1, MazeDirection.UP, 0, MazeDirection.DOWN),
                     (3, MazeDirection.UP, 1, MazeDirection.DOWN),
                     (6, MazeDirection.UP, 2, MazeDirection.DOWN),
-                    (5, MazeDirection.DOWN, 4, MazeDirection.DOWN),
+                    (5, MazeDirection.DOWN, 4, MazeDirection.DOWN, 0.25),
                     (7, MazeDirection.UP, 6, MazeDirection.DOWN),
                     (8, MazeDirection.UP, 7, MazeDirection.DOWN),
                     (9, MazeDirection.DOWN, 8, MazeDirection.DOWN),
                     (14, MazeDirection.UP, 10, MazeDirection.DOWN),
-                    (23, MazeDirection.DOWN, 11, MazeDirection.DOWN),
-                    (17, MazeDirection.DOWN, 15, MazeDirection.DOWN),
+                    (23, MazeDirection.DOWN, 11, MazeDirection.DOWN, 0.2),
+                    (17, MazeDirection.DOWN, 15, MazeDirection.DOWN, 0.25),
                     (18, MazeDirection.DOWN, 16, MazeDirection.DOWN),
-                    (22, MazeDirection.UP, 20, MazeDirection.DOWN),
+                    (22, MazeDirection.UP, 20, MazeDirection.DOWN, 0.6),
                     (26, MazeDirection.DOWN, 25, MazeDirection.DOWN),
                     (29, MazeDirection.DOWN, 27, MazeDirection.DOWN)
-                    ))
-            # MazeMap((
-            #     (0,1,9,11),
-            #     (2,3,5,10),
-            #     (8,4,6,7),
-            #     (13,14,15,12),
-            #     (19,18,17,16),
-            #     (30,29,20,23),
-            #     (26,22,21,27),
-            #     (28,25,24,31),
-            # ),
-            # )
+                    )),
+            MazeMap((
+                (0, 1, 9, 11),
+                (2, 3, 5, 10),
+                (8, 4, 6, 7),
+                (13, 14, 15, 12),
+                (19, 18, 17, 16),
+                (30, 29, 20, 23),
+                (26, 22, 21, 27),
+                (28, 25, 24, 31),
+            ),
+                ((2, MazeDirection.RIGHT, 0, MazeDirection.RIGHT, 0.25),
+                 (2, MazeDirection.LEFT, 1, MazeDirection.RIGHT),
+                 (8, MazeDirection.UP, 6, MazeDirection.RIGHT, 0.25),
+                 (12, MazeDirection.LEFT, 7, MazeDirection.RIGHT),
+                 (13, MazeDirection.LEFT, 8, MazeDirection.RIGHT),
+                 (15, MazeDirection.RIGHT, 13, MazeDirection.RIGHT, 0.4),
+                 (19, MazeDirection.UP, 16, MazeDirection.RIGHT),
+                 (20, MazeDirection.LEFT, 17, MazeDirection.RIGHT),
+                 (19, MazeDirection.RIGHT, 18, MazeDirection.RIGHT, 0.25),
+                 (21, MazeDirection.LEFT, 20, MazeDirection.RIGHT),
+                 (25, MazeDirection.LEFT, 21, MazeDirection.RIGHT),
+                 (26, MazeDirection.UP, 22, MazeDirection.RIGHT, 0.25),
+                 (24, MazeDirection.DOWN, 23, MazeDirection.RIGHT, 0.25),
+                 (26, MazeDirection.DOWN, 25, MazeDirection.RIGHT),
+                 (28, MazeDirection.LEFT, 26, MazeDirection.RIGHT),
+                 (8, MazeDirection.DOWN, 4, MazeDirection.UP),
+                 (11, MazeDirection.UP, 10, MazeDirection.UP, 0.75),
+                 (15, MazeDirection.DOWN, 13, MazeDirection.UP, 0.2),
+                 (17, MazeDirection.DOWN, 16, MazeDirection.UP),
+                 (18, MazeDirection.DOWN, 17, MazeDirection.UP),
+                 (19, MazeDirection.DOWN, 18, MazeDirection.UP),
+                 (22, MazeDirection.DOWN, 21, MazeDirection.UP),
+                 (31, MazeDirection.UP, 29, MazeDirection.UP, 0.75),
+                 (3, MazeDirection.RIGHT, 1, MazeDirection.LEFT, 0.25),
+                 (4, MazeDirection.RIGHT, 3, MazeDirection.LEFT, 0.75),
+                 (5, MazeDirection.RIGHT, 4, MazeDirection.LEFT),
+                 (9, MazeDirection.RIGHT, 5, MazeDirection.LEFT),
+                 (10, MazeDirection.RIGHT, 7, MazeDirection.LEFT),
+                 (11, MazeDirection.RIGHT, 10, MazeDirection.LEFT),
+                 (16, MazeDirection.DOWN, 15, MazeDirection.LEFT),
+                 (19, MazeDirection.LEFT, 16, MazeDirection.LEFT, 0.6),
+                 (18, MazeDirection.LEFT, 17, MazeDirection.LEFT, 0.8),
+                 (27, MazeDirection.RIGHT, 24, MazeDirection.LEFT, 0.75),
+                 (30, MazeDirection.RIGHT, 26, MazeDirection.LEFT),
+                 (29, MazeDirection.RIGHT, 27, MazeDirection.LEFT),
+                 (30, MazeDirection.LEFT, 29, MazeDirection.LEFT, 0.75),
+                 (1, MazeDirection.UP, 0, MazeDirection.DOWN),
+                 (3, MazeDirection.DOWN, 1, MazeDirection.DOWN),
+                 (3, MazeDirection.UP, 2, MazeDirection.DOWN),
+                 (6, MazeDirection.UP, 4, MazeDirection.DOWN),
+                 (7, MazeDirection.UP, 6, MazeDirection.DOWN),
+                 (11, MazeDirection.LEFT, 7, MazeDirection.DOWN, 0.75),
+                 (11, MazeDirection.DOWN, 10, MazeDirection.DOWN),
+                 (14, MazeDirection.UP, 13, MazeDirection.DOWN),
+                 (15, MazeDirection.UP, 14, MazeDirection.DOWN),
+                 (23, MazeDirection.UP, 20, MazeDirection.DOWN),
+                 (27, MazeDirection.DOWN, 23, MazeDirection.DOWN),
+                 (28, MazeDirection.UP, 25, MazeDirection.DOWN, 0.75),
+                 (30, MazeDirection.DOWN, 28, MazeDirection.DOWN, 0.25))
+            ),
+            MazeMap((
+                (0, 19, 23, 18),
+                (1, 17, 21, 20),
+                (2, 15, 22, 14),
+                (3, 13, 12, 16),
+                (4, 11, 27, 24),
+                (5, 10, 25, 26),
+                (6, 8, 29, 28),
+                (9, 7, 30, 31)
+            ),
+                ((1, MazeDirection.LEFT, 0, MazeDirection.RIGHT),
+                 (2, MazeDirection.LEFT, 1, MazeDirection.RIGHT),
+                 (3, MazeDirection.LEFT, 2, MazeDirection.RIGHT),
+                 (4, MazeDirection.LEFT, 3, MazeDirection.RIGHT),
+                 (5, MazeDirection.LEFT, 4, MazeDirection.RIGHT),
+                 (6, MazeDirection.LEFT, 5, MazeDirection.RIGHT),
+                 (9, MazeDirection.LEFT, 6, MazeDirection.RIGHT),
+                 (19, MazeDirection.LEFT, 7, MazeDirection.RIGHT, 0.2),
+                 (16, MazeDirection.LEFT, 14, MazeDirection.RIGHT),
+                 (21, MazeDirection.LEFT, 18, MazeDirection.RIGHT),
+                 (22, MazeDirection.LEFT, 21, MazeDirection.RIGHT),
+                 (24, MazeDirection.LEFT, 22, MazeDirection.RIGHT, 0.25),
+                 (25, MazeDirection.LEFT, 24, MazeDirection.RIGHT),
+                 (28, MazeDirection.UP, 25, MazeDirection.RIGHT),
+                 (28, MazeDirection.LEFT, 26, MazeDirection.RIGHT),
+                 (29, MazeDirection.DOWN, 28, MazeDirection.RIGHT, 0.25),
+                 (30, MazeDirection.LEFT, 29, MazeDirection.RIGHT),
+                 (2, MazeDirection.UP, 1, MazeDirection.UP),
+                 (9, MazeDirection.UP, 4, MazeDirection.UP, 1/3),
+                 (9, MazeDirection.DOWN, 5, MazeDirection.UP, 1/6),
+                 (8, MazeDirection.UP, 6, MazeDirection.UP),
+                 (10, MazeDirection.UP, 7, MazeDirection.UP, 5/6),
+                 (12, MazeDirection.UP, 11, MazeDirection.UP),
+                 (19, MazeDirection.UP, 13, MazeDirection.UP, 5/6),
+                 (17, MazeDirection.DOWN, 15, MazeDirection.UP),
+                 (19, MazeDirection.DOWN, 17, MazeDirection.UP),
+                 (23, MazeDirection.DOWN, 20, MazeDirection.UP),
+                 (23, MazeDirection.UP, 21, MazeDirection.UP, 0.75),
+                 (27, MazeDirection.DOWN, 24, MazeDirection.UP),
+                 (27, MazeDirection.UP, 25, MazeDirection.UP, 0.8),
+                 (9, MazeDirection.RIGHT, 0, MazeDirection.LEFT, 2/3),
+                 (8, MazeDirection.RIGHT, 7, MazeDirection.LEFT),
+                 (10, MazeDirection.RIGHT, 8, MazeDirection.LEFT),
+                 (11, MazeDirection.RIGHT, 10, MazeDirection.LEFT),
+                 (13, MazeDirection.RIGHT, 11, MazeDirection.LEFT),
+                 (15, MazeDirection.RIGHT, 13, MazeDirection.LEFT),
+                 (18, MazeDirection.DOWN, 14, MazeDirection.LEFT, 2/3),
+                 (17, MazeDirection.RIGHT, 15, MazeDirection.LEFT),
+                 (19, MazeDirection.RIGHT, 17, MazeDirection.LEFT),
+                 (23, MazeDirection.LEFT, 18, MazeDirection.LEFT),
+                 (31, MazeDirection.RIGHT, 29, MazeDirection.LEFT, 0.75),
+                 (1, MazeDirection.DOWN, 0, MazeDirection.DOWN, 1/6),
+                 (3, MazeDirection.UP, 2, MazeDirection.DOWN, 1/6),
+                 (5, MazeDirection.DOWN, 3, MazeDirection.DOWN, 1/6),
+                 (6, MazeDirection.DOWN, 4, MazeDirection.DOWN, 1/3),
+                 (11, MazeDirection.DOWN, 7, MazeDirection.DOWN, 0.6),
+                 (10, MazeDirection.DOWN, 8, MazeDirection.DOWN, 0.4),
+                 (14, MazeDirection.UP, 12, MazeDirection.DOWN),
+                 (15, MazeDirection.DOWN, 13, MazeDirection.DOWN, 0.35),
+                 (20, MazeDirection.DOWN, 14, MazeDirection.DOWN, 1/3),
+                 (22, MazeDirection.DOWN, 21, MazeDirection.DOWN),
+                 (28, MazeDirection.DOWN, 24, MazeDirection.DOWN),
+                 (26, MazeDirection.UP, 25, MazeDirection.DOWN))
+            )
         ]
         self.set_map(0)
         self.won = False
@@ -521,7 +640,6 @@ class GraphMaze:
         self.map.set_mode(mode)
 
     def _set_map_obj(self, map: MazeMap):
-
         if self.map:
             self.map.unlink_parent()
         self.map: MazeMap = map
